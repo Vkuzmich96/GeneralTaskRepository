@@ -15,6 +15,22 @@ public class Action {
         this.user = user;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
+    }
+
+    public void setMaterials(List<Material> materials) {
+        this.materials = materials;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public int getId() {
         return id;
     }
