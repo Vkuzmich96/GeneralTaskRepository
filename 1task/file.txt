@@ -1,0 +1,10 @@
+developer;junior;java;Vasya;1;350
+developer;junior;java;Petya;1;300
+developer;junior;java;Sergei;1;320
+developer;junior;java;Sanya;1;330
+developer;middle;java;Max;2;1000
+developer;middle;java;Stepan;2;1100
+developer;senior;java;Misha;5;2500
+tester;junior;hand;Nikita;1;200
+tester;junior;hand;Simon;1;210
+developer;lead;java;Stephan;8;5000
