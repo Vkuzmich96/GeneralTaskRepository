@@ -46,4 +46,17 @@ public class User {
     public long getNumber() {
         return number;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", number=" + number +
+                '}';
+    }
 }

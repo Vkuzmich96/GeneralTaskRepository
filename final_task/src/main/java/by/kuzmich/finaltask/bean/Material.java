@@ -22,4 +22,13 @@ public class Material {
     public String getDiscription() {
         return discription;
     }
+
+    @Override
+    public String toString() {
+        return "Material{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                ", discription='" + discription + '\'' +
+                '}';
+    }
 }

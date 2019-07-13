@@ -46,4 +46,14 @@ public class Action {
     public User getUser() {
         return user;
     }
+
+    @Override
+    public String toString() {
+        return "Action{" +
+                "id=" + id +
+                ", instructions='" + instructions + '\'' +
+                ", materials=" + materials +
+                ", user=" + user +
+                '}';
+    }
 }
