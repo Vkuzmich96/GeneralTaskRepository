@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<candies>
+    <candi id ="0">
+        <name>Alyonka</name>
+        <energy>100</energy>
+        <type>chocolate</type>
+        <ingredients>
+            <woter>100</woter>
+            <sugar>100</sugar>
+        </ingredients>
+        <value>
+            <protein>50</protein>
+            <fat>50</fat>
+            <carbohydrates>50</carbohydrates>
+        </value>
+        <prodaction>Kommunarka</prodaction>
+    </candi>
+    <candi id ="1">
+        <name>Milko</name>
+        <energy>100</energy>
+        <type>chocolate</type>
+        <ingredients>
+            <woter>100</woter>
+            <sugar>55</sugar>
+        </ingredients>
+        <value>
+            <protein>51</protein>
+            <fat>55</fat>
+            <carbohydrates>53</carbohydrates>
+        </value>
+        <prodaction>Kommunarka</prodaction>
+    </candi>
+</candies>
