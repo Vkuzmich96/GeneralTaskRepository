@@ -8,6 +8,7 @@ public class Candy {
     private String name;
     private String energy;
     private String type;
+    private boolean isFilled;
     private Map<Ingredients, String> ingredients = new HashMap<>();
     private Map<Values, String> values = new HashMap<>();
 
@@ -27,6 +28,10 @@ public class Candy {
         this.type = type;
     }
 
+    public void setFilled(boolean filled) {
+        isFilled = filled;
+    }
+
     public void addIngredient(Ingredients key, String value) {
         ingredients.put(key, value);
     }
@@ -35,15 +40,17 @@ public class Candy {
         values.put(key, value);
     }
 
+
     @Override
     public String toString() {
         return "Candy{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", energy='" + energy + '\'' +
-                ", type='" + type + '\'' +
-                ", ingredients=" + ingredients +
-                ", values=" + values +
-                '}';
+                "id='" + id + "'\n" +
+                "- name='" + name + "'\n" +
+                "- energy='" + energy + "'\n" +
+                "- type='" + type + "'\n" +
+                "- isFilled ='" + isFilled + "'\n" +
+                "- ingredients=" + ingredients + "'\n" +
+                "- values=" + values +
+                '}' + "\n";
     }
 }
