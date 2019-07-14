@@ -5,7 +5,7 @@ import by.kuzmich.finaltask.bean.Material;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface MaterialDAO {
+public interface MaterialDAO extends DAO<Material> {
     void insert (Material material) throws SQLException;
     List<Material> selectAll() throws SQLException;
     void delete (int id) throws SQLException;

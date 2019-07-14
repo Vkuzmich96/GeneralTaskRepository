@@ -2,6 +2,8 @@ package by.kuzmich.finaltask.dao.impl;
 
 import by.kuzmich.finaltask.dao.ActionDAO;
 import by.kuzmich.finaltask.bean.Action;
+import by.kuzmich.finaltask.dao.pool.ConnectionPool;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActionDAOMySql implements ActionDAO {
+    private static Logger logger = Logger.getLogger(ConnectionPool.class);
     private Connection connection;
 
     public ActionDAOMySql(Connection connection) {
@@ -18,11 +21,21 @@ public class ActionDAOMySql implements ActionDAO {
     }
 
     @Override
-    public void insert (Action action) throws SQLException {
-        String sql = "INSERT INTO `lawmapsdb`.`action` VALUES (null, ?, null)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, action.getInstructions());
-        statement.execute();
+    public void insert (Action action) {
+        try {
+            String sql = "INSERT INTO `lawmapsdb`.`action` VALUES (null, ?, null)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, action.getInstructions());
+            statement.execute();
+        } catch (SQLException e){
+            logger.error("its impossible to insert data");
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                logger.error("its impossible to close connection");
+            }
+        }
     }
 
     @Override

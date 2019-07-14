@@ -5,7 +5,7 @@ import by.kuzmich.finaltask.bean.User;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface UserDAO {
+public interface UserDAO extends DAO<User> {
     void insert (User user) throws SQLException;
     List<User> selectAll () throws SQLException;
     User select(int id) throws SQLException;

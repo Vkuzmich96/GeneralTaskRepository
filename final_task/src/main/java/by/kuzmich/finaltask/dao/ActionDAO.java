@@ -5,7 +5,7 @@ import by.kuzmich.finaltask.bean.Action;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ActionDAO {
+public interface ActionDAO extends DAO<Action> {
     void insert (Action action) throws SQLException;
     List<Action> selectAll() throws SQLException;
     Action select(int id) throws SQLException;
