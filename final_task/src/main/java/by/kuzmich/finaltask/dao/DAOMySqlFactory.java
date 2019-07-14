@@ -30,8 +30,7 @@ final public class DAOMySqlFactory {
         }
     }
 
-    //todo добавить дао после того как они будут дописаны и протестированы
-    public DAO get (DAOKids kind) throws DAOException {
+    public DAO get (DAOKinds kind) throws DAOException {
             switch (kind) {
                 case UserDAOMySql:
                     return  new UserDAOMySql(ConnectionPool.getInstance().getConnection());
@@ -41,8 +40,8 @@ final public class DAOMySqlFactory {
                     return new MaterialDAOMySql(ConnectionPool.getInstance().getConnection());
                 case LawMapNameDAOMySql:
                     return new LawMapNameDAOMySql(ConnectionPool.getInstance().getConnection());
-//              case ActionMateriallLinkDAOMySql:
-//                  return new ActionMateriallLinkDAOMySql (ConnectionPool.getInstance().getConnection());
+              case ActionMaterialLinkDAOMySql:
+                  return new ActionMaterialLinkDAOMySql(ConnectionPool.getInstance().getConnection());
                 default:
                     throw new DAOException("this DAO does not exist - " + kind);
             }

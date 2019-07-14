@@ -1,7 +1,9 @@
 package by.kuzmich.finaltask.dao.impl;
 
-import by.kuzmich.finaltask.dao.LawMapNameDAO;
+import by.kuzmich.finaltask.dao.DAO;
 import by.kuzmich.finaltask.bean.LawMapName;
+import by.kuzmich.finaltask.dao.pool.ConnectionPool;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LawMapNameDAOMySql implements LawMapNameDAO {
+public class LawMapNameDAOMySql implements DAO<LawMapName, LawMapName> {
+    private static Logger logger = Logger.getLogger(ConnectionPool.class);
 
     private Connection connection;
 
@@ -18,42 +21,104 @@ public class LawMapNameDAOMySql implements LawMapNameDAO {
         this.connection = connection;
     }
 
-    public void insert (LawMapName lawMapName) throws SQLException {
-        String sql = "INSERT INTO `lawmapsdb`.`law_map_name` VALUES (null, ?)";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, lawMapName.getName());
-        statement.execute();
+    public int insert (LawMapName lawMapName) throws SQLException {
+        int id = 0;
+        try {
+            String sql = "INSERT INTO `lawmapsdb`.`law_map_name` VALUES (null, ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            prepareStatement(statement, lawMapName);
+            statement.execute();
+            ResultSet set = statement.getGeneratedKeys();
+            id = set.getInt("id");
+        } catch (SQLException e){
+            logger.error("its impossible to insert data");
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                logger.error("its impossible to close connection");
+            }
+        }
+        return id;
     }
 
     public List<LawMapName> selectAll() throws SQLException {
-        String sql = "SELECT * FROM lawmapsdb.law_map_name";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet resultSet = statement.executeQuery();
-        return buildList(resultSet);
+        List<LawMapName> names = null;
+        try {
+            String sql = "SELECT * FROM lawmapsdb.law_map_name";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            names = buildList(resultSet);
+        } catch (SQLException e){
+            logger.error("its impossible to select data");
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                logger.error("its impossible to close connection");
+            }
+        }
+        return names;
     }
 
     public LawMapName select(int id) throws SQLException{
-        String sql = "SELECT * FROM lawmapsdb.law_map_name WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, id);
-        ResultSet set = statement.executeQuery();
-        set.next();
-        return build(set);
+        LawMapName name = null;
+        try {
+            String sql = "SELECT * FROM lawmapsdb.law_map_name WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            ResultSet set = statement.executeQuery();
+            set.next();
+            name = build(set);
+        } catch (SQLException e){
+            logger.error("its impossible to select data");
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                logger.error("its impossible to close connection");
+            }
+        }
+        return name;
     }
 
     public void delete (int id) throws SQLException {
-        String sql = "DELETE FROM `lawmapsdb`.`law_map_name` WHERE id = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setInt(1, id);
-        statement.execute();
+        try {
+            String sql = "DELETE FROM `lawmapsdb`.`law_map_name` WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.execute();
+        } catch (SQLException e){
+            logger.error("its impossible to delete data");
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                logger.error("its impossible to close connection");
+            }
+        }
     }
 
-    public void updateName (String value, int id) throws SQLException {
-        String sql = "UPDATE `lawmapsdb`.`law_map_name` SET `name` = ? WHERE `id` = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, value);
-        statement.setInt(2, id);
-        statement.execute();
+    public void update (LawMapName name) throws SQLException {
+        try {
+            String sql = "UPDATE `lawmapsdb`.`law_map_name` SET `name` = ? WHERE `id` = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            prepareStatement(statement, name);
+            statement.setInt(2, name.getId());
+            statement.execute();
+        } catch (SQLException e){
+            logger.error("its impossible to delete data");
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                logger.error("its impossible to close connection");
+            }
+        }
+    }
+
+    private void prepareStatement(PreparedStatement statement, LawMapName name) throws SQLException {
+        statement.setString(1, name.getName());
     }
 
     private List<LawMapName> buildList (ResultSet set) throws SQLException {

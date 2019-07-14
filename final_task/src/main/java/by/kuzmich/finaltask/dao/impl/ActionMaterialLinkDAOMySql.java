@@ -1,8 +1,7 @@
 package by.kuzmich.finaltask.dao.impl;
 
+import by.kuzmich.finaltask.bean.ActionMaterialLink;
 import by.kuzmich.finaltask.dao.DAO;
-import by.kuzmich.finaltask.bean.Role;
-import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.dao.pool.ConnectionPool;
 import org.apache.log4j.Logger;
 
@@ -13,21 +12,21 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAOMySql implements DAO<User, User> {
+public class ActionMaterialLinkDAOMySql implements DAO<ActionMaterialLink, List<ActionMaterialLink>> {
     private static Logger logger = Logger.getLogger(ConnectionPool.class);
     private Connection connection;
 
-    public UserDAOMySql(Connection connection) {
+    public ActionMaterialLinkDAOMySql(Connection connection) {
         this.connection = connection;
     }
 
-    @Override
-    public int insert (User user) throws SQLException {
+    public int insert (ActionMaterialLink link) {
         int id = 0;
         try {
-            String sql = "INSERT INTO `lawmapsdb`.`users` VALUES (null, ?, ?,?, ?,?,? )";
+            String sql = "INSERT INTO `lawmapsdb`.`material_links_list` VALUES (null, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
-            prepareStatement(statement, user);
+            statement.setInt(1, link.getActionId());
+            statement.setInt(2, link.getMaterialId());
             statement.execute();
             ResultSet set = statement.getGeneratedKeys();
             id = set.getInt("id");
@@ -43,14 +42,13 @@ public class UserDAOMySql implements DAO<User, User> {
         return id;
     }
 
-    @Override
-    public List<User> selectAll () throws SQLException {
-        List<User> users = null;
+    public List<ActionMaterialLink> selectAll() {
+        List<ActionMaterialLink> links = null;
         try {
-            String sql = "SELECT * FROM lawmapsdb.users";
+            String sql = "SELECT * FROM lawmapsdb.material_links_list";
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
-            users = buildList(resultSet);
+            links = buildList(resultSet);
         } catch (SQLException e){
             logger.error("its impossible to select data");
         } finally {
@@ -60,19 +58,17 @@ public class UserDAOMySql implements DAO<User, User> {
                 logger.error("its impossible to close connection");
             }
         }
-        return users;
+        return links;
     }
 
-
-    public User select(int id) throws SQLException{
-        User user = null;
+    public List<ActionMaterialLink> select(int id) {
+        List<ActionMaterialLink> links = null;
         try {
-            String sql = "SELECT * FROM lawmapsdb.users WHERE id = ?";
+            String sql = "SELECT * FROM lawmapsdb.material_links_list WHERE action_id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
-            ResultSet set = statement.executeQuery();
-            set.next();
-            user = build(set);
+            ResultSet resultSet = statement.executeQuery();
+            links = buildList(resultSet);
         } catch (SQLException e){
             logger.error("its impossible to select data");
         } finally {
@@ -82,12 +78,12 @@ public class UserDAOMySql implements DAO<User, User> {
                 logger.error("its impossible to close connection");
             }
         }
-        return user;
+        return links;
     }
 
-    public void delete (int id) throws SQLException {
+    public void delete (int id) {
         try {
-            String sql = "DELETE FROM `lawmapsdb`.`users` WHERE id = ?";
+            String sql = "DELETE FROM `lawmapsdb`.`material_links_list` WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, id);
             statement.execute();
@@ -102,14 +98,13 @@ public class UserDAOMySql implements DAO<User, User> {
         }
     }
 
-
-    public void update(User user){
+    public void update (ActionMaterialLink link){
         try {
-            String sql = "UPDATE `lawmapsdb`.`users` SET `email` = ?, `password` = ?, `role` = ?, `name` = ?, `address` = ?, `phone` = ? WHERE `id` = ?";
+            String sql = "UPDATE `lawmapsdb`.`material_links_list` SET `action_id` = ?, `materia_id` = ?  WHERE `id` = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            prepareStatement(statement, user);
-            statement.setInt(7, user.getId());
-            statement.executeUpdate();
+            prepareStatement(statement, link);
+            statement.setInt(3, link.getId() );
+            statement.execute();
         } catch (SQLException e){
             logger.error("its impossible to update data");
         } finally {
@@ -121,45 +116,24 @@ public class UserDAOMySql implements DAO<User, User> {
         }
     }
 
-
-    private void prepareStatement(PreparedStatement statement, User user) throws SQLException {
-        statement.setString(1, user.getEmail());
-        statement.setString(2, user.getPassword());
-        statement.setInt(3, user.getRole().getNumber());
-        statement.setString(4, user.getName());
-        statement.setString(5, user.getAddress());
-        statement.setLong(6, user.getNumber());
+    private void prepareStatement(PreparedStatement statement, ActionMaterialLink link) throws SQLException {
+        statement.setInt(1, link.getActionId());
+        statement.setInt(2, link.getMaterialId());
     }
 
-    private List<User> buildList (ResultSet set) throws SQLException {
-        List<User> users = new ArrayList<>();
+    private List<ActionMaterialLink> buildList (ResultSet set) throws SQLException {
+        List<ActionMaterialLink> materials = new ArrayList<>();
         while (set.next()){
-            User user = build(set);
-            users.add(user);
+            ActionMaterialLink link = build(set);
+            materials.add(link);
         }
-        return users;
+        return materials;
     }
 
-    private User build (ResultSet set) throws SQLException {
+    private ActionMaterialLink build(ResultSet set) throws SQLException {
         int id = set.getInt("id");
-        String email = set.getString("email");
-        String password = set.getString("password");
-        int roleNumber = set.getInt("role");
-        Role role = choseRole(roleNumber);
-        String name = set.getString("name");
-        String address = set.getString("address");
-        long phone = set.getLong("phone");
-        return new User(id,email,password,role,name,address,phone);
-    }
-
-    private Role choseRole (int number){
-        switch (number){
-            default :
-                return Role.USER;
-            case 1 :
-                return Role.ADMIN;
-            case 2 :
-                return Role.LAWER;
-        }
+        int action_id = set.getInt("action_id");
+        int materia_id = set.getInt("materia_id");
+        return new ActionMaterialLink(id, action_id, materia_id);
     }
 }

@@ -1,8 +1,8 @@
 package by.kuzmich.finaltask.dao;
 
-public enum DAOKids {
+public enum DAOKinds {
     ActionDAOMySql,
-    ActionMateriallLinkDAOMySql,
+    ActionMaterialLinkDAOMySql,
     LawMapNameDAOMySql,
     MaterialDAOMySql,
     UserDAOMySql

@@ -1,18 +1,32 @@
 package by.kuzmich.finaltask.dao.impl;
 
-import by.kuzmich.finaltask.dao.utils.MySQLConnection;
+import by.kuzmich.finaltask.dao.DAO;
+import by.kuzmich.finaltask.dao.DAOKinds;
+import by.kuzmich.finaltask.dao.DAOMySqlFactory;
 import by.kuzmich.finaltask.bean.Material;
 import static org.junit.Assert.*;
 
 
+import by.kuzmich.finaltask.exception.DAOException;
 import org.junit.Test;
 
 import java.sql.SQLException;
 
 
 public class MaterialDAOTest {
-    private MaterialDAOMySql dao = new MaterialDAOMySql(MySQLConnection.getConnection());
+    private DAO<Material, Material> dao;
+
+    {
+        try {
+            dao = (MaterialDAOMySql) DAOMySqlFactory.getInstance().get(DAOKinds.MaterialDAOMySql);
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private Material material = new Material(0, "jdbc.properties", "lorem ipsum");
+    private Material materialUpdate = new Material(0, "just a test", "just a test");
+
 
     private Material findFirst() throws SQLException {
         return dao.selectAll().get(0);
@@ -20,10 +34,8 @@ public class MaterialDAOTest {
 
     @Test
     public void insert() throws SQLException {
-        int sizeBefore = dao.selectAll().size();
-        dao.insert(material);
-        int sizeAfter = dao.selectAll().size();
-        assertEquals(sizeBefore + 1, sizeAfter);
+        int id = dao.insert(material);
+        dao.select(id);
     }
 
     @Test
@@ -46,18 +58,10 @@ public class MaterialDAOTest {
     }
 
     @Test
-    public void updateUrl() throws SQLException {
+    public void update() throws SQLException {
         int id  = findFirst().getId();
-        dao.updateUrl("just a test", id);
-        Material material = dao.select(id);
-        assertEquals("just a test", material.getUrl());
+        materialUpdate.setId(id);
+        dao.update(materialUpdate);
     }
 
-    @Test
-    public void updateDescription() throws SQLException {
-        int id  = findFirst().getId();
-        dao.updateDescription("just a test", id);
-        Material material = dao.select(id);
-        assertEquals("just a test", material.getDiscription());
-    }
 }

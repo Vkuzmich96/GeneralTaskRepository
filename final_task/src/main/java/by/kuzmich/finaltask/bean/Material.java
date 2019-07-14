@@ -23,6 +23,18 @@ public class Material {
         return discription;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setDiscription(String discription) {
+        this.discription = discription;
+    }
+
     @Override
     public String toString() {
         return "Material{" +

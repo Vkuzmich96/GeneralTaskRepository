@@ -23,6 +23,18 @@ public class ActionMaterialLink {
         return MaterialId;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setActionId(int actionId) {
+        ActionId = actionId;
+    }
+
+    public void setMaterialId(int materialId) {
+        MaterialId = materialId;
+    }
+
     @Override
     public String toString() {
         return "ActionMaterialLink{" +

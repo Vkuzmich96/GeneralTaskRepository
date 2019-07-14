@@ -1,16 +1,30 @@
 package by.kuzmich.finaltask.dao.impl;
 
 import by.kuzmich.finaltask.bean.ActionMaterialLink;
-import by.kuzmich.finaltask.dao.utils.MySQLConnection;
+import by.kuzmich.finaltask.dao.DAO;
+import by.kuzmich.finaltask.dao.DAOKinds;
+import by.kuzmich.finaltask.dao.DAOMySqlFactory;
+import by.kuzmich.finaltask.exception.DAOException;
 import org.junit.Test;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class ActionMateriallLinkDAOMySqlTest {
-    private ActionMateriallLinkDAOMySql dao = new ActionMateriallLinkDAOMySql(MySQLConnection.getConnection());
+public class ActionMaterialLinkDAOMySqlTest {
+    private DAO<ActionMaterialLink, List<ActionMaterialLink>> dao;
+    {
+        try {
+            dao = (ActionMaterialLinkDAOMySql) DAOMySqlFactory.getInstance().get(DAOKinds.ActionMaterialLinkDAOMySql);
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private ActionMaterialLink link = new ActionMaterialLink(0,1, 1);
+    private ActionMaterialLink linkUpdate = new ActionMaterialLink(0,2, 2);
+
 
     private ActionMaterialLink findFirst() throws SQLException {
         return dao.selectAll().get(0);
@@ -18,10 +32,9 @@ public class ActionMateriallLinkDAOMySqlTest {
 
     @Test
     public void insert() throws SQLException {
-        int sizeBefore = dao.selectAll().size();
-        dao.insert(link);
-        int sizeAfter = dao.selectAll().size();
-        assertEquals(sizeBefore + 1, sizeAfter);    }
+        int id = dao.insert(link);
+        dao.select(id);
+    }
 
     @Test
     public void selectAll() throws SQLException {
@@ -43,18 +56,10 @@ public class ActionMateriallLinkDAOMySqlTest {
     }
 
     @Test
-    public void updateAction() throws SQLException {
+    public void update() throws SQLException {
         int id  = findFirst().getId();
-        dao.updateAction(2, id);
-        ActionMaterialLink link = dao.select(id).get(0);
-        assertEquals(2, link.getActionId());
+        linkUpdate.setId(id);
+        dao.update(linkUpdate);
     }
 
-    @Test
-    public void updateMaterial() throws SQLException {
-        int id  = findFirst().getId();
-        dao.updateMaterial(2, id);
-        ActionMaterialLink link = dao.select(id).get(0);
-        assertEquals(2, link.getActionId());
-    }
 }
