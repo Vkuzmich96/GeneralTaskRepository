@@ -3,7 +3,6 @@ package by.kuzmich.finaltask.dao.impl;
 import by.kuzmich.finaltask.bean.Action;
 import by.kuzmich.finaltask.bean.GraphEdge;
 import by.kuzmich.finaltask.dao.DAO;
-import by.kuzmich.finaltask.dao.pool.ConnectionPool;
 import org.apache.log4j.Logger;
 
 import java.sql.Statement;
@@ -16,7 +15,7 @@ import java.util.List;
 
 public class GraphEdgeDAOMySql implements DAO<GraphEdge, List<GraphEdge>> {
 
-    private static Logger logger = Logger.getLogger(ConnectionPool.class);
+    private static Logger logger = Logger.getLogger(GraphEdgeDAOMySql.class);
     private Connection connection;
 
     public GraphEdgeDAOMySql(Connection connection) {

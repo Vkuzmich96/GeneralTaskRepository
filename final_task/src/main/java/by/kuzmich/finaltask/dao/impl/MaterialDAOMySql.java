@@ -2,7 +2,6 @@ package by.kuzmich.finaltask.dao.impl;
 
 import by.kuzmich.finaltask.dao.DAO;
 import by.kuzmich.finaltask.bean.Material;
-import by.kuzmich.finaltask.dao.pool.ConnectionPool;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -11,7 +10,7 @@ import java.util.List;
 
 
 public class MaterialDAOMySql implements DAO <Material, Material> {
-    private static Logger logger = Logger.getLogger(ConnectionPool.class);
+    private static Logger logger = Logger.getLogger(MaterialDAOMySql.class);
     private Connection connection;
 
     public MaterialDAOMySql(Connection connection) {

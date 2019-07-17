@@ -2,7 +2,6 @@ package by.kuzmich.finaltask.dao.impl;
 
 import by.kuzmich.finaltask.dao.DAO;
 import by.kuzmich.finaltask.bean.LawMapName;
-import by.kuzmich.finaltask.dao.pool.ConnectionPool;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LawMapNameDAOMySql implements DAO<LawMapName, LawMapName> {
-    private static Logger logger = Logger.getLogger(ConnectionPool.class);
+    private static Logger logger = Logger.getLogger(LawMapNameDAOMySql.class);
 
     private Connection connection;
 

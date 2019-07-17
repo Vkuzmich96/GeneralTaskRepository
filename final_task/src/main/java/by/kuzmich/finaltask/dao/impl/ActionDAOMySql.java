@@ -2,7 +2,6 @@ package by.kuzmich.finaltask.dao.impl;
 
 import by.kuzmich.finaltask.bean.Action;
 import by.kuzmich.finaltask.dao.DAO;
-import by.kuzmich.finaltask.dao.pool.ConnectionPool;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -13,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ActionDAOMySql implements DAO<Action, Action> {
-    private static Logger logger = Logger.getLogger(ConnectionPool.class);
+    private static Logger logger = Logger.getLogger(ActionDAOMySql.class);
     private Connection connection;
 
     public ActionDAOMySql(Connection connection) {
