@@ -15,6 +15,10 @@ public class Action {
         this.user = user;
     }
 
+    public Action(int id) {
+        this.id = id;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

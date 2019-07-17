@@ -62,12 +62,12 @@ public class MaterialDAOMySql implements DAO <Material, Material> {
     }
 
     @Override
-    public Material select(int id) throws SQLException{
+    public Material select(String id) throws SQLException{
         Material material = null;
         try {
             String sql = "SELECT * FROM lawmapsdb.materials WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setInt(1, Integer.valueOf(id));
             ResultSet set = statement.executeQuery();
             set.next();
             material = build(set);
@@ -117,6 +117,11 @@ public class MaterialDAOMySql implements DAO <Material, Material> {
                 logger.error("its impossible to close connection");
             }
         }
+    }
+
+    @Override
+    public void finalize() throws SQLException {
+        connection.close();
     }
 
     private void prepareStatement(PreparedStatement statement, Material material) throws SQLException {

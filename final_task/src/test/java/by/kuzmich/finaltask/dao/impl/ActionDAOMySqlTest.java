@@ -4,7 +4,7 @@ import by.kuzmich.finaltask.bean.Role;
 import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.dao.DAO;
 import by.kuzmich.finaltask.dao.DAOKinds;
-import by.kuzmich.finaltask.dao.DAOMySqlFactory;
+import by.kuzmich.finaltask.dao.DAOFactory;
 import by.kuzmich.finaltask.bean.Action;
 import by.kuzmich.finaltask.exception.DAOException;
 import org.junit.Test;
@@ -18,7 +18,7 @@ public class ActionDAOMySqlTest {
 
     {
         try {
-            dao = (ActionDAOMySql) DAOMySqlFactory.getInstance().get(DAOKinds.ActionDAOMySql);
+            dao = (ActionDAOMySql) DAOFactory.getInstance().get(DAOKinds.ActionDAOMySql);
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -35,7 +35,7 @@ public class ActionDAOMySqlTest {
     @Test
     public void insert() throws SQLException {
         int id = dao.insert(action);
-        dao.select(id);
+        dao.select(String.valueOf(id));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class ActionDAOMySqlTest {
     @Test
     public void select() throws SQLException {
         int id = findFirst().getId();
-        Action action = dao.select(id);
+        Action action = dao.select(String.valueOf(id));
         assertEquals(id, action.getId());
     }
 
@@ -54,7 +54,7 @@ public class ActionDAOMySqlTest {
     public void delete() throws SQLException {
         int id  = findFirst().getId();
         dao.delete(id);
-        dao.select(id);
+        dao.select(String.valueOf(id));
     }
 
     @Test

@@ -21,6 +21,7 @@ public class UserDAOMySql implements DAO<User, User> {
         this.connection = connection;
     }
 
+    //todo ключ кидает ошибку
     @Override
     public int insert (User user) throws SQLException {
         int id = 0;
@@ -29,8 +30,8 @@ public class UserDAOMySql implements DAO<User, User> {
             PreparedStatement statement = connection.prepareStatement(sql);
             prepareStatement(statement, user);
             statement.execute();
-            ResultSet set = statement.getGeneratedKeys();
-            id = set.getInt("id");
+//            ResultSet set = statement.getGeneratedKeys();
+//            id = set.getInt("id");
         } catch (SQLException e){
             logger.error("its impossible to insert data");
         } finally {
@@ -64,12 +65,12 @@ public class UserDAOMySql implements DAO<User, User> {
     }
 
 
-    public User select(int id) throws SQLException{
+    public User select(String email) throws SQLException{
         User user = null;
         try {
-            String sql = "SELECT * FROM lawmapsdb.users WHERE id = ?";
+            String sql = "SELECT * FROM lawmapsdb.users WHERE email = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setString(1, email);
             ResultSet set = statement.executeQuery();
             set.next();
             user = build(set);
@@ -121,6 +122,10 @@ public class UserDAOMySql implements DAO<User, User> {
         }
     }
 
+    @Override
+    public void finalize() throws SQLException {
+        connection.close();
+    }
 
     private void prepareStatement(PreparedStatement statement, User user) throws SQLException {
         statement.setString(1, user.getEmail());

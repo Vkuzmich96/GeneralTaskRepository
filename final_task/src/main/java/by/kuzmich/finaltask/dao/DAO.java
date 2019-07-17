@@ -6,7 +6,7 @@ import java.util.List;
 public  interface DAO <T, S> {
     int insert (T object) throws SQLException;
     List<T> selectAll() throws SQLException;
-    S select(int id) throws SQLException;
+    S select(String key) throws SQLException;
     void delete (int id) throws SQLException;
     void update (T name) throws SQLException;
 }

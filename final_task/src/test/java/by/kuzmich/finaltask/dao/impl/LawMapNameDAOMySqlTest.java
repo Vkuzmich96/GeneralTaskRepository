@@ -2,7 +2,7 @@ package by.kuzmich.finaltask.dao.impl;
 
 import by.kuzmich.finaltask.dao.DAO;
 import by.kuzmich.finaltask.dao.DAOKinds;
-import by.kuzmich.finaltask.dao.DAOMySqlFactory;
+import by.kuzmich.finaltask.dao.DAOFactory;
 import by.kuzmich.finaltask.bean.LawMapName;
 import by.kuzmich.finaltask.exception.DAOException;
 import org.junit.Test;
@@ -16,7 +16,7 @@ public class LawMapNameDAOMySqlTest {
 
     {
         try {
-            dao = (LawMapNameDAOMySql) DAOMySqlFactory.getInstance().get(DAOKinds.LawMapNameDAOMySql);
+            dao = (LawMapNameDAOMySql) DAOFactory.getInstance().get(DAOKinds.LawMapNameDAOMySql);
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -33,7 +33,7 @@ public class LawMapNameDAOMySqlTest {
     @Test
     public void insert() throws SQLException {
         int id = dao.insert(lawMapName);
-        dao.select(id);
+        dao.select(String.valueOf(id));
     }
 
     @Test
@@ -45,7 +45,7 @@ public class LawMapNameDAOMySqlTest {
     @Test
     public void select() throws SQLException{
         int id = findFirst().getId();
-        LawMapName lawMapName = dao.select(id);
+        LawMapName lawMapName = dao.select(String.valueOf(id));
         assertEquals(id, lawMapName.getId());
     }
 
@@ -53,7 +53,7 @@ public class LawMapNameDAOMySqlTest {
     public void delete() throws SQLException {
         int id  = findFirst().getId();
         dao.delete(id);
-        dao.select(id);
+        dao.select(String.valueOf(id));
     }
 
     @Test

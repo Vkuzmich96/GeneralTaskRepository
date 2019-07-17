@@ -3,7 +3,7 @@ package by.kuzmich.finaltask.dao.impl;
 import by.kuzmich.finaltask.bean.ActionMaterialLink;
 import by.kuzmich.finaltask.dao.DAO;
 import by.kuzmich.finaltask.dao.DAOKinds;
-import by.kuzmich.finaltask.dao.DAOMySqlFactory;
+import by.kuzmich.finaltask.dao.DAOFactory;
 import by.kuzmich.finaltask.exception.DAOException;
 import org.junit.Test;
 
@@ -16,7 +16,7 @@ public class ActionMaterialLinkDAOMySqlTest {
     private DAO<ActionMaterialLink, List<ActionMaterialLink>> dao;
     {
         try {
-            dao = (ActionMaterialLinkDAOMySql) DAOMySqlFactory.getInstance().get(DAOKinds.ActionMaterialLinkDAOMySql);
+            dao = (ActionMaterialLinkDAOMySql) DAOFactory.getInstance().get(DAOKinds.ActionMaterialLinkDAOMySql);
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -33,7 +33,7 @@ public class ActionMaterialLinkDAOMySqlTest {
     @Test
     public void insert() throws SQLException {
         int id = dao.insert(link);
-        dao.select(id);
+        dao.select(String.valueOf(id));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class ActionMaterialLinkDAOMySqlTest {
     @Test
     public void select() throws SQLException {
         int id = findFirst().getActionId();
-        dao.select(id);
+        dao.select(String.valueOf(id));
         assertEquals(id, link.getActionId());
     }
 
@@ -52,7 +52,7 @@ public class ActionMaterialLinkDAOMySqlTest {
     public void delete() throws SQLException {
         int id  = findFirst().getId();
         dao.delete(id);
-        dao.select(id);
+        dao.select(String.valueOf(id));
     }
 
     @Test

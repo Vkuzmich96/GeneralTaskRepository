@@ -61,12 +61,12 @@ public class LawMapNameDAOMySql implements DAO<LawMapName, LawMapName> {
         return names;
     }
 
-    public LawMapName select(int id) throws SQLException{
+    public LawMapName select(String  id) throws SQLException{
         LawMapName name = null;
         try {
             String sql = "SELECT * FROM lawmapsdb.law_map_name WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setInt(1, Integer.valueOf(id));
             ResultSet set = statement.executeQuery();
             set.next();
             name = build(set);
@@ -115,6 +115,11 @@ public class LawMapNameDAOMySql implements DAO<LawMapName, LawMapName> {
                 logger.error("its impossible to close connection");
             }
         }
+    }
+
+    @Override
+    public void finalize() throws SQLException {
+        connection.close();
     }
 
     private void prepareStatement(PreparedStatement statement, LawMapName name) throws SQLException {

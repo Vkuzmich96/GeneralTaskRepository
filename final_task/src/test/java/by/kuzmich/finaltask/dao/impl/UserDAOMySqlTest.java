@@ -2,7 +2,7 @@ package by.kuzmich.finaltask.dao.impl;
 
 import by.kuzmich.finaltask.dao.DAO;
 import by.kuzmich.finaltask.dao.DAOKinds;
-import by.kuzmich.finaltask.dao.DAOMySqlFactory;
+import by.kuzmich.finaltask.dao.DAOFactory;
 import by.kuzmich.finaltask.bean.Role;
 import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.exception.DAOException;
@@ -17,7 +17,7 @@ public class UserDAOMySqlTest {
 
     {
         try {
-            dao = (UserDAOMySql) DAOMySqlFactory.getInstance().get(DAOKinds.UserDAOMySql);
+            dao = (UserDAOMySql) DAOFactory.getInstance().get(DAOKinds.UserDAOMySql);
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -34,7 +34,7 @@ public class UserDAOMySqlTest {
     @Test
     public void insert() throws SQLException {
         int id = dao.insert(user);
-        dao.select(id);
+        dao.select(String.valueOf(id));
     }
 
     @Test
@@ -45,7 +45,7 @@ public class UserDAOMySqlTest {
     @Test
     public void select() throws SQLException {
         int id = findFirst().getId();
-        User user = dao.select(id);
+        User user = dao.select(String.valueOf(id));
         assertEquals(id, user.getId());
     }
 
@@ -53,7 +53,7 @@ public class UserDAOMySqlTest {
     public void delete() throws SQLException {
         int id  = findFirst().getId();
         dao.delete(id);
-        dao.select(id);
+        dao.select(String.valueOf(id));
     }
 
    @Test

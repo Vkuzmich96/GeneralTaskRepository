@@ -63,12 +63,12 @@ public class ActionDAOMySql implements DAO<Action, Action> {
     }
 
     @Override
-    public Action select(int id) {
+    public Action select(String id) {
         Action action = null;
         try {
             String sql = "SELECT * FROM lawmapsdb.action WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setInt(1, Integer.valueOf(id));
             ResultSet set = statement.executeQuery();
             set.next();
             action = build(set);
@@ -119,6 +119,11 @@ public class ActionDAOMySql implements DAO<Action, Action> {
                 logger.error("its impossible to close connection");
             }
         }
+    }
+
+    @Override
+    public void finalize() throws SQLException {
+        connection.close();
     }
 
     private void prepareStatement(PreparedStatement statement, Action action) throws SQLException {

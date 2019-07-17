@@ -2,7 +2,7 @@ package by.kuzmich.finaltask.dao.impl;
 
 import by.kuzmich.finaltask.dao.DAO;
 import by.kuzmich.finaltask.dao.DAOKinds;
-import by.kuzmich.finaltask.dao.DAOMySqlFactory;
+import by.kuzmich.finaltask.dao.DAOFactory;
 import by.kuzmich.finaltask.bean.Material;
 import static org.junit.Assert.*;
 
@@ -18,7 +18,7 @@ public class MaterialDAOTest {
 
     {
         try {
-            dao = (MaterialDAOMySql) DAOMySqlFactory.getInstance().get(DAOKinds.MaterialDAOMySql);
+            dao = (MaterialDAOMySql) DAOFactory.getInstance().get(DAOKinds.MaterialDAOMySql);
         } catch (DAOException e) {
             e.printStackTrace();
         }
@@ -35,7 +35,7 @@ public class MaterialDAOTest {
     @Test
     public void insert() throws SQLException {
         int id = dao.insert(material);
-        dao.select(id);
+        dao.select(String.valueOf(id));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class MaterialDAOTest {
     @Test
     public void select() throws SQLException {
         int id = findFirst().getId();
-        Material material = dao.select(id);
+        Material material = dao.select(String.valueOf(id));
         assertEquals(id, material.getId());
     }
 
@@ -54,7 +54,7 @@ public class MaterialDAOTest {
     public void delete() throws SQLException {
         int id  = findFirst().getId();
         dao.delete(id);
-        dao.select(id);
+        dao.select(String.valueOf(id));
     }
 
     @Test

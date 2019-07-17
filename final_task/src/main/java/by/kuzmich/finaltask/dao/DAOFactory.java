@@ -1,14 +1,15 @@
 package by.kuzmich.finaltask.dao;
 
+import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.dao.impl.*;
 import by.kuzmich.finaltask.dao.pool.ConnectionPool;
 import by.kuzmich.finaltask.exception.DAOException;
 import org.apache.log4j.Logger;
 
-final public class DAOMySqlFactory {
-    private static final DAOMySqlFactory factory = new DAOMySqlFactory();
+final public class DAOFactory {
+    private static final DAOFactory factory = new DAOFactory();
 
-    public static DAOMySqlFactory getInstance(){
+    public static DAOFactory getInstance(){
         return factory;
     }
 
@@ -22,7 +23,7 @@ final public class DAOMySqlFactory {
     private static final int DB_POOL_MAX_SIZE = 1000;
     private static final int DB_POOL_CHECK_CONNECTION_TIMEOUT = 0;
 
-    private DAOMySqlFactory(){
+    private DAOFactory(){
         try {
             ConnectionPool.getInstance().init(DB_DRIVER_CLASS, DB_URL, DB_USER, DB_PASSWORD, DB_POOL_START_SIZE, DB_POOL_MAX_SIZE, DB_POOL_CHECK_CONNECTION_TIMEOUT );
         } catch (DAOException e) {
@@ -41,7 +42,7 @@ final public class DAOMySqlFactory {
                 case LawMapNameDAOMySql:
                     return new LawMapNameDAOMySql(ConnectionPool.getInstance().getConnection());
               case ActionMaterialLinkDAOMySql:
-                  return new ActionMaterialLinkDAOMySql(ConnectionPool.getInstance().getConnection());
+                  return new ActionMaterialLinkDAOMySql (ConnectionPool.getInstance().getConnection());
                 default:
                     throw new DAOException("this DAO does not exist - " + kind);
             }

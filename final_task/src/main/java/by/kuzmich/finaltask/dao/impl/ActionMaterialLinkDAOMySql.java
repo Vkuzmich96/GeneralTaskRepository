@@ -61,12 +61,12 @@ public class ActionMaterialLinkDAOMySql implements DAO<ActionMaterialLink, List<
         return links;
     }
 
-    public List<ActionMaterialLink> select(int id) {
+    public List<ActionMaterialLink> select(String id) {
         List<ActionMaterialLink> links = null;
         try {
             String sql = "SELECT * FROM lawmapsdb.material_links_list WHERE action_id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
+            statement.setInt(1, Integer.valueOf(id));
             ResultSet resultSet = statement.executeQuery();
             links = buildList(resultSet);
         } catch (SQLException e){
@@ -114,6 +114,11 @@ public class ActionMaterialLinkDAOMySql implements DAO<ActionMaterialLink, List<
                 logger.error("its impossible to close connection");
             }
         }
+    }
+
+    @Override
+    public void finalize() throws SQLException {
+        connection.close();
     }
 
     private void prepareStatement(PreparedStatement statement, ActionMaterialLink link) throws SQLException {
