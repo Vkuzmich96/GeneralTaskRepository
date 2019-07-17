@@ -26,7 +26,7 @@ public class GraphEdgeDAOMySql implements DAO<GraphEdge, List<GraphEdge>> {
     public int insert (GraphEdge edge) {
         int id = 0;
         try {
-            String sql = "INSERT INTO `lawmapsdb`.`action` VALUES (null, ?, ?)";
+            String sql = "INSERT INTO `lawmapsdb`.`action_graphs` VALUES (null, ?, ?)";
             ResultSet set;
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             prepareStatement(statement, edge);
@@ -48,80 +48,77 @@ public class GraphEdgeDAOMySql implements DAO<GraphEdge, List<GraphEdge>> {
     @Override
     public List<GraphEdge> selectAll(){
         List<GraphEdge> list = null;
-//        try {
-//            String sql = "SELECT * FROM lawmapsdb.action";
-//            PreparedStatement statement = connection.prepareStatement(sql);
-//            ResultSet resultSet = statement.executeQuery();
-//            list = buildList(resultSet);
-//        } catch (SQLException e){
-//            logger.error("its impossible to select data");
-//        } finally {
-//            try {
-//                connection.close();
-//            } catch (SQLException e) {
-//                logger.error("its impossible to close connection");
-//            }
-//        }
+        try {
+            String sql = "SELECT * FROM action_graphs.action";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            list = buildList(resultSet);
+        } catch (SQLException e){
+            logger.error("its impossible to select data");
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                logger.error("its impossible to close connection");
+            }
+        }
         return list;
     }
 
     @Override
     public List<GraphEdge> select(String id) {
-        List<GraphEdge> action = null;
-//        try {
-//            String sql = "SELECT * FROM lawmapsdb.action WHERE id = ?";
-//            PreparedStatement statement = connection.prepareStatement(sql);
-//            statement.setInt(1, Integer.valueOf(id));
-//            ResultSet set = statement.executeQuery();
-//            set.next();
-//            action = build(set);
-//        } catch (SQLException e){
-//            logger.error("its impossible to select data");
-//        } finally {
-//            try {
-//                connection.close();
-//            } catch (SQLException e) {
-//                logger.error("its impossible to close connection");
-//            }
-//        }
-        return action;
+        List<GraphEdge> list = null;
+        try {
+            String sql = "SELECT * FROM lawmapsdb.action_graphs WHERE law_map_name_id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, Integer.valueOf(id));
+            ResultSet set = statement.executeQuery();
+            list = buildList(set);
+        } catch (SQLException e){
+            logger.error("its impossible to select data");
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                logger.error("its impossible to close connection");
+            }
+        }
+        return list;
     }
 
     @Override
     public void delete (int id) {
-//        try {
-//            String sql = "DELETE FROM `lawmapsdb`.`action` WHERE id = ?";
-//            PreparedStatement statement = connection.prepareStatement(sql);
-//            statement.setInt(1, id);
-//            statement.execute();
-//        } catch (SQLException e){
-//            logger.error("its impossible to delete data");
-//        } finally {
-//            try {
-//                connection.close();
-//            } catch (SQLException e) {
-//                logger.error("its impossible to close connection");
-//            }
-//        }
+        try {
+            String sql = "DELETE FROM `lawmapsdb`.`action_graphs` WHERE law_map_name_id = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.execute();
+        } catch (SQLException e){
+            logger.error("its impossible to delete data");
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                logger.error("its impossible to close connection");
+            }
+        }
     }
 
-    public void update (GraphEdge action){
-//        try {
-//            String sql = "UPDATE `lawmapsdb`.`action` SET `instructions` = ?, `user_id` = ? WHERE `id` = ?";
-//            PreparedStatement statement = connection.prepareStatement(sql);
-//            prepareStatement(statement, action);
-//            statement.setInt(2, action.getUser().getId());
-//            statement.setInt(3, action.getId());
-//            statement.execute();
-//        } catch (SQLException e){
-//            logger.error("its impossible to update data");
-//        } finally {
-//            try {
-//                connection.close();
-//            } catch (SQLException e) {
-//                logger.error("its impossible to close connection");
-//            }
-//        }
+    public void update (GraphEdge edge){
+        try {
+            String sql = "UPDATE `lawmapsdb`.`action_graphs` SET `parent` = ?, `child` = ? WHERE `id` = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            prepareStatement(statement, edge);
+            statement.executeUpdate();
+        } catch (SQLException e){
+            logger.error("its impossible to update data");
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                logger.error("its impossible to close connection");
+            }
+        }
     }
 
     @Override

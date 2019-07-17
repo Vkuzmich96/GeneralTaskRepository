@@ -27,9 +27,7 @@ public class LawMapName {
 
     @Override
     public String toString() {
-        return "LawMapName{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return  "id=" + id +
+                ", name='" + name + '\'';
     }
 }

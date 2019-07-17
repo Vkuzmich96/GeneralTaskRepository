@@ -1,5 +1,7 @@
 package by.kuzmich.finaltask.bean;
 
+import java.util.Objects;
+
 public class User {
     private int id;
     private String email;
@@ -86,5 +88,19 @@ public class User {
                 ", address='" + address + '\'' +
                 ", number=" + number +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return Objects.equals(getEmail(), user.getEmail()) &&
+                Objects.equals(getPassword(), user.getPassword());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getEmail(), getPassword());
     }
 }

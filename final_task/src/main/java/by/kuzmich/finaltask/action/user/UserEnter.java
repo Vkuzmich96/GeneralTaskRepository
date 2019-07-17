@@ -1,39 +1,37 @@
 package by.kuzmich.finaltask.action.user;
 
 import by.kuzmich.finaltask.action.Command;
+import by.kuzmich.finaltask.bean.LawMapName;
 import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.controller.builder.Builder;
+import by.kuzmich.finaltask.service.LawMapNameService;
 import by.kuzmich.finaltask.service.UserService;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.sql.SQLException;
 
-public class UserEnter implements Command {
+public class UserEnter extends Command {
 
     private Builder<User> builder;
-    private UserService service;
+    private UserService userService;
+    private LawMapNameService nameService;
 
-    public UserEnter(Builder<User> builder, UserService service) {
+    public UserEnter(Builder<User> builder, UserService userService, LawMapNameService nameService) {
         this.builder = builder;
-        this.service = service;
+        this.userService = userService;
+        this.nameService = nameService;
     }
 
     @Override
-    public void execute(HttpServletRequest req, HttpServletResponse resp) {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
         User user = builder.build(req);
-        try {
-            boolean isEquals = service.checkPassword(user);
-            if (isEquals){
-                resp.sendRedirect(req.getContextPath() + "/pages/work.jsp");
-            }else {
+            if (userService.checkPassword(user)){
+                req.setAttribute("maps", nameService.getAll());
+            } else {
                 req.setAttribute("massage", "wrong login or password try again");
-                req.getServletContext().getRequestDispatcher("/pages/enter.jsp").forward(req, resp);
+                return "/pages/enter.jsp";
             }
-        } catch (SQLException | IOException | ServletException e) {
-            e.printStackTrace();
-        }
+        return "/pages/work.jsp";
     }
 }

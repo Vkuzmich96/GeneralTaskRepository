@@ -1,7 +1,8 @@
-package by.kuzmich.finaltask.service;
+package by.kuzmich.finaltask.service.impl;
 
 import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.dao.DAO;
+import by.kuzmich.finaltask.service.UserService;
 
 import java.sql.SQLException;
 
@@ -18,11 +19,6 @@ public class UserServiceImpl implements UserService {
 
     public boolean checkPassword (User user) throws SQLException {
          User userDB = dao.select(user.getEmail());
-         String userDBPassword = userDB.getPassword();
-         return user.getPassword().equals(userDBPassword);
-    }
-
-    public User find (String email) throws SQLException {
-        return dao.select(email);
+         return user.equals(userDB);
     }
 }

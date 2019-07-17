@@ -7,10 +7,9 @@ import by.kuzmich.finaltask.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.sql.SQLException;
 
-public class UserAdd implements Command {
+public class UserAdd extends Command {
 
     private Builder<User> builder;
     private UserService service;
@@ -21,13 +20,10 @@ public class UserAdd implements Command {
     }
 
     @Override
-    public void execute(HttpServletRequest req, HttpServletResponse resp) {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
         User user = builder.build(req);
-        try {
             service.add(user);
-            resp.sendRedirect(req.getContextPath() + "/pages/enter.jsp");
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
-        }
+            super.setRedirected(true);
+        return "/pages/enter.jsp";
     }
 }

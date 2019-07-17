@@ -4,6 +4,7 @@ import by.kuzmich.finaltask.action.user.UserAdd;
 import by.kuzmich.finaltask.action.user.UserEnter;
 import by.kuzmich.finaltask.controller.builder.BuilderFactory;
 import by.kuzmich.finaltask.controller.builder.BuilderKind;
+import by.kuzmich.finaltask.service.LawMapNameServiceFactory;
 import by.kuzmich.finaltask.service.UserServiceFactory;
 
 final public class CommandFactory {
@@ -24,7 +25,8 @@ final public class CommandFactory {
             case ENTER_USER:
                 return new UserEnter(
                         BuilderFactory.getInstance().get(BuilderKind.USER_ENTER),
-                        UserServiceFactory.getInstance().get()
+                        UserServiceFactory.getInstance().get(),
+                        LawMapNameServiceFactory.getInstance().get()
                 );
             default:
                 return null;

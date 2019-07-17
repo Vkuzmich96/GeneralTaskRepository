@@ -1,6 +1,5 @@
 package by.kuzmich.finaltask.dao;
 
-import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.dao.impl.*;
 import by.kuzmich.finaltask.dao.pool.ConnectionPool;
 import by.kuzmich.finaltask.exception.DAOException;

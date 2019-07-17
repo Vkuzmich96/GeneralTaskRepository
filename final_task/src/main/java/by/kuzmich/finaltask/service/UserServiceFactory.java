@@ -3,6 +3,7 @@ package by.kuzmich.finaltask.service;
 import by.kuzmich.finaltask.dao.DAOFactory;
 import by.kuzmich.finaltask.dao.DAOKinds;
 import by.kuzmich.finaltask.exception.DAOException;
+import by.kuzmich.finaltask.service.impl.UserServiceImpl;
 
 final public class UserServiceFactory {
     private final static UserServiceFactory factory = new UserServiceFactory();
@@ -20,5 +21,4 @@ final public class UserServiceFactory {
         }
         return null;
     }
-
 }
