@@ -1,5 +1,8 @@
 package by.kuzmich.finaltask.controller.builder;
 
+import by.kuzmich.finaltask.controller.builder.impl.UserBuilderEnter;
+import by.kuzmich.finaltask.controller.builder.impl.UserBuilderRegistration;
+
 final public class BuilderFactory {
     private static BuilderFactory factory = new BuilderFactory();
     private BuilderFactory(){}

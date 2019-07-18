@@ -24,9 +24,8 @@ public class ActionDAOMySqlTest {
         }
     }
 
-    private Action action = new Action(0,"loren ipsum", null, null);
-    private User user = new User(11,"11", "password", Role.USER,"11","1",11);
-    private Action actionUpdate = new Action(0,"just a test", null, user);
+    private Action action = new Action(0,"loren ipsum", "loren ipsum", null, new User (1));
+    private Action actionUpdate = new Action(2,"just a test", "just a test", null, new User (2));
 
     private Action findFirst() throws SQLException {
         return dao.selectAll().get(0);

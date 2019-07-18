@@ -1,13 +1,11 @@
 package by.kuzmich.finaltask.dao.impl;
 
 import by.kuzmich.finaltask.bean.Action;
+import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.dao.DAO;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +21,13 @@ public class ActionDAOMySql implements DAO<Action, Action> {
     public int insert (Action action) {
         int id = 0;
         try {
-            String sql = "INSERT INTO `lawmapsdb`.`action` VALUES (null, ?, null)";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            String sql = "INSERT INTO `lawmapsdb`.`action` VALUES (null, ?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             prepareStatement(statement, action);
             statement.execute();
             ResultSet set = statement.getGeneratedKeys();
-            id = set.getInt("id");
+            set.next();
+            id = set.getInt(1);
         } catch (SQLException e){
             logger.error("its impossible to insert data");
         } finally {
@@ -103,11 +102,10 @@ public class ActionDAOMySql implements DAO<Action, Action> {
 
     public void update (Action action){
         try {
-            String sql = "UPDATE `lawmapsdb`.`action` SET `instructions` = ?, `user_id` = ? WHERE `id` = ?";
+            String sql = "UPDATE `lawmapsdb`.`action` SET `name` = ? `instructions` = ?, `user_id` = ? WHERE `id` = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             prepareStatement(statement, action);
-            statement.setInt(2, action.getUser().getId());
-            statement.setInt(3, action.getId());
+            statement.setInt(4, action.getId());
             statement.execute();
         } catch (SQLException e){
             logger.error("its impossible to update data");
@@ -126,7 +124,9 @@ public class ActionDAOMySql implements DAO<Action, Action> {
     }
 
     private void prepareStatement(PreparedStatement statement, Action action) throws SQLException {
-        statement.setString(1, action.getInstructions());
+        statement.setString(1, action.getName());
+        statement.setString(2, action.getInstructions());
+        statement.setInt(3, action.getUser().getId());
     }
 
     private List<Action> buildList (ResultSet set) throws SQLException {
@@ -140,7 +140,9 @@ public class ActionDAOMySql implements DAO<Action, Action> {
 
     private Action build(ResultSet set) throws SQLException {
         int id = set.getInt("id");
+        String name = set.getString("name");
         String instructions = set.getString("instructions");
-        return new Action(id,instructions,null,null);
+        int userId = set.getInt("user_id");
+        return new Action(id, name,instructions,null, new User(userId));
     }
 }

@@ -21,6 +21,10 @@ public class User {
         this.number = number;
     }
 
+    public User(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
