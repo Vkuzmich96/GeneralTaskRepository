@@ -23,11 +23,7 @@ final public class DAOFactory {
     private static final int DB_POOL_CHECK_CONNECTION_TIMEOUT = 0;
 
     private DAOFactory(){
-        try {
-            ConnectionPool.getInstance().init(DB_DRIVER_CLASS, DB_URL, DB_USER, DB_PASSWORD, DB_POOL_START_SIZE, DB_POOL_MAX_SIZE, DB_POOL_CHECK_CONNECTION_TIMEOUT );
-        } catch (DAOException e) {
-            logger.error("it is impossible to initialize connection pool", e);
-        }
+
     }
 
     public DAO get (DAOKinds kind) throws DAOException {

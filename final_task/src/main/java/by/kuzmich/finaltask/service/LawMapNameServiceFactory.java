@@ -4,7 +4,6 @@ import by.kuzmich.finaltask.dao.DAOFactory;
 import by.kuzmich.finaltask.dao.DAOKinds;
 import by.kuzmich.finaltask.exception.DAOException;
 import by.kuzmich.finaltask.service.impl.LawMapNameServiceImpl;
-import by.kuzmich.finaltask.service.impl.UserServiceImpl;
 
 public class LawMapNameServiceFactory {
     private final static LawMapNameServiceFactory factory = new LawMapNameServiceFactory();

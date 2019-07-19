@@ -15,7 +15,6 @@ import org.apache.log4j.Logger;
 final public class ConnectionPool {
 	private static Logger logger = Logger.getLogger(ConnectionPool.class);
 
-	private boolean isInit;
 	private String url;
 	private String user;
 	private String password;
@@ -26,7 +25,23 @@ final public class ConnectionPool {
 	private BlockingQueue<WrapedConnection> freeConnections = new LinkedBlockingQueue<>();
 	private Set<WrapedConnection> usedConnections = new ConcurrentSkipListSet<>();
 
-	private ConnectionPool() {}
+	private ConnectionPool() {
+			Settings settings = new Settings();
+			try {
+				destroy();
+				Class.forName(settings.DB_DRIVER_CLASS);
+				this.url = settings.DB_URL;
+				this.user = settings.DB_USER;
+				this.password = settings.DB_PASSWORD;
+				this.maxSize = settings.DB_POOL_MAX_SIZE;
+				this.checkConnectionTimeout = settings.DB_POOL_CHECK_CONNECTION_TIMEOUT;
+				for (int counter = 0; counter < settings.DB_POOL_START_SIZE; counter++) {
+					freeConnections.put(createConnection());
+				}
+			} catch (ClassNotFoundException | SQLException | InterruptedException e) {
+				logger.fatal("It is impossible to initialize connection pool", e);
+			}
+	}
 
 	public Connection getConnection() throws DAOException {
 		locker.lock();
@@ -47,14 +62,16 @@ final public class ConnectionPool {
 					logger.error("The limit of number of database connections is exceeded");
 					throw new DAOException();
 				}
+				usedConnections.add(connection);
+				logger.debug(String.format("Connection was received from pool. Current pool size: %d used connections; %d free connection", usedConnections.size(), freeConnections.size()));
 			} catch(InterruptedException | SQLException e) {
 				logger.error("It is impossible to connect to a database", e);
 				throw new DAOException(e);
 			}
+			finally {
+				locker.unlock();
+			}
 		}
-		usedConnections.add(connection);
-		logger.debug(String.format("Connection was received from pool. Current pool size: %d used connections; %d free connection", usedConnections.size(), freeConnections.size()));
-		locker.unlock();
 		return connection;
 	}
 
@@ -73,30 +90,10 @@ final public class ConnectionPool {
 			try {
 				connection.getConnection().close();
 			} catch(SQLException e2) {}
-		}
-		locker.unlock();
-	}
+		} finally {
+			locker.unlock();
 
-	public void init(String driverClass, String url, String user, String password, int startSize, int maxSize, int checkConnectionTimeout) throws DAOException {
-		locker.lock();
-		if (!isInit) {
-			try {
-				destroy();
-				Class.forName(driverClass);
-				this.url = url;
-				this.user = user;
-				this.password = password;
-				this.maxSize = maxSize;
-				this.checkConnectionTimeout = checkConnectionTimeout;
-				for (int counter = 0; counter < startSize; counter++) {
-					freeConnections.put(createConnection());
-				}
-			} catch (ClassNotFoundException | SQLException | InterruptedException e) {
-				logger.fatal("It is impossible to initialize connection pool", e);
-				throw new DAOException(e);
-			}
 		}
-		locker.unlock();
 	}
 
 	private static ConnectionPool instance = new ConnectionPool();
