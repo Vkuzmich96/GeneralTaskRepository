@@ -5,6 +5,9 @@ import by.kuzmich.finaltask.dao.pool.ConnectionPool;
 import by.kuzmich.finaltask.exception.DAOException;
 import org.apache.log4j.Logger;
 
+import java.sql.Connection;
+
+
 final public class DAOFactory {
     private static final DAOFactory factory = new DAOFactory();
 
@@ -14,30 +17,20 @@ final public class DAOFactory {
 
     private static Logger logger = Logger.getLogger(ConnectionPool.class);
 
-    private static final String DB_DRIVER_CLASS = "com.mysql.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost/lawmapsdb?useLegacyDatetimeCode=false&serverTimezone=UTC";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "root";
-    private static final int DB_POOL_START_SIZE = 10;
-    private static final int DB_POOL_MAX_SIZE = 1000;
-    private static final int DB_POOL_CHECK_CONNECTION_TIMEOUT = 0;
+    private DAOFactory(){}
 
-    private DAOFactory(){
-
-    }
-
-    public DAO get (DAOKinds kind) throws DAOException {
+    public DAO get (DAOKinds kind, Connection connection) throws DAOException {
             switch (kind) {
                 case UserDAOMySql:
-                    return  new UserDAOMySql(ConnectionPool.getInstance().getConnection());
+                    return  new UserDAOMySql(connection);
                 case ActionDAOMySql:
-                    return new ActionDAOMySql(ConnectionPool.getInstance().getConnection());
+                    return new ActionDAOMySql(connection);
                 case MaterialDAOMySql:
-                    return new MaterialDAOMySql(ConnectionPool.getInstance().getConnection());
+                    return new MaterialDAOMySql(connection);
                 case LawMapNameDAOMySql:
-                    return new LawMapNameDAOMySql(ConnectionPool.getInstance().getConnection());
+                    return new LawMapNameDAOMySql(connection);
               case ActionMaterialLinkDAOMySql:
-                  return new ActionMaterialLinkDAOMySql (ConnectionPool.getInstance().getConnection());
+                  return new ActionMaterialLinkDAOMySql (connection);
                 default:
                     throw new DAOException("this DAO does not exist - " + kind);
             }

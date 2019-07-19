@@ -7,6 +7,7 @@ import by.kuzmich.finaltask.bean.Material;
 import static org.junit.Assert.*;
 
 
+import by.kuzmich.finaltask.dao.pool.ConnectionPool;
 import by.kuzmich.finaltask.exception.DAOException;
 import org.junit.Test;
 
@@ -18,7 +19,7 @@ public class MaterialDAOTest {
 
     {
         try {
-            dao = (MaterialDAOMySql) DAOFactory.getInstance().get(DAOKinds.MaterialDAOMySql);
+            dao = (MaterialDAOMySql) DAOFactory.getInstance().get(DAOKinds.MaterialDAOMySql, ConnectionPool.getInstance().getConnection());
         } catch (DAOException e) {
             e.printStackTrace();
         }

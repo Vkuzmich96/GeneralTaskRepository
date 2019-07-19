@@ -4,6 +4,7 @@ import by.kuzmich.finaltask.bean.ActionMaterialLink;
 import by.kuzmich.finaltask.dao.DAO;
 import by.kuzmich.finaltask.dao.DAOKinds;
 import by.kuzmich.finaltask.dao.DAOFactory;
+import by.kuzmich.finaltask.dao.pool.ConnectionPool;
 import by.kuzmich.finaltask.exception.DAOException;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ public class ActionMaterialLinkDAOMySqlTest {
     private DAO<ActionMaterialLink, List<ActionMaterialLink>> dao;
     {
         try {
-            dao = (ActionMaterialLinkDAOMySql) DAOFactory.getInstance().get(DAOKinds.ActionMaterialLinkDAOMySql);
+            dao = (ActionMaterialLinkDAOMySql) DAOFactory.getInstance().get(DAOKinds.ActionMaterialLinkDAOMySql, ConnectionPool.getInstance().getConnection());
         } catch (DAOException e) {
             e.printStackTrace();
         }

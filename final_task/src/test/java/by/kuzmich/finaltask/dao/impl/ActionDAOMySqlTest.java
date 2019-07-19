@@ -6,6 +6,7 @@ import by.kuzmich.finaltask.dao.DAO;
 import by.kuzmich.finaltask.dao.DAOKinds;
 import by.kuzmich.finaltask.dao.DAOFactory;
 import by.kuzmich.finaltask.bean.Action;
+import by.kuzmich.finaltask.dao.pool.ConnectionPool;
 import by.kuzmich.finaltask.exception.DAOException;
 import org.junit.Test;
 
@@ -18,7 +19,7 @@ public class ActionDAOMySqlTest {
 
     {
         try {
-            dao = (ActionDAOMySql) DAOFactory.getInstance().get(DAOKinds.ActionDAOMySql);
+            dao = (ActionDAOMySql) DAOFactory.getInstance().get(DAOKinds.ActionDAOMySql, ConnectionPool.getInstance().getConnection());
         } catch (DAOException e) {
             e.printStackTrace();
         }

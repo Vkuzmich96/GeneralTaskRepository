@@ -4,6 +4,7 @@ import by.kuzmich.finaltask.dao.DAO;
 import by.kuzmich.finaltask.dao.DAOKinds;
 import by.kuzmich.finaltask.dao.DAOFactory;
 import by.kuzmich.finaltask.bean.LawMapName;
+import by.kuzmich.finaltask.dao.pool.ConnectionPool;
 import by.kuzmich.finaltask.exception.DAOException;
 import org.junit.Test;
 
@@ -16,7 +17,7 @@ public class LawMapNameDAOMySqlTest {
 
     {
         try {
-            dao = (LawMapNameDAOMySql) DAOFactory.getInstance().get(DAOKinds.LawMapNameDAOMySql);
+            dao = (LawMapNameDAOMySql) DAOFactory.getInstance().get(DAOKinds.LawMapNameDAOMySql, ConnectionPool.getInstance().getConnection());
         } catch (DAOException e) {
             e.printStackTrace();
         }

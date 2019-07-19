@@ -5,6 +5,7 @@ import by.kuzmich.finaltask.dao.DAOKinds;
 import by.kuzmich.finaltask.dao.DAOFactory;
 import by.kuzmich.finaltask.bean.Role;
 import by.kuzmich.finaltask.bean.User;
+import by.kuzmich.finaltask.dao.pool.ConnectionPool;
 import by.kuzmich.finaltask.exception.DAOException;
 import org.junit.Test;
 
@@ -17,7 +18,7 @@ public class UserDAOMySqlTest {
 
     {
         try {
-            dao = (UserDAOMySql) DAOFactory.getInstance().get(DAOKinds.UserDAOMySql);
+            dao = (UserDAOMySql) DAOFactory.getInstance().get(DAOKinds.UserDAOMySql, ConnectionPool.getInstance().getConnection());
         } catch (DAOException e) {
             e.printStackTrace();
         }
