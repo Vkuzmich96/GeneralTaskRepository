@@ -13,6 +13,7 @@ public class UrlTranslationFilter implements Filter{
     static {
         map.put("/registration.html", CommandKind.ADD_USER);
         map.put("/enter.html", CommandKind.ENTER_USER);
+        map.put("/lawmap.html", CommandKind.MapGet);
     }
 
     @Override

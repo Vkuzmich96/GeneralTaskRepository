@@ -4,20 +4,20 @@ import by.kuzmich.finaltask.dao.DAOFactory;
 import by.kuzmich.finaltask.dao.DAOKinds;
 import by.kuzmich.finaltask.dao.pool.ConnectionPool;
 import by.kuzmich.finaltask.exception.DAOException;
-import by.kuzmich.finaltask.service.impl.GraphServiceImpl;
+import by.kuzmich.finaltask.service.impl.MapServiceImpl;
 
 import java.sql.Connection;
 
-public class GraphServiceFactory {
-    private final static GraphServiceFactory factory = new GraphServiceFactory();
-    private GraphServiceFactory (){}
-    public static GraphServiceFactory getInstance(){
+public class MapServiceFactory {
+    private final static MapServiceFactory factory = new MapServiceFactory();
+    private MapServiceFactory(){}
+    public static MapServiceFactory getInstance(){
         return factory;
     }
-    public  GraphService get (){
+    public MapService get (){
         try {
             Connection connection = ConnectionPool.getInstance().getConnection();
-            return new GraphServiceImpl(
+            return new MapServiceImpl(
                     connection,
                     DAOFactory.getInstance().get(DAOKinds.MaterialDAOMySql, connection),
                     DAOFactory.getInstance().get(DAOKinds.ActionDAOMySql, connection),

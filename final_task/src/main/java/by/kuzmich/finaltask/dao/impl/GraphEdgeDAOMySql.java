@@ -75,7 +75,7 @@ public class GraphEdgeDAOMySql implements DAO<GraphEdge, List<GraphEdge>> {
         try {
             String sql = "SELECT * FROM lawmapsdb.action_graphs WHERE law_map_name_id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, Integer.valueOf(id));
+            statement.setInt(1, Integer.parseInt(id));
             ResultSet set = statement.executeQuery();
             list = buildList(set);
         } catch (SQLException e){

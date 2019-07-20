@@ -16,5 +16,10 @@
     <c:forEach items="${maps}" var="maps">
         <p>${maps}</p>
     </c:forEach>
+
+    <form action="/lawmap.html" method="get">
+        <input type="hidden" value="1" name="number">
+        <input type="submit" value="send">
+    </form>
 </body>
 </html>

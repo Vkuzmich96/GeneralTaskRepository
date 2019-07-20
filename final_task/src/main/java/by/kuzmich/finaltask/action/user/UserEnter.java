@@ -32,6 +32,6 @@ public class UserEnter extends Command {
                 req.setAttribute("massage", "wrong login or password try again");
                 return "/pages/enter.jsp";
             }
-        return "/pages/work.jsp";
+        return "/pages/list.jsp";
     }
 }
