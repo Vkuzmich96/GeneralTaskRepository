@@ -5,5 +5,6 @@ public enum DAOKinds {
     ActionMaterialLinkDAOMySql,
     LawMapNameDAOMySql,
     MaterialDAOMySql,
-    UserDAOMySql
+    UserDAOMySql,
+    GraphEdgeDAOMySql
 }

@@ -29,8 +29,10 @@ final public class DAOFactory {
                     return new MaterialDAOMySql(connection);
                 case LawMapNameDAOMySql:
                     return new LawMapNameDAOMySql(connection);
-              case ActionMaterialLinkDAOMySql:
-                  return new ActionMaterialLinkDAOMySql (connection);
+                case ActionMaterialLinkDAOMySql:
+                     return new ActionMaterialLinkDAOMySql (connection);
+                case GraphEdgeDAOMySql:
+                    return new GraphEdgeDAOMySql (connection);
                 default:
                     throw new DAOException("this DAO does not exist - " + kind);
             }

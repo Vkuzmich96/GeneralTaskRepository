@@ -4,6 +4,7 @@ import by.kuzmich.finaltask.bean.Action;
 import by.kuzmich.finaltask.bean.GraphEdge;
 import by.kuzmich.finaltask.dao.DAO;
 import org.apache.log4j.Logger;
+import java.sql.Types;
 
 import java.sql.Statement;
 import java.sql.Connection;
@@ -12,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class GraphEdgeDAOMySql implements DAO<GraphEdge, List<GraphEdge>> {
 
@@ -26,13 +28,15 @@ public class GraphEdgeDAOMySql implements DAO<GraphEdge, List<GraphEdge>> {
     public int insert (GraphEdge edge) {
         int id = 0;
         try {
-            String sql = "INSERT INTO `lawmapsdb`.`action_graphs` VALUES (null, ?, ?)";
-            ResultSet set;
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            String sql = "INSERT INTO `lawmapsdb`.`action_graphs` VALUES (?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            if(edge.getParent() == null){
+                statement.setNull(2, Types.INTEGER);
+            }else {
+                statement.setInt(2, edge.getParent().getId());
+            }
             prepareStatement(statement, edge);
-            statement.execute();
-            set = statement.getGeneratedKeys();
-            id = set.getInt("id");
+            statement.executeUpdate();
         } catch (SQLException e){
             logger.error("its impossible to insert data");
         } finally {
@@ -106,8 +110,9 @@ public class GraphEdgeDAOMySql implements DAO<GraphEdge, List<GraphEdge>> {
 
     public void update (GraphEdge edge){
         try {
-            String sql = "UPDATE `lawmapsdb`.`action_graphs` SET `parent` = ?, `child` = ? WHERE `id` = ?";
+            String sql = "UPDATE `lawmapsdb`.`action_graphs` SET `law_map_name_id` = ?, `parent` = ?, `child` = ? WHERE `id` = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(2, edge.getParent().getId());
             prepareStatement(statement, edge);
             statement.executeUpdate();
         } catch (SQLException e){
@@ -127,9 +132,8 @@ public class GraphEdgeDAOMySql implements DAO<GraphEdge, List<GraphEdge>> {
     }
 
     private void prepareStatement(PreparedStatement statement, GraphEdge edge) throws SQLException {
-        statement.setInt(1, edge.getParent().getId());
-        statement.setInt(2, edge.getChild().getId());
-
+        statement.setInt(1, edge.getId());
+        statement.setInt(3, edge.getChild().getId());
     }
 
     private List<GraphEdge> buildList (ResultSet set) throws SQLException {

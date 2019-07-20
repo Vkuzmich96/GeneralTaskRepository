@@ -1,6 +1,5 @@
 package by.kuzmich.finaltask.dao.impl;
 
-import by.kuzmich.finaltask.bean.Role;
 import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.dao.DAO;
 import by.kuzmich.finaltask.dao.DAOKinds;
