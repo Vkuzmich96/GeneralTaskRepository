@@ -43,16 +43,28 @@ public class MapServiceImpl implements MapService {
         return buildNodes(edgeList, rootGraph);
     }
 
-    private Graph buildRootNode(List<GraphEdge> edgeList) {
-        return new Graph(edgeList.get(0).getChild(), null );
+    private Action buildAction(int key) {
+        Action action = null;
+        try {
+            action = actionDAO.select(String.valueOf(key));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return action;
     }
 
-    private Graph buildNodes(List<GraphEdge> edgeList, Graph rootGraph){
-        Set<Graph> actionSet = new LinkedHashSet <>();
+    private Graph buildRootNode(List<GraphEdge> edgeList) {
+        Action action = buildAction(edgeList.get(0).getChild().getId());
+        return new Graph(action, null );
+    }
+
+    private Graph buildNodes(List<GraphEdge> edgeList, Graph rootGraph) {
+        Set<Graph> actionSet = new LinkedHashSet<>();
         for (int i = 1; i < edgeList.size(); i++) {
             GraphEdge edge = edgeList.get(i);
             if (rootGraph.getNode().getId() == edge.getParent().getId()) {
-                Graph node = new Graph(edge.getChild(), null);
+                Action action = buildAction(edge.getChild().getId());
+                Graph node = new Graph(action, null);
                 actionSet.add(node);
                 buildNodes(edgeList,node);
             }

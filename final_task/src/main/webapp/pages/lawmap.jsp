@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>LawMap</title>
+    <link href="../support/lawmap_style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <tp:printer graph="${graph}"/>
