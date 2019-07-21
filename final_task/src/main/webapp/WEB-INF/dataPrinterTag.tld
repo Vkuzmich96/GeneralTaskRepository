@@ -3,15 +3,26 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_1.xsd">
     <tlib-version>1.0</tlib-version>
-    <short-name>tp</short-name>
+    <short-name>d</short-name>
     <uri>/WEB-INF/treePrinterTag</uri>
     <tag>
-        <name>printer</name>
+        <name>graph</name>
         <tag-class>by.kuzmich.finaltask.tag.TreePrinter</tag-class>
         <body-content>empty</body-content>
-        <info>helloworld tag displayes Hello World string</info>
+        <info>This tag translate tree data structure in the html tags</info>
         <attribute>
             <name>graph</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <name>action</name>
+        <tag-class>by.kuzmich.finaltask.tag.ActionPrinter</tag-class>
+        <body-content>empty</body-content>
+        <info>This tag print Action been</info>
+        <attribute>
+            <name>action</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>

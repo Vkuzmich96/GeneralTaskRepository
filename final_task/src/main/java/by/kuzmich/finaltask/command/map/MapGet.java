@@ -1,6 +1,6 @@
-package by.kuzmich.finaltask.action.map;
+package by.kuzmich.finaltask.command.map;
 
-import by.kuzmich.finaltask.action.Command;
+import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.bean.Graph;
 import by.kuzmich.finaltask.service.MapService;
 

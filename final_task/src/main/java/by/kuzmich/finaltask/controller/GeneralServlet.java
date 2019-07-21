@@ -1,8 +1,8 @@
 package by.kuzmich.finaltask.controller;
 
-import by.kuzmich.finaltask.action.Command;
-import by.kuzmich.finaltask.action.CommandFactory;
-import by.kuzmich.finaltask.action.CommandKind;
+import by.kuzmich.finaltask.command.Command;
+import by.kuzmich.finaltask.command.CommandFactory;
+import by.kuzmich.finaltask.command.CommandKind;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class GeneralServlet extends HttpServlet {
 
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CommandKind kind = (CommandKind) req.getAttribute("action");
+        CommandKind kind = (CommandKind) req.getAttribute("command");
         Command command = CommandFactory.getInstance().get(kind);
         String url = null;
         try {

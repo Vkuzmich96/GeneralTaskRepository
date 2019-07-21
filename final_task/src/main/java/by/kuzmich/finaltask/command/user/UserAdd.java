@@ -1,6 +1,6 @@
-package by.kuzmich.finaltask.action.user;
+package by.kuzmich.finaltask.command.user;
 
-import by.kuzmich.finaltask.action.Command;
+import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.controller.builder.Builder;
 import by.kuzmich.finaltask.service.UserService;

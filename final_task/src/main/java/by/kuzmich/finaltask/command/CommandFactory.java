@@ -1,10 +1,12 @@
-package by.kuzmich.finaltask.action;
+package by.kuzmich.finaltask.command;
 
-import by.kuzmich.finaltask.action.map.MapGet;
-import by.kuzmich.finaltask.action.user.UserAdd;
-import by.kuzmich.finaltask.action.user.UserEnter;
+import by.kuzmich.finaltask.command.map.ActionGet;
+import by.kuzmich.finaltask.command.map.MapGet;
+import by.kuzmich.finaltask.command.user.UserAdd;
+import by.kuzmich.finaltask.command.user.UserEnter;
 import by.kuzmich.finaltask.controller.builder.BuilderFactory;
 import by.kuzmich.finaltask.controller.builder.BuilderKind;
+import by.kuzmich.finaltask.service.ActionServiceFactory;
 import by.kuzmich.finaltask.service.LawMapNameServiceFactory;
 import by.kuzmich.finaltask.service.MapServiceFactory;
 import by.kuzmich.finaltask.service.UserServiceFactory;
@@ -30,9 +32,13 @@ final public class CommandFactory {
                         UserServiceFactory.getInstance().get(),
                         LawMapNameServiceFactory.getInstance().get()
                 );
-            case MapGet:
+            case MAP_GET:
                 return new MapGet(
                         MapServiceFactory.getInstance().get()
+                );
+            case ACTION_GET:
+                return new ActionGet(
+                        ActionServiceFactory.getInstance().get()
                 );
             default:
                 return null;

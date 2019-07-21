@@ -1,4 +1,4 @@
-package by.kuzmich.finaltask.action;
+package by.kuzmich.finaltask.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

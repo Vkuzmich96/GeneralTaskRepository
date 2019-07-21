@@ -1,6 +1,6 @@
 package by.kuzmich.finaltask.controller.filter;
 
-import by.kuzmich.finaltask.action.CommandKind;
+import by.kuzmich.finaltask.command.CommandKind;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +13,8 @@ public class UrlTranslationFilter implements Filter{
     static {
         map.put("/registration.html", CommandKind.ADD_USER);
         map.put("/enter.html", CommandKind.ENTER_USER);
-        map.put("/lawmap.html", CommandKind.MapGet);
+        map.put("/lawmap.html", CommandKind.MAP_GET);
+        map.put("/command.html", CommandKind.ACTION_GET);
     }
 
     @Override
@@ -27,7 +28,7 @@ public class UrlTranslationFilter implements Filter{
             HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
             String url = httpRequest.getRequestURI();
             CommandKind kind = map.get(url);
-            httpRequest.setAttribute("action", kind);
+            httpRequest.setAttribute("command", kind);
             chain.doFilter(httpRequest,servletResponse);
         }
     }

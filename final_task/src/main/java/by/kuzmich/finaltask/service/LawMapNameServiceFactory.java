@@ -6,7 +6,7 @@ import by.kuzmich.finaltask.dao.pool.ConnectionPool;
 import by.kuzmich.finaltask.exception.DAOException;
 import by.kuzmich.finaltask.service.impl.LawMapNameServiceImpl;
 
-public class LawMapNameServiceFactory {
+final public class LawMapNameServiceFactory {
     private final static LawMapNameServiceFactory factory = new LawMapNameServiceFactory();
     private LawMapNameServiceFactory (){}
     public static LawMapNameServiceFactory getInstance(){
