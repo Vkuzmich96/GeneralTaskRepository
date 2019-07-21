@@ -29,6 +29,7 @@ public class GraphEdge {
                 "id=" + id +
                 ", parent=" + parent +
                 ", child=" + child +
-                '}';
+                '}' +
+                '\n';
     }
 }

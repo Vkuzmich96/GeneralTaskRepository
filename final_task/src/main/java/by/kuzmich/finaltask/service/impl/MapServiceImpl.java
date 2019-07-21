@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.*;
 
 public class MapServiceImpl implements MapService {
     private static Logger logger = Logger.getLogger(MapServiceImpl.class);
@@ -27,24 +27,37 @@ public class MapServiceImpl implements MapService {
         this.graphEdgeDAO = graphEdgeDAO;
     }
 
-    public Graph get (String number){
+    public Graph get (String number) {
         List<GraphEdge> edgeList = null;
+        Graph rootGraph = null;
         try {
             edgeList = graphEdgeDAO.select(number);
-            if(edgeList.get(0).getParent().getId()!=0){
+            GraphEdge rootEdge = edgeList.get(0);
+            if (rootEdge.getParent().getId() != 0) {
                 logger.error("data structure is abnormal");
             }
-
+            rootGraph = buildRootNode(edgeList);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return buildGraph(edgeList);
+        return buildNodes(edgeList, rootGraph);
     }
 
-    private Graph buildGraph(List<GraphEdge> edgeList){
-        Graph graph = new Graph(null, null);
-        return graph;
+    private Graph buildRootNode(List<GraphEdge> edgeList) {
+        return new Graph(edgeList.get(0).getChild(), null );
     }
 
-
+    private Graph buildNodes(List<GraphEdge> edgeList, Graph rootGraph){
+        Set<Graph> actionSet = new LinkedHashSet <>();
+        for (int i = 1; i < edgeList.size(); i++) {
+            GraphEdge edge = edgeList.get(i);
+            if (rootGraph.getNode().getId() == edge.getParent().getId()) {
+                Graph node = new Graph(edge.getChild(), null);
+                actionSet.add(node);
+                buildNodes(edgeList,node);
+            }
+        }
+        rootGraph.setActionSet(actionSet);
+        return rootGraph;
+    }
 }
