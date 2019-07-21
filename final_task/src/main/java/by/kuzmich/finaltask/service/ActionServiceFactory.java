@@ -20,7 +20,8 @@ final public class ActionServiceFactory {
             return new ActionServiceImpl(
                     connection,
                     DAOFactory.getInstance().get(DAOKinds.ActionDAOMySql, connection),
-                    DAOFactory.getInstance().get(DAOKinds.MaterialDAOMySql, connection)
+                    DAOFactory.getInstance().get(DAOKinds.MaterialDAOMySql, connection),
+                    DAOFactory.getInstance().get(DAOKinds.ActionMaterialLinkDAOMySql, connection)
                     );
         } catch (DAOException e) {
             e.printStackTrace();

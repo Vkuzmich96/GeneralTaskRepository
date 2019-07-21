@@ -7,19 +7,14 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="/WEB-INF/treePrinterTag" prefix="d"%>
+
 <html>
 <head>
-    <title>WorkPage</title>
+    <title>NamesList</title>
 </head>
 <body>
     <h1>You may work</h1>
-    <c:forEach items="${maps}" var="maps">
-        <p>${maps}</p>
-    </c:forEach>
-
-    <form action="/lawmap.html" method="get">
-        <input type="hidden" value="1" name="number">
-        <input type="submit" value="send">
-    </form>
+    <d:nameList names="${maps}"/>
 </body>
 </html>

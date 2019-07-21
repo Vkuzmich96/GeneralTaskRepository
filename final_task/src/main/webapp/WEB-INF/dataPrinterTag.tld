@@ -9,7 +9,7 @@
         <name>graph</name>
         <tag-class>by.kuzmich.finaltask.tag.TreePrinter</tag-class>
         <body-content>empty</body-content>
-        <info>This tag translate tree data structure in the html tags</info>
+        <info>This tag translates tree data structure in a html tags</info>
         <attribute>
             <name>graph</name>
             <required>true</required>
@@ -20,9 +20,20 @@
         <name>action</name>
         <tag-class>by.kuzmich.finaltask.tag.ActionPrinter</tag-class>
         <body-content>empty</body-content>
-        <info>This tag print Action been</info>
+        <info>This tag prints Action been</info>
         <attribute>
             <name>action</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <name>nameList</name>
+        <tag-class>by.kuzmich.finaltask.tag.ListPrinter</tag-class>
+        <body-content>empty</body-content>
+        <info>This tag prints list of law map name</info>
+        <attribute>
+            <name>names</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
