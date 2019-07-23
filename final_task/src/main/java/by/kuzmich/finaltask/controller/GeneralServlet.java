@@ -14,9 +14,10 @@ import java.sql.SQLException;
 
 @WebServlet(urlPatterns = "*.html")
 public class GeneralServlet extends HttpServlet {
+    private String COMMAND_ENUM_ATTRIBUTE = "command";
 
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CommandKind kind = (CommandKind) req.getAttribute("command");
+        CommandKind kind = (CommandKind) req.getAttribute(COMMAND_ENUM_ATTRIBUTE);
         Command command = CommandFactory.getInstance().get(kind);
         String url = null;
         try {
