@@ -4,5 +4,7 @@ public enum CommandKind {
     ADD_USER,
     ENTER_USER,
     MAP_GET,
-    ACTION_GET
+    ACTION_GET,
+    LOG_OUT,
+    CREATE_SESSION
 }

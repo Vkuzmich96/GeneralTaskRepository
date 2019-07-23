@@ -14,11 +14,15 @@ public class UserServiceImpl implements UserService {
     }
 
     public void add (User user) throws SQLException {
-         dao.insert(user);
+        dao.insert(user);
     }
 
     public boolean checkPassword (User user) throws SQLException {
-         User userDB = dao.select(user.getEmail());
-         return user.equals(userDB);
+        User userDB = dao.select(user.getEmail());
+        return user.equals(userDB);
+    }
+
+    public User get (String login) throws SQLException {
+        return dao.select(login);
     }
 }

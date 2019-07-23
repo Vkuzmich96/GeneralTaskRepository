@@ -7,4 +7,5 @@ import java.sql.SQLException;
 public interface UserService {
     void add (User user) throws SQLException;
     boolean checkPassword (User user) throws SQLException;
+    User get (String login) throws SQLException;
 }

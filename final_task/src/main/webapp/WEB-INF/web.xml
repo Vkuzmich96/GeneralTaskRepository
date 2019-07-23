@@ -17,6 +17,7 @@
     <url-pattern>/pages/list.jsp</url-pattern>
     <url-pattern>/pages/lawmap.jsp</url-pattern>
     <url-pattern>/pages/action.jsp</url-pattern>
+    <url-pattern>/logout.html</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>UrlTranslationFilter</filter-name>

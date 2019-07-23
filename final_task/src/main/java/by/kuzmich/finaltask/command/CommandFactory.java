@@ -2,12 +2,15 @@ package by.kuzmich.finaltask.command;
 
 import by.kuzmich.finaltask.command.map.ActionGet;
 import by.kuzmich.finaltask.command.map.MapGet;
+import by.kuzmich.finaltask.command.user.CreateSession;
 import by.kuzmich.finaltask.command.user.UserAdd;
 import by.kuzmich.finaltask.command.user.UserEnter;
+import by.kuzmich.finaltask.command.user.UserLogOut;
 import by.kuzmich.finaltask.controller.builder.BuilderFactory;
 import by.kuzmich.finaltask.controller.builder.BuilderKind;
 import by.kuzmich.finaltask.controller.cookie.CookieHandlerFactory;
 import by.kuzmich.finaltask.controller.cookie.CookieHandlerUserAccess;
+import by.kuzmich.finaltask.controller.session.SessionHandlerFactory;
 import by.kuzmich.finaltask.service.ActionServiceFactory;
 import by.kuzmich.finaltask.service.LawMapNameServiceFactory;
 import by.kuzmich.finaltask.service.MapServiceFactory;
@@ -43,6 +46,16 @@ final public class CommandFactory {
             case ACTION_GET:
                 return new ActionGet(
                         ActionServiceFactory.getInstance().get()
+                );
+            case LOG_OUT:
+                return new UserLogOut(
+                        CookieHandlerFactory.getInstance().get()
+                );
+            case CREATE_SESSION:
+                return new CreateSession(
+                        UserServiceFactory.getInstance().get(),
+                        SessionHandlerFactory.getInstance().get(),
+                        CookieHandlerFactory.getInstance().get()
                 );
             default:
                 return null;

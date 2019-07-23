@@ -8,10 +8,18 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CookieHandlerUserAccess implements CookieHandler<User> {
     private String COOKIE_NAME = "lawmapAccess";
+    private int DELETE_KEY = 0;
 
     public void add(HttpServletResponse resp, User user){
         Cookie cookie = new Cookie(COOKIE_NAME, user.getEmail());
         cookie.setPath("*.html");
+        resp.addCookie(cookie);
+    }
+
+    public void delete(HttpServletRequest req, HttpServletResponse resp){
+        Cookie cookie = new Cookie(COOKIE_NAME, getValue(req));
+        cookie.setPath("*.html");
+        cookie.setMaxAge(DELETE_KEY);
         resp.addCookie(cookie);
     }
 

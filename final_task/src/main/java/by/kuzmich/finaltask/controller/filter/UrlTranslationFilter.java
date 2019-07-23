@@ -20,6 +20,7 @@ public class UrlTranslationFilter implements Filter{
         map.put("/enter.html", CommandKind.ENTER_USER);
         map.put("/lawmap.html", CommandKind.MAP_GET);
         map.put("/command.html", CommandKind.ACTION_GET);
+        map.put("/logout.html", CommandKind.LOG_OUT);
     }
 
     @Override

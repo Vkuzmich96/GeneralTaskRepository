@@ -4,7 +4,9 @@ public enum PagePathList {
     NAME_LIST("/pages/list.jsp"),
     ENTER("/pages/enter.jsp"),
     MAP("/pages/lawmap.jsp"),
-    ACTION("/pages/action.jsp");
+    ACTION("/pages/action.jsp"),
+    REGISTRATION("/"),
+    GAP("");
 
     private String path;
 
