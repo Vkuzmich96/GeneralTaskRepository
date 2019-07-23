@@ -18,6 +18,8 @@
     <url-pattern>/pages/lawmap.jsp</url-pattern>
     <url-pattern>/pages/action.jsp</url-pattern>
     <url-pattern>/logout.html</url-pattern>
+    <url-pattern>/command.html</url-pattern>
+    <url-pattern>/lawmap.html</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>UrlTranslationFilter</filter-name>

@@ -41,14 +41,14 @@ public class AccessFilter implements Filter{
         if (EMPTY_COOKIE_VALUE.equals(actualCookieValue)){
             httpResponse.sendRedirect(httpRequest.getContextPath() + PagePathList.REGISTRATION);
         }else {
-            chain.doFilter(httpRequest, httpResponse);
-            if(sessionHandler.isExists(httpRequest)){
+            if(!sessionHandler.isExists(httpRequest)){
                 try {
                     createSession.execute(httpRequest, httpResponse);
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
+            chain.doFilter(httpRequest, httpResponse);
         }
     }
 
