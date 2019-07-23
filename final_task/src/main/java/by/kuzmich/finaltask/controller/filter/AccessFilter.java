@@ -35,10 +35,11 @@ public class AccessFilter implements Filter{
         HttpServletResponse httpResponse = (HttpServletResponse) resp;
         String value = cookieHandler.getValue(httpRequest);
         if (EMPTY_COOKIE_VALUE.equals(value)){
-            req.getServletContext().getRequestDispatcher(REGISTRATION_PAGE_PATH).forward(req, resp);
-            httpResponse.sendRedirect(httpRequest.getContextPath() + REGISTRATION_PAGE_PATH);
+//            req.getServletContext().getRequestDispatcher(REGISTRATION_PAGE_PATH).forward(req, resp);
+//            httpResponse.sendRedirect(httpRequest.getContextPath() + REGISTRATION_PAGE_PATH);
+            System.out.println("!!!!!!!!!!!!ITS WORKS!!!!!!!!!!!!!!!!!!!!!");
         }
-        chain.doFilter(httpRequest, httpResponse);
+//        chain.doFilter(httpRequest, httpResponse);
     }
 
     @Override

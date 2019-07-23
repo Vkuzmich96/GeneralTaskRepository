@@ -2,6 +2,7 @@ package by.kuzmich.finaltask.command.map;
 
 import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.bean.Graph;
+import by.kuzmich.finaltask.command.PagePathList;
 import by.kuzmich.finaltask.service.MapService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,10 +17,10 @@ public class MapGet extends Command {
     }
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
         String number = req.getParameter("number");
         Graph graph = service.get(number);
         req.setAttribute("graph", graph);
-        return "/pages/lawmap.jsp";
+        return PagePathList.MAP;
     }
 }

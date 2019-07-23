@@ -2,6 +2,7 @@ package by.kuzmich.finaltask.command.user;
 
 import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.bean.User;
+import by.kuzmich.finaltask.command.PagePathList;
 import by.kuzmich.finaltask.controller.builder.Builder;
 import by.kuzmich.finaltask.service.LawMapNameService;
 import by.kuzmich.finaltask.service.UserService;
@@ -23,14 +24,15 @@ public class UserEnter extends Command {
     }
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
         User user = builder.build(req);
             if (userService.checkPassword(user)){
                 req.setAttribute("maps", nameService.getAll());
             } else {
                 req.setAttribute("massage", "wrong login or password try again");
-                return "/pages/enter.jsp";
+                return PagePathList.ENTER;
             }
-        return "/pages/list.jsp";
+            super.setRedirected(true);
+        return PagePathList.NAME_LIST;
     }
 }

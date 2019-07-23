@@ -3,6 +3,7 @@ package by.kuzmich.finaltask.controller;
 import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.command.CommandFactory;
 import by.kuzmich.finaltask.command.CommandKind;
+import by.kuzmich.finaltask.command.PagePathList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +22,8 @@ public class GeneralServlet extends HttpServlet {
         Command command = CommandFactory.getInstance().get(kind);
         String url = null;
         try {
-            url = command.execute(req, resp);
+            PagePathList pathEnum = command.execute(req, resp);
+            url = pathEnum.toString();
         } catch (SQLException e) {
             e.printStackTrace();
         }

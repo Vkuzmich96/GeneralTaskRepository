@@ -9,15 +9,6 @@
   </welcome-file-list>
 
   <filter>
-    <filter-name>AccessFilter</filter-name>
-    <filter-class>by.kuzmich.finaltask.controller.filter.AccessFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>AccessFilter</filter-name>
-    <url-pattern>*.html</url-pattern>
-  </filter-mapping>
-
-  <filter>
     <filter-name>UrlTranslationFilter</filter-name>
     <filter-class>by.kuzmich.finaltask.controller.filter.UrlTranslationFilter</filter-class>
   </filter>
@@ -25,5 +16,12 @@
     <filter-name>UrlTranslationFilter</filter-name>
     <url-pattern>*.html</url-pattern>
   </filter-mapping>
-
+  <filter>
+    <filter-name>AccessFilter</filter-name>
+    <filter-class>by.kuzmich.finaltask.controller.filter.AccessFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AccessFilter</filter-name>
+    <url-pattern>/pages/list.jsp</url-pattern>
+  </filter-mapping>
 </web-app>
