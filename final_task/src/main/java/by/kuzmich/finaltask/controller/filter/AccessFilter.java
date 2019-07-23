@@ -15,14 +15,13 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class AccessFilter implements Filter{
     private CookieHandler<User> cookieHandler = CookieHandlerFactory.getInstance().get();
     private SessionHandler sessionHandler = SessionHandlerFactory.getInstance().get();
     private String EMPTY_COOKIE_VALUE = "";
-    private String REGISTRATION_PAGE_PATH = "/welcome.jsp";
+    private String REGISTRATION_PAGE_PATH = "/";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -35,11 +34,10 @@ public class AccessFilter implements Filter{
         HttpServletResponse httpResponse = (HttpServletResponse) resp;
         String value = cookieHandler.getValue(httpRequest);
         if (EMPTY_COOKIE_VALUE.equals(value)){
-//            req.getServletContext().getRequestDispatcher(REGISTRATION_PAGE_PATH).forward(req, resp);
-//            httpResponse.sendRedirect(httpRequest.getContextPath() + REGISTRATION_PAGE_PATH);
-            System.out.println("!!!!!!!!!!!!ITS WORKS!!!!!!!!!!!!!!!!!!!!!");
+            httpResponse.sendRedirect(httpRequest.getContextPath() + REGISTRATION_PAGE_PATH);
+        }else {
+            chain.doFilter(httpRequest, httpResponse);
         }
-//        chain.doFilter(httpRequest, httpResponse);
     }
 
     @Override

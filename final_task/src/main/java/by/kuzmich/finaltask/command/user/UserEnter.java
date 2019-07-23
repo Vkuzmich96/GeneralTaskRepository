@@ -4,6 +4,7 @@ import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.command.PagePathList;
 import by.kuzmich.finaltask.controller.builder.Builder;
+import by.kuzmich.finaltask.controller.cookie.CookieHandler;
 import by.kuzmich.finaltask.service.LawMapNameService;
 import by.kuzmich.finaltask.service.UserService;
 
@@ -16,11 +17,14 @@ public class UserEnter extends Command {
     private Builder<User> builder;
     private UserService userService;
     private LawMapNameService nameService;
+    private CookieHandler<User> cookieHandler;
 
-    public UserEnter(Builder<User> builder, UserService userService, LawMapNameService nameService) {
+
+    public UserEnter(Builder<User> builder, UserService userService, LawMapNameService nameService, CookieHandler<User> cookieHandler) {
         this.builder = builder;
         this.userService = userService;
         this.nameService = nameService;
+        this.cookieHandler = cookieHandler;
     }
 
     @Override
@@ -32,7 +36,7 @@ public class UserEnter extends Command {
                 req.setAttribute("massage", "wrong login or password try again");
                 return PagePathList.ENTER;
             }
-            super.setRedirected(true);
+        cookieHandler.add(resp, user);
         return PagePathList.NAME_LIST;
     }
 }

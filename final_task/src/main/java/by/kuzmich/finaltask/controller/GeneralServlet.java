@@ -16,6 +16,8 @@ import java.sql.SQLException;
 @WebServlet(urlPatterns = "*.html")
 public class GeneralServlet extends HttpServlet {
     private String COMMAND_ENUM_ATTRIBUTE = "command";
+    private String ACCESS = "access";
+
 
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CommandKind kind = (CommandKind) req.getAttribute(COMMAND_ENUM_ATTRIBUTE);
