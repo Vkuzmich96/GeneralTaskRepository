@@ -6,6 +6,7 @@ public enum PagePathList {
     MAP("/pages/lawmap.jsp"),
     ACTION("/pages/action.jsp"),
     REGISTRATION("/"),
+    LAWER_MENU("/pages/lawmenu.jsp"),
     GAP("");
 
     private String path;

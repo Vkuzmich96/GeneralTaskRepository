@@ -17,6 +17,9 @@
         <input type="submit" value="parse"/>
     </label>
 </form>
-
+<form action="/parse" method="post" enctype="multipart/form-data">
+    <input type="file" name="file"/>
+    <input type="submit" value="send">
+</form>
 </body>
 </html>

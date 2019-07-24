@@ -21,6 +21,8 @@ public class UrlTranslationFilter implements Filter{
         map.put("/lawmap.html", CommandKind.MAP_GET);
         map.put("/command.html", CommandKind.ACTION_GET);
         map.put("/logout.html", CommandKind.LOG_OUT);
+        map.put("/lawermenu.html", CommandKind.GET_LAWER_MENU);
+        map.put("/add.html", CommandKind.ADD_MATERIAL);
     }
 
     @Override

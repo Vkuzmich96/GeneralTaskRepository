@@ -15,6 +15,7 @@
 </head>
 <body>
     <h1>You may work</h1>
+    <d:menu/>
     <d:nameList names="${maps}"/>
 </body>
 </html>

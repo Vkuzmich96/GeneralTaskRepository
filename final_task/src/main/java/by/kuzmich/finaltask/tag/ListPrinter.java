@@ -7,8 +7,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 import java.util.List;
 
-public class ListPrinter extends TagSupport {
-    private static final long serialVersionUID = 1L;
+public class ListPrinter extends Tag {
 
     private List<LawMapName> names;
 
@@ -16,16 +15,7 @@ public class ListPrinter extends TagSupport {
         this.names = names;
     }
 
-    public int doStartTag() throws JspException {
-        try {
-            renderRootDiv();
-        } catch(IOException e) {
-            throw new JspException("Error: " + e.getMessage());
-        }
-        return SKIP_BODY;
-    }
-
-    private void renderRootDiv() throws IOException {
+    public void renderRootDiv() throws IOException {
         for (LawMapName name : names){
             pageContext.getOut().print(
                     String.format("<li><span><a href = /lawmap.html?number=%s> %s </a></span>", name.getId(), name.getName())

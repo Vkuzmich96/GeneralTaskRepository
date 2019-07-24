@@ -6,5 +6,7 @@ public enum CommandKind {
     MAP_GET,
     ACTION_GET,
     LOG_OUT,
-    CREATE_SESSION
+    CREATE_SESSION,
+    GET_LAWER_MENU,
+    ADD_MATERIAL
 }

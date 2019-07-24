@@ -38,4 +38,10 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
+    <tag>
+        <name>menu</name>
+        <tag-class>by.kuzmich.finaltask.tag.MenuPrinter</tag-class>
+        <body-content>empty</body-content>
+        <info>This tag prints user menu</info>
+    </tag>
 </taglib>

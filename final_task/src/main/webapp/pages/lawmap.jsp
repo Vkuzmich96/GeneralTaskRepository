@@ -13,6 +13,7 @@
     <link href="../support/lawmap_style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <d:menu/>
     <d:graph graph="${graph}"/>
 </body>
 </html>

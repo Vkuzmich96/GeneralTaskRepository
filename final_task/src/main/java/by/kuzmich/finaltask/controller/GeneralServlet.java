@@ -6,6 +6,7 @@ import by.kuzmich.finaltask.command.CommandKind;
 import by.kuzmich.finaltask.command.PagePathList;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +15,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet(urlPatterns = "*.html")
+@MultipartConfig
 public class GeneralServlet extends HttpServlet {
     private String COMMAND_ENUM_ATTRIBUTE = "command";
-    private String ACCESS = "access";
 
 
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

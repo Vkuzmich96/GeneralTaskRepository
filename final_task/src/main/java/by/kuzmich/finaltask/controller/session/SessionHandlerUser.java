@@ -9,9 +9,9 @@ import javax.servlet.http.HttpSession;
 public class SessionHandlerUser implements SessionHandler {
 
     public void create(HttpServletRequest req, User user){
-        HttpSession session = req.getSession(false);
-        session.setAttribute(KeyWordsList.LOGIN, user.getEmail());
-        session.setAttribute(KeyWordsList.ROLE, user.getRole());
+            HttpSession session = req.getSession(false);
+            session.setAttribute(KeyWordsList.LOGIN, user.getEmail());
+            session.setAttribute(KeyWordsList.ROLE, user.getRole());
     }
 
     public String getRole(HttpServletRequest req){
