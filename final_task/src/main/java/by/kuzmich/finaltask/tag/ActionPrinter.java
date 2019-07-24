@@ -28,12 +28,12 @@ public class ActionPrinter extends TagSupport {
 
     private void renderRootDiv() throws IOException {
         pageContext.getOut().print("<div>");
-        pageContext.getOut().print("<h4>" + action.getName() + "</h4>");
-        pageContext.getOut().print("<p>" + action.getInstructions() + "</p>");
+        pageContext.getOut().print(String.format("<h4> %s </h4>", action.getName()));
+        pageContext.getOut().print(String.format("<p> %s </p>", action.getInstructions()));
         for (Material material : action.getMaterials()) {
-            pageContext.getOut().print("<p>" + material.getDiscription() + "</p>");
+            pageContext.getOut().print(String.format("<p> %s </p>", material.getDiscription()));
             pageContext.getOut().print(
-                    "<a href =" + prefix +  material.getUrl() + ">" + "download" + "</a>"
+                    String.format("<a href = %s%s>download</a>", prefix, material.getUrl())
             );
         }
         pageContext.getOut().print("</div>");

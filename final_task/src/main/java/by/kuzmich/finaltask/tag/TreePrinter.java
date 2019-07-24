@@ -29,17 +29,18 @@ public class TreePrinter extends TagSupport {
 
     private void renderRootDiv() throws IOException {
         pageContext.getOut().print("<div id=\"multi-derevo\">");
-        pageContext.getOut().print("<h4>"+graph.getName()+"</h4>");
+        pageContext.getOut().print(String.format("<h4> %s </h4>", graph.getName()));
         renderNode(graph);
     }
 
     private void renderNode(Graph rootGraph) throws IOException {
         pageContext.getOut().print("<ul>");
-            pageContext.getOut().print("<li><span><a href = /command.html?id=" +
-                    rootGraph.getNode().getId() +
-                    ">" +
-                    rootGraph.getNode().getName() +
-                    "</a></span>");
+            pageContext.getOut().print(
+                    String.format("<li><span><a href = /command.html?id= %s > %s </a></span>",
+                            rootGraph.getNode().getId(),
+                            rootGraph.getNode().getName()
+                    )
+            );
             Set<Graph> graphs = rootGraph.getActionSet();
             for (Graph graph : graphs){
                 renderNode(graph);

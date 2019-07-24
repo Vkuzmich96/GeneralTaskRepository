@@ -28,7 +28,7 @@ public class ListPrinter extends TagSupport {
     private void renderRootDiv() throws IOException {
         for (LawMapName name : names){
             pageContext.getOut().print(
-                    "<li><span><a href = /lawmap.html?number=" + name.getId() + ">" + name.getName() + "</a></span>"
+                    String.format("<li><span><a href = /lawmap.html?number= %s > %s </a></span>", name.getId(), name.getName())
             );
         }
     }
