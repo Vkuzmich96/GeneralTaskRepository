@@ -1,6 +1,7 @@
 package by.kuzmich.finaltask.controller.cookie;
 
 import by.kuzmich.finaltask.bean.User;
+import by.kuzmich.finaltask.controller.KeyWordsList;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -9,16 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 public class CookieHandlerUserAccess implements CookieHandler<User> {
     private String COOKIE_NAME = "lawmapAccess";
     private int DELETE_KEY = 0;
+    private String postfix = "*.html";
 
     public void add(HttpServletResponse resp, User user){
         Cookie cookie = new Cookie(COOKIE_NAME, user.getEmail());
-        cookie.setPath("*.html");
+        cookie.setPath(postfix);
         resp.addCookie(cookie);
     }
 
     public void delete(HttpServletRequest req, HttpServletResponse resp){
         Cookie cookie = new Cookie(COOKIE_NAME, getValue(req));
-        cookie.setPath("*.html");
+        cookie.setPath(postfix);
         cookie.setMaxAge(DELETE_KEY);
         resp.addCookie(cookie);
     }
@@ -31,6 +33,6 @@ public class CookieHandlerUserAccess implements CookieHandler<User> {
                 return cookie.getValue();
             }
         }
-        return "";
+        return KeyWordsList.EMPTY_COOKIE_VALUE;
     }
 }

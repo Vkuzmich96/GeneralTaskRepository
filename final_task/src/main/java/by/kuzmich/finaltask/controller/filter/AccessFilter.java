@@ -5,6 +5,7 @@ import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.command.CommandFactory;
 import by.kuzmich.finaltask.command.CommandKind;
 import by.kuzmich.finaltask.command.PagePathList;
+import by.kuzmich.finaltask.controller.KeyWordsList;
 import by.kuzmich.finaltask.controller.cookie.CookieHandler;
 import by.kuzmich.finaltask.controller.cookie.CookieHandlerFactory;
 import by.kuzmich.finaltask.controller.cookie.CookieHandlerUserAccess;
@@ -26,7 +27,6 @@ public class AccessFilter implements Filter{
     private CookieHandler<User> cookieHandler = CookieHandlerFactory.getInstance().get();
     private SessionHandler sessionHandler = SessionHandlerFactory.getInstance().get();
     private Command createSession = CommandFactory.getInstance().get(CommandKind.CREATE_SESSION);
-    private String EMPTY_COOKIE_VALUE = "";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -38,7 +38,7 @@ public class AccessFilter implements Filter{
         HttpServletRequest httpRequest = (HttpServletRequest) req;
         HttpServletResponse httpResponse = (HttpServletResponse) resp;
         String actualCookieValue = cookieHandler.getValue(httpRequest);
-        if (EMPTY_COOKIE_VALUE.equals(actualCookieValue)){
+        if (KeyWordsList.EMPTY_COOKIE_VALUE.equals(actualCookieValue)){
             httpResponse.sendRedirect(httpRequest.getContextPath() + PagePathList.REGISTRATION);
         }else {
             if(!sessionHandler.isExists(httpRequest)){
