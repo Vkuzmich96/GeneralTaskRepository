@@ -8,14 +8,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="/WEB-INF/treePrinterTag" prefix="d"%>
-
+<%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
 <html>
 <head>
     <title>NamesList</title>
 </head>
 <body>
-    <h1>You may work</h1>
-    <d:menu/>
-    <d:nameList names="${maps}"/>
+    <div>
+        <h4>You may work</h4>
+        <u:menu/>
+        <p>Law map list</p>
+
+        <c:forEach var="map" items="${maps}">
+            <li>
+                 <span>
+                        <a href = /lawmap.html?number=${map.getId()}> ${map.getName()} </a>
+                 </span>
+            </li>
+        </c:forEach>
+    </div>
 </body>
 </html>

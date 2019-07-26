@@ -7,12 +7,23 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="/WEB-INF/treePrinterTag" prefix="d"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
     <title>Action</title>
 </head>
 <body>
-    <d:action action="${action}"/>
+    <div>
+        <h4> ${action.getName()} </h4>
+        <p> ${action.getInstructions()} </p>
+        <c:set var="prefix" value="/doks/"/>
+        <c:forEach var="material" items="${action.getMaterials()}">
+            <p> ${material.getDiscription()} </p>
+            <p>
+                ${material.getName()} <a href = ${prefix}${material.getUrl()}> download </a>
+            </p>
+        </c:forEach>
+    </div>
 </body>
 </html>

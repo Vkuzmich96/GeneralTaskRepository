@@ -7,6 +7,9 @@ public class Graph {
     private Action node;
     private Set<Graph> actionSet;
 
+    public Graph() {
+    }
+
     public Graph(Action node, Set<Graph> actionSet) {
         this.node = node;
         this.actionSet = actionSet;
