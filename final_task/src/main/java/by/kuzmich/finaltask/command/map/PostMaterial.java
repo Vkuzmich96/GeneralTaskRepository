@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 
 
-public class AddMaterial extends Command {
+public class PostMaterial extends Command {
 
     private String DIRECTORY = "C:\\Users\\user\\IdeaProjects\\GeneralTaskRepository\\final_task\\src\\main\\webapp\\doks";
     private String PARAM_NAME = "file";

@@ -36,7 +36,7 @@ public class TreePrinter extends TagSupport {
     private void renderNode(Graph rootGraph) throws IOException {
         pageContext.getOut().print("<ul>");
             pageContext.getOut().print(
-                    String.format("<li><span><a href = /command.html?id=%s> %s </a></span>",
+                    String.format("<li><span><a href = /action.html?id=%s> %s </a></span>",
                             rootGraph.getNode().getId(),
                             rootGraph.getNode().getName()
                     )

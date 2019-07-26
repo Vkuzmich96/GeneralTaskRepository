@@ -8,5 +8,6 @@ public enum CommandKind {
     LOG_OUT,
     CREATE_SESSION,
     GET_LAWER_MENU,
-    ADD_MATERIAL
+    ADD_MATERIAL,
+    GET_ALL_MAP_NAMES
 }

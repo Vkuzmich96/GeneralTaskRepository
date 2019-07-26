@@ -5,38 +5,31 @@ import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.command.PagePathList;
 import by.kuzmich.finaltask.controller.builder.Builder;
 import by.kuzmich.finaltask.controller.cookie.CookieHandler;
-import by.kuzmich.finaltask.service.LawMapNameService;
 import by.kuzmich.finaltask.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
-public class UserEnter extends Command {
+public class PostUserRegistration extends Command {
 
     private Builder<User> builder;
-    private UserService userService;
-    private LawMapNameService nameService;
+    private UserService service;
     private CookieHandler<User> cookieHandler;
 
-
-    public UserEnter(Builder<User> builder, UserService userService, LawMapNameService nameService, CookieHandler<User> cookieHandler) {
+    public PostUserRegistration(Builder<User> builder, UserService service, CookieHandler<User> cookieHandler) {
         this.builder = builder;
-        this.userService = userService;
-        this.nameService = nameService;
+        this.service = service;
         this.cookieHandler = cookieHandler;
     }
 
     @Override
     public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
         User user = builder.build(req);
-            if (userService.checkPassword(user)){
-                req.setAttribute("maps", nameService.getAll());
-            } else {
-                req.setAttribute("massage", "wrong login or password try again");
-                return PagePathList.ENTER;
-            }
+        service.add(user);
         cookieHandler.add(resp, user);
-        return PagePathList.NAME_LIST;
+        super.setRedirected(true);
+        return PagePathList.ENTER;
     }
+
 }

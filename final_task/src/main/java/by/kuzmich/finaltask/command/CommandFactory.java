@@ -1,13 +1,13 @@
 package by.kuzmich.finaltask.command;
 
-import by.kuzmich.finaltask.command.map.ActionGet;
-import by.kuzmich.finaltask.command.map.AddMaterial;
-import by.kuzmich.finaltask.command.map.MapGet;
+import by.kuzmich.finaltask.command.map.GetAction;
+import by.kuzmich.finaltask.command.map.PostMaterial;
+import by.kuzmich.finaltask.command.map.GetAllMpaNames;
+import by.kuzmich.finaltask.command.map.GetMap;
 import by.kuzmich.finaltask.command.user.*;
 import by.kuzmich.finaltask.controller.builder.BuilderFactory;
 import by.kuzmich.finaltask.controller.builder.BuilderKind;
 import by.kuzmich.finaltask.controller.cookie.CookieHandlerFactory;
-import by.kuzmich.finaltask.controller.cookie.CookieHandlerUserAccess;
 import by.kuzmich.finaltask.controller.session.SessionHandlerFactory;
 import by.kuzmich.finaltask.service.ActionServiceFactory;
 import by.kuzmich.finaltask.service.LawMapNameServiceFactory;
@@ -25,24 +25,24 @@ final public class CommandFactory {
     public Command get(CommandKind command) {
         switch (command){
             case ADD_USER:
-                return new UserAdd(
+                return new PostUserRegistration(
                         BuilderFactory.getInstance().get(BuilderKind.USER_REGISTRATION),
                         UserServiceFactory.getInstance().get(),
                         CookieHandlerFactory.getInstance().get()
                 );
             case ENTER_USER:
-                return new UserEnter(
+                return new PostUserEnter(
                         BuilderFactory.getInstance().get(BuilderKind.USER_ENTER),
                         UserServiceFactory.getInstance().get(),
                         LawMapNameServiceFactory.getInstance().get(),
                         CookieHandlerFactory.getInstance().get()
                 );
             case MAP_GET:
-                return new MapGet(
+                return new GetMap(
                         MapServiceFactory.getInstance().get()
                 );
             case ACTION_GET:
-                return new ActionGet(
+                return new GetAction(
                         ActionServiceFactory.getInstance().get()
                 );
             case LOG_OUT:
@@ -58,7 +58,11 @@ final public class CommandFactory {
             case GET_LAWER_MENU:
                 return new GetLawerMenu();
             case ADD_MATERIAL:
-                return new AddMaterial();
+                return new PostMaterial();
+            case GET_ALL_MAP_NAMES:
+                return new GetAllMpaNames(
+                        LawMapNameServiceFactory.getInstance().get()
+                );
             default:
                 return null;
         }

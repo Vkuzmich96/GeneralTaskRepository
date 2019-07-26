@@ -18,7 +18,6 @@
         <h4>You may work</h4>
         <u:menu/>
         <p>Law map list</p>
-
         <c:forEach var="map" items="${maps}">
             <li>
                  <span>
