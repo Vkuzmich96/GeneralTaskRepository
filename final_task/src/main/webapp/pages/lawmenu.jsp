@@ -7,7 +7,6 @@
     <title>LawerMenu</title>
 </head>
 <body>
-<u:step/>
 <c:set var="gaphId" value="${graph_id}"/>
 <c:if test="${null == gaphId}">
     <form action="/addMap" method="post">
@@ -18,8 +17,9 @@
     </form>
 </c:if>
 
-<c:if test="${null == gaphId}">
-<form action="/addAction.html" method="post">
+<c:if test="${null != gaphId}">
+    <u:step/>
+    <form action="/addAction.html" method="post">
     <p>Add action</p>
     <input type="text" placeholder="enter action name" name="name">
     <p/>
