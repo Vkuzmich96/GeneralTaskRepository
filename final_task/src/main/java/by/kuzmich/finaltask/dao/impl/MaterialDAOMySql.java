@@ -21,10 +21,9 @@ public class MaterialDAOMySql implements DAO <Material, Material> {
     public int insert (Material material) throws SQLException {
         int id = 0;
         try {
-            String sql = "INSERT INTO `lawmapsdb`.`materials` VALUES (null, ?, ?)";
+            String sql = "INSERT INTO `lawmapsdb`.`materials` VALUES (null, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, material.getUrl());
-            statement.setString(2, material.getDiscription());
+            prepareStatement(statement, material);
             statement.execute();
             ResultSet set = statement.getGeneratedKeys();
             id = set.getInt("id");
@@ -102,10 +101,10 @@ public class MaterialDAOMySql implements DAO <Material, Material> {
 
     public void update (Material material) throws SQLException {
         try {
-            String sql = "UPDATE `lawmapsdb`.`materials` SET `url` = ?, `discription` = ? WHERE `id` = ?";
+            String sql = "UPDATE `lawmapsdb`.`materials` SET `url` = ?, `discription` = ?, `name` = ? WHERE `id` = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             prepareStatement(statement, material);
-            statement.setInt(3, material.getId());
+            statement.setInt(4, material.getId());
             statement.execute();
         } catch (SQLException e){
             logger.error("its impossible to update data");
@@ -126,6 +125,8 @@ public class MaterialDAOMySql implements DAO <Material, Material> {
     private void prepareStatement(PreparedStatement statement, Material material) throws SQLException {
         statement.setString(1, material.getUrl());
         statement.setString(2, material.getDiscription());
+        statement.setString(3, material.getName());
+
     }
 
     private List<Material> buildList (ResultSet set) throws SQLException {
@@ -141,6 +142,7 @@ public class MaterialDAOMySql implements DAO <Material, Material> {
         int id = set.getInt("id");
         String url = set.getString("url");
         String description = set.getString("discription");
-        return new Material(id,url,description);
+        String name = set.getString("name");
+        return new Material(id,url,description, name);
     }
 }

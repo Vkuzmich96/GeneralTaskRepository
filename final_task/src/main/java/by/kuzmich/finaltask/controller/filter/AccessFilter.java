@@ -25,8 +25,8 @@ import java.sql.SQLException;
 
 public class AccessFilter implements Filter{
     private CookieHandler<User> cookieHandler = CookieHandlerFactory.getInstance().get();
-    private SessionHandler sessionHandler = SessionHandlerFactory.getInstance().get();
-    private Command createSession = CommandFactory.getInstance().get(CommandKind.CREATE_SESSION);
+//    private SessionHandler sessionHandler = SessionHandlerFactory.getInstance().get();
+//    private Command createSession = CommandFactory.getInstance().get(CommandKind.CREATE_SESSION);
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -41,13 +41,13 @@ public class AccessFilter implements Filter{
         if (KeyWordsList.EMPTY_COOKIE_VALUE.equals(actualCookieValue)){
             httpResponse.sendRedirect(httpRequest.getContextPath() + PagePathList.REGISTRATION);
         }else {
-            if(!sessionHandler.isExists(httpRequest)){
-                try {
-                    createSession.execute(httpRequest, httpResponse);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+//            if(!sessionHandler.isExists(httpRequest)){
+//                try {
+//                    createSession.execute(httpRequest, httpResponse);
+//                } catch (SQLException e) {
+//                    e.printStackTrace();
+//                }
+//            }
             chain.doFilter(httpRequest, httpResponse);
         }
     }

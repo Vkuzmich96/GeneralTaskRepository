@@ -25,8 +25,18 @@ public class MaterialDAOTest {
         }
     }
 
-    private Material material = new Material(0, "jdbc.properties", "lorem ipsum");
-    private Material materialUpdate = new Material(0, "just a test", "just a test");
+    private Material material = new Material(
+            0,
+            "jdbc.properties",
+            "lorem ipsum",
+            "loren ipsum"
+    );
+    private Material materialUpdate = new Material(
+            0,
+            "just a test",
+            "just a test",
+            "just a test"
+    );
 
 
     private Material findFirst() throws SQLException {
