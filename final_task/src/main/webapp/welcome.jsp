@@ -18,8 +18,5 @@
     <form action="pages/enter.jsp" >
         <input type="submit" value="enter">
     </form>
-    <form action="/logout.html" >
-        <input type="submit" value="logout">
-    </form>
 </body>
 </html>

@@ -11,9 +11,29 @@
     <title>LawerMenu</title>
 </head>
 <body>
-    <form action="/add.html" method="post" enctype="multipart/form-data">
+    <form action="/addMap" method="post">
+        <p>Add map</p>
+        <input type="text" placeholder="enter map name" name="name"/>
+        <p/>
+        <input type="submit" value="add"/>
+    </form>
+    <form action="/addAction.html" method="post">
+        <p>Add action</p>
+        <input type="text" placeholder="enter action name" name="name">
+        <p/>
+        <input type="text" placeholder="enter description" name="description">
+        <p/>
+        <input type="submit" value="add"/>
+    </form>
+    <form action="/addMaterial.html" method="post">
+        <p>Add material</p>
+        <input type="text" placeholder="enter material name" name="name">
+        <p/>
+        <input type="text" placeholder="enter description" name="description">
+        <p/>
         <input type="file" name="file">
-        <input type="submit" value="send">
+        <p/>
+        <input type="submit" value="add"/>
     </form>
 </body>
 </html>
