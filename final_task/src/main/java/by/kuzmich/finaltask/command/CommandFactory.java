@@ -1,9 +1,6 @@
 package by.kuzmich.finaltask.command;
 
-import by.kuzmich.finaltask.command.map.GetAction;
-import by.kuzmich.finaltask.command.map.PostMaterial;
-import by.kuzmich.finaltask.command.map.GetAllMpaNames;
-import by.kuzmich.finaltask.command.map.GetMap;
+import by.kuzmich.finaltask.command.map.*;
 import by.kuzmich.finaltask.command.user.*;
 import by.kuzmich.finaltask.controller.builder.BuilderFactory;
 import by.kuzmich.finaltask.controller.builder.BuilderKind;
@@ -31,7 +28,7 @@ final public class CommandFactory {
                         CookieHandlerFactory.getInstance().get()
                 );
             case ENTER_USER:
-                return new PostUserEnter(
+                return new PostUserLogIn(
                         BuilderFactory.getInstance().get(BuilderKind.USER_ENTER),
                         UserServiceFactory.getInstance().get(),
                         LawMapNameServiceFactory.getInstance().get(),
@@ -61,6 +58,10 @@ final public class CommandFactory {
                 return new PostMaterial();
             case GET_ALL_MAP_NAMES:
                 return new GetAllMpaNames(
+                        LawMapNameServiceFactory.getInstance().get()
+                );
+            case POST_MAP_NAME:
+                return new PostMapName(
                         LawMapNameServiceFactory.getInstance().get()
                 );
             default:

@@ -4,10 +4,7 @@ import by.kuzmich.finaltask.dao.DAO;
 import by.kuzmich.finaltask.bean.LawMapName;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +21,12 @@ public class LawMapNameDAOMySql implements DAO<LawMapName, LawMapName> {
         int id = 0;
         try {
             String sql = "INSERT INTO `lawmapsdb`.`law_map_name` VALUES (null, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             prepareStatement(statement, lawMapName);
             statement.execute();
             ResultSet set = statement.getGeneratedKeys();
-            id = set.getInt("id");
+            set.next();
+            id = set.getInt(1);
         } catch (SQLException e){
             logger.error("its impossible to insert data");
         } finally {

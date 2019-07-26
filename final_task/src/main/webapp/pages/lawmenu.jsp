@@ -9,23 +9,24 @@
 <body>
 <c:set var="gaphId" value="${graph_id}"/>
 <c:if test="${null == gaphId}">
-    <form action="/addMap" method="post">
-        <p>Add map</p>
+    <form action="/addMap.html" method="post">
+        <p>Create map</p>
         <input type="text" placeholder="enter map name" name="name"/>
         <p/>
-        <input type="submit" value="add"/>
+        <input type="submit" value="create"/>
     </form>
 </c:if>
 
 <c:if test="${null != gaphId}">
     <u:step/>
-    <form action="/addAction.html" method="post">
+<form action="/addAction.html" method="post">
     <p>Add action</p>
     <input type="text" placeholder="enter action name" name="name">
     <p/>
     <input type="text" placeholder="enter description" name="description">
     <p/>
     <input type="submit" value="add"/>
+    <input type="checkbox" name="isNext"> next step
 </form>
 <form action="/addMaterial.html" method="post">
     <p>Add material</p>

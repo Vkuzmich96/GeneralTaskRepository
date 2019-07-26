@@ -17,4 +17,8 @@ public class LawMapNameServiceImpl implements LawMapNameService {
     public List<LawMapName> getAll() throws SQLException {
         return dao.selectAll();
     }
+
+    public int add (String name) throws SQLException {
+        return dao.insert(new LawMapName(0, name));
+    }
 }

@@ -9,5 +9,6 @@ public enum CommandKind {
     CREATE_SESSION,
     GET_LAWER_MENU,
     ADD_MATERIAL,
-    GET_ALL_MAP_NAMES
+    GET_ALL_MAP_NAMES,
+    POST_MAP_NAME
 }

@@ -24,6 +24,7 @@ public class UrlTranslationFilter implements Filter{
         map.put("/lawermenu.html", CommandKind.GET_LAWER_MENU);
         map.put("/addMaterial.html", CommandKind.ADD_MATERIAL);
         map.put("/pages/list.html", CommandKind.GET_ALL_MAP_NAMES);
+        map.put("/addMap.html", CommandKind.POST_MAP_NAME);
     }
 
     @Override

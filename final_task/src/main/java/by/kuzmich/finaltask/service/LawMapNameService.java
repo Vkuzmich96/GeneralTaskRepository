@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface LawMapNameService {
     List<LawMapName> getAll() throws SQLException;
+    int add (String name) throws SQLException;
 }

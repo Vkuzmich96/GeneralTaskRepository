@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
-public class PostUserEnter extends Command {
+public class PostUserLogIn extends Command {
 
     private Builder<User> builder;
     private UserService userService;
@@ -20,7 +20,7 @@ public class PostUserEnter extends Command {
     private CookieHandler<User> cookieHandler;
 
 
-    public PostUserEnter(Builder<User> builder, UserService userService, LawMapNameService nameService, CookieHandler<User> cookieHandler) {
+    public PostUserLogIn(Builder<User> builder, UserService userService, LawMapNameService nameService, CookieHandler<User> cookieHandler) {
         this.builder = builder;
         this.userService = userService;
         this.nameService = nameService;
