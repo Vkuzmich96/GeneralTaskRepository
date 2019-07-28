@@ -6,6 +6,9 @@
     <form action="/logout.html" method="post">
         <input type="submit" value="logout">
     </form>
+    <form action="/update.html" method="post">
+        <input type="submit" value="update profile">
+    </form>
     <c:set var="role" value="${role}"/>
     <c:set var="lawerRoleNumber" value="2"/>
     <c:if test="${lawerRoleNumber==role.getNumber()}">
