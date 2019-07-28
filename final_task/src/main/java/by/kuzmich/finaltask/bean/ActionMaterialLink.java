@@ -2,13 +2,17 @@ package by.kuzmich.finaltask.bean;
 
 public class ActionMaterialLink {
     private int id;
-    private int ActionId;
-    private int MaterialId;
+    private int actionId;
+    private int materialId;
 
     public ActionMaterialLink(int id, int actionId, int materialId) {
+        this(actionId, materialId);
         this.id = id;
-        ActionId = actionId;
-        MaterialId = materialId;
+    }
+
+    public ActionMaterialLink(int actionId, int materialId) {
+        this.actionId = actionId;
+        this.materialId = materialId;
     }
 
     public int getId() {
@@ -16,11 +20,11 @@ public class ActionMaterialLink {
     }
 
     public int getActionId() {
-        return ActionId;
+        return actionId;
     }
 
     public int getMaterialId() {
-        return MaterialId;
+        return materialId;
     }
 
     public void setId(int id) {
@@ -28,19 +32,19 @@ public class ActionMaterialLink {
     }
 
     public void setActionId(int actionId) {
-        ActionId = actionId;
+        this.actionId = actionId;
     }
 
     public void setMaterialId(int materialId) {
-        MaterialId = materialId;
+        this.materialId = materialId;
     }
 
     @Override
     public String toString() {
         return "ActionMaterialLink{" +
                 "id=" + id +
-                ", ActionId=" + ActionId +
-                ", MaterialId=" + MaterialId +
+                ", ActionId=" + actionId +
+                ", MaterialId=" + materialId +
                 '}';
     }
 }

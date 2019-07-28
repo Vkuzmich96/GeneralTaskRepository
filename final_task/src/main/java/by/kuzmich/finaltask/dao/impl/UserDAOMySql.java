@@ -5,10 +5,7 @@ import by.kuzmich.finaltask.bean.Role;
 import by.kuzmich.finaltask.bean.User;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,17 +17,17 @@ public class UserDAOMySql implements DAO<User, User> {
         this.connection = connection;
     }
 
-    //todo ключ кидает ошибку
     @Override
     public int insert (User user) throws SQLException {
         int id = 0;
         try {
             String sql = "INSERT INTO `lawmapsdb`.`users` VALUES (null, ?, ?,?, ?,?,? )";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             prepareStatement(statement, user);
-            statement.execute();
-//            ResultSet set = statement.getGeneratedKeys();
-//            id = set.getInt("id");
+            statement.executeUpdate();
+            ResultSet set = statement.getGeneratedKeys();
+            set.next();
+            id = set.getInt(1);
         } catch (SQLException e){
             logger.error("its impossible to insert data");
         } finally {

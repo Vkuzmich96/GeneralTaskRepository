@@ -13,4 +13,6 @@ final public class KeyWordsList {
     public final static String DESCRIPTION = "description";
     public final static String IS_NEXT = "isNext";
     public final static int FIRST_STEP = 1;
+    public final static String URL = "url";
+    public final static String FILE_PARAMETER_NAME = "file";
 }

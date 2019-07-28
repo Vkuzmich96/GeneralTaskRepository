@@ -19,20 +19,20 @@ public class PostMaterial extends Command {
 
     @Override
     public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
-        try {
-            Part filePart = req.getPart(PARAM_NAME);
-            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-            File file = new File(DIRECTORY, fileName);
-            file.createNewFile();
-            InputStream inputStream = filePart.getInputStream();
-            byte[] buffer = new byte[inputStream.available()];
-            inputStream.read(buffer);
-            FileOutputStream outputStream = new FileOutputStream(file);
-            outputStream.write(buffer);
-        } catch (IOException | ServletException e) {
-            e.printStackTrace();
-        }
-        super.setRedirected(true);
+//        try {
+//            Part filePart = req.getPart(PARAM_NAME);
+//            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+//            File file = new File(DIRECTORY, fileName);
+//            file.createNewFile();
+//            InputStream inputStream = filePart.getInputStream();
+//            byte[] buffer = new byte[inputStream.available()];
+//            inputStream.read(buffer);
+//            FileOutputStream outputStream = new FileOutputStream(file);
+//            outputStream.write(buffer);
+//        } catch (IOException | ServletException e) {
+//            e.printStackTrace();
+//        }
+//        super.setRedirected(true);
         return PagePathList.LAWER_MENU;
     }
 }

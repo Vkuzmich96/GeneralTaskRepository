@@ -4,10 +4,7 @@ import by.kuzmich.finaltask.bean.ActionMaterialLink;
 import by.kuzmich.finaltask.dao.DAO;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +20,13 @@ public class ActionMaterialLinkDAOMySql implements DAO<ActionMaterialLink, List<
         int id = 0;
         try {
             String sql = "INSERT INTO `lawmapsdb`.`material_links_list` VALUES (null, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, link.getActionId());
             statement.setInt(2, link.getMaterialId());
-            statement.execute();
+            statement.executeUpdate();
             ResultSet set = statement.getGeneratedKeys();
-            id = set.getInt("id");
+            set.next();
+            id = set.getInt(1);
         } catch (SQLException e){
             logger.error("its impossible to insert data");
         } finally {

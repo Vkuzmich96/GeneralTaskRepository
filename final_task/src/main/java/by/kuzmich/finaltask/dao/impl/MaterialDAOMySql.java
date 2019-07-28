@@ -22,11 +22,12 @@ public class MaterialDAOMySql implements DAO <Material, Material> {
         int id = 0;
         try {
             String sql = "INSERT INTO `lawmapsdb`.`materials` VALUES (null, ?, ?, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             prepareStatement(statement, material);
-            statement.execute();
+            statement.executeUpdate();
             ResultSet set = statement.getGeneratedKeys();
-            id = set.getInt("id");
+            set.next();
+            id = set.getInt(1);
         } catch (SQLException e){
             logger.error("its impossible to insert data");
         } finally {

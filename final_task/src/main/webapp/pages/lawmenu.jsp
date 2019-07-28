@@ -19,16 +19,11 @@
 
 <c:if test="${null != gaphId}">
 <u:step/>
-<form action="/addAction.html" method="post">
+<form action="/addAction.html" method="post" enctype="multipart/form-data">
     <p>Add action</p>
     <input type="text" placeholder="enter action name" name="name">
     <p/>
     <input type="text" placeholder="enter instructions" name="instructions">
-    <p/>
-    <input type="submit" value="add"/>
-    <input type="checkbox" name="isNext"> next step
-</form>
-<form action="/addMaterial.html" method="post">
     <p>Add material</p>
     <input type="text" placeholder="enter material name" name="name">
     <p/>
@@ -37,6 +32,7 @@
     <input type="file" name="file">
     <p/>
     <input type="submit" value="add"/>
+    <input type="checkbox" name="isNext"> next step
     </form>
 </c:if>
 </body>

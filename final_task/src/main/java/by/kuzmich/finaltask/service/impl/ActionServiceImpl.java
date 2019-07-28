@@ -29,7 +29,13 @@ public class ActionServiceImpl implements ActionService {
 
     @Override
     public int add (Action action) throws SQLException {
-        return actionDAO.insert(action);
+        int actionId = actionDAO.insert(action);
+        List<Material> materials = action.getMaterials();
+        for (Material material : materials) {
+            int materialId = materialDAO.insert(material);
+            linkListDAO.insert(new ActionMaterialLink(actionId, materialId));
+        }
+        return actionId;
     }
 
     @Override
@@ -52,5 +58,9 @@ public class ActionServiceImpl implements ActionService {
             materials.add(materialDAO.select(String.valueOf(id)));
         }
         return materials;
+    }
+
+    public int addMaterial(Material material) throws SQLException {
+        return materialDAO.insert(material);
     }
 }

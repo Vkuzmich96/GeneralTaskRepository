@@ -1,9 +1,6 @@
 package by.kuzmich.finaltask.command.builder;
 
-import by.kuzmich.finaltask.command.builder.impl.ActionChildBuilder;
-import by.kuzmich.finaltask.command.builder.impl.ActionParentBuilder;
-import by.kuzmich.finaltask.command.builder.impl.UserEnterBuilder;
-import by.kuzmich.finaltask.command.builder.impl.UserRegistrationBuilder;
+import by.kuzmich.finaltask.command.builder.impl.*;
 import by.kuzmich.finaltask.controller.cookie.CookieHandlerFactory;
 import by.kuzmich.finaltask.service.UserServiceFactory;
 
@@ -29,6 +26,8 @@ final public class BuilderFactory {
                 );
             case ACTION_PARENT:
                 return new ActionParentBuilder();
+            case MATERIAL:
+                return new MaterialBuilder();
         }
     }
 }

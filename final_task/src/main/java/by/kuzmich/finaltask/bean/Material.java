@@ -3,13 +3,13 @@ package by.kuzmich.finaltask.bean;
 public class Material {
     private int id;
     private String url;
-    private String discription;
+    private String description;
     private String name;
 
     public Material(int id, String url, String discription, String name) {
         this.id = id;
         this.url = url;
-        this.discription = discription;
+        this.description = discription;
         this.name = name;
     }
 
@@ -22,7 +22,7 @@ public class Material {
     }
 
     public String getDiscription() {
-        return discription;
+        return description;
     }
 
     public void setId(int id) {
@@ -34,7 +34,7 @@ public class Material {
     }
 
     public void setDiscription(String discription) {
-        this.discription = discription;
+        this.description = discription;
     }
 
     public String getName() {
@@ -50,7 +50,7 @@ public class Material {
         return "Material{" +
                 "id=" + id +
                 ", url='" + url + '\'' +
-                ", discription='" + discription + '\'' +
+                ", discription='" + description + '\'' +
                 ", name='" + name + '\'' +
                 '}';
     }

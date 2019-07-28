@@ -4,5 +4,6 @@ public enum BuilderKind {
     USER_REGISTRATION,
     USER_ENTER,
     ACTION_CHILD,
-    ACTION_PARENT
+    ACTION_PARENT,
+    MATERIAL
 }
