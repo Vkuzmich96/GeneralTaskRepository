@@ -18,12 +18,12 @@
 </c:if>
 
 <c:if test="${null != gaphId}">
-    <u:step/>
+<u:step/>
 <form action="/addAction.html" method="post">
     <p>Add action</p>
     <input type="text" placeholder="enter action name" name="name">
     <p/>
-    <input type="text" placeholder="enter description" name="description">
+    <input type="text" placeholder="enter instructions" name="instructions">
     <p/>
     <input type="submit" value="add"/>
     <input type="checkbox" name="isNext"> next step
@@ -39,6 +39,5 @@
     <input type="submit" value="add"/>
     </form>
 </c:if>
-
 </body>
 </html>

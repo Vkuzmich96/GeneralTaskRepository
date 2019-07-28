@@ -44,6 +44,7 @@
     <url-pattern>/pages/list.jsp</url-pattern>
     <url-pattern>/lawmap.html</url-pattern>
     <url-pattern>/lawermenu.html</url-pattern>
+    <url-pattern>/addAction.html</url-pattern>
   </filter-mapping>
 
   <filter>

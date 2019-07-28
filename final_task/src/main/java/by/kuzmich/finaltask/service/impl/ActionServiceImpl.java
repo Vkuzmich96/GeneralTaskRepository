@@ -28,6 +28,11 @@ public class ActionServiceImpl implements ActionService {
     }
 
     @Override
+    public int add (Action action) throws SQLException {
+        return actionDAO.insert(action);
+    }
+
+    @Override
     public Action get(String key) {
         Action action = null;
         try {

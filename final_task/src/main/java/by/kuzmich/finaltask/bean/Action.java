@@ -10,7 +10,7 @@ public class Action {
     private User user;
 
     public Action(int id, String name, String instructions, List<Material> materials, User user) {
-        this.id = id;
+        this(id);
         this.name = name;
         this.instructions = instructions;
         this.materials = materials;
@@ -19,6 +19,9 @@ public class Action {
 
     public Action(int id) {
         this.id = id;
+    }
+
+    public Action() {
     }
 
     public int getId() {

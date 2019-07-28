@@ -10,5 +10,6 @@ public enum CommandKind {
     GET_LAWER_MENU,
     ADD_MATERIAL,
     GET_ALL_MAP_NAMES,
-    POST_MAP_NAME
+    POST_MAP_NAME,
+    POST_ACTION
 }

@@ -1,13 +1,12 @@
-package by.kuzmich.finaltask.controller.builder.impl;
+package by.kuzmich.finaltask.command.builder.impl;
 
-import by.kuzmich.finaltask.bean.Role;
 import by.kuzmich.finaltask.bean.User;
-import by.kuzmich.finaltask.controller.builder.Builder;
-import by.kuzmich.finaltask.controller.builder.UserDefaultValues;
+import by.kuzmich.finaltask.command.builder.Builder;
+import by.kuzmich.finaltask.command.builder.DefaultValues;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class UserBuilderRegistration implements Builder<User> {
+public class UserRegistrationBuilder implements Builder<User> {
 
     @Override
     public User build(HttpServletRequest req) {
@@ -17,10 +16,10 @@ public class UserBuilderRegistration implements Builder<User> {
         String address = req.getParameter("address");
         String number = req.getParameter("number");
         return new User(
-                UserDefaultValues.DEFAULT_ID,
+                DefaultValues.DEFAULT_ID,
                 email,
                 password,
-                UserDefaultValues.DEFAULT_ROLE,
+                DefaultValues.DEFAULT_ROLE,
                 name,
                 address,
                 Long.valueOf(number)

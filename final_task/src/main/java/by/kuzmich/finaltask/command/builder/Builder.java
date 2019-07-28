@@ -1,4 +1,4 @@
-package by.kuzmich.finaltask.controller.builder;
+package by.kuzmich.finaltask.command.builder;
 
 import javax.servlet.http.HttpServletRequest;
 

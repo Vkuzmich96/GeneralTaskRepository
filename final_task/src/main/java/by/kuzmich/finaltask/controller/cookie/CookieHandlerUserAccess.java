@@ -1,7 +1,7 @@
 package by.kuzmich.finaltask.controller.cookie;
 
 import by.kuzmich.finaltask.bean.User;
-import by.kuzmich.finaltask.controller.KeyWordsList;
+import by.kuzmich.finaltask.KeyWordsList;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

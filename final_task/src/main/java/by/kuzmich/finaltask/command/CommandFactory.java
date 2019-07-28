@@ -2,8 +2,8 @@ package by.kuzmich.finaltask.command;
 
 import by.kuzmich.finaltask.command.map.*;
 import by.kuzmich.finaltask.command.user.*;
-import by.kuzmich.finaltask.controller.builder.BuilderFactory;
-import by.kuzmich.finaltask.controller.builder.BuilderKind;
+import by.kuzmich.finaltask.command.builder.BuilderFactory;
+import by.kuzmich.finaltask.command.builder.BuilderKind;
 import by.kuzmich.finaltask.controller.cookie.CookieHandlerFactory;
 import by.kuzmich.finaltask.controller.session.SessionHandlerFactory;
 import by.kuzmich.finaltask.service.ActionServiceFactory;
@@ -62,7 +62,16 @@ final public class CommandFactory {
                 );
             case POST_MAP_NAME:
                 return new PostMapName(
-                        LawMapNameServiceFactory.getInstance().get()
+                        LawMapNameServiceFactory.getInstance().get(),
+                        SessionHandlerFactory.getInstance().get()
+                );
+            case POST_ACTION:
+                return new PostAction(
+                        ActionServiceFactory.getInstance().get(),
+                        BuilderFactory.getInstance().get(BuilderKind.ACTION_CHILD),
+                        BuilderFactory.getInstance().get(BuilderKind.ACTION_PARENT),
+                        SessionHandlerFactory.getInstance().get(),
+                        MapServiceFactory.getInstance().get()
                 );
             default:
                 return null;

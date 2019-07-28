@@ -1,8 +1,9 @@
-package by.kuzmich.finaltask.controller.builder;
+package by.kuzmich.finaltask.command.builder;
 
 import by.kuzmich.finaltask.bean.Role;
 
-final public class UserDefaultValues {
+
+final public class DefaultValues {
     public static final int DEFAULT_ID = 0;
     public static final Role DEFAULT_ROLE = Role.USER;
     public static final String DEFAULT_NAME = "name";

@@ -74,4 +74,8 @@ public class MapServiceImpl implements MapService {
         rootGraph.setActionSet(actionSet);
         return rootGraph;
     }
+
+    public int addEdge(GraphEdge edge) throws SQLException {
+        return graphEdgeDAO.insert(edge);
+    }
 }

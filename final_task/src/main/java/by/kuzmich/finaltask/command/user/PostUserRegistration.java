@@ -3,7 +3,7 @@ package by.kuzmich.finaltask.command.user;
 import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.command.PagePathList;
-import by.kuzmich.finaltask.controller.builder.Builder;
+import by.kuzmich.finaltask.command.builder.Builder;
 import by.kuzmich.finaltask.controller.cookie.CookieHandler;
 import by.kuzmich.finaltask.service.UserService;
 
