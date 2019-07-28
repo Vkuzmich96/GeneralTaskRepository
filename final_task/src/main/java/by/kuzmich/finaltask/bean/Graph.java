@@ -15,6 +15,10 @@ public class Graph {
         this.actionSet = actionSet;
     }
 
+    public Graph(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

@@ -11,7 +11,7 @@
         <body-content>empty</body-content>
         <info>This tag translates tree data structure in a html tags</info>
         <attribute>
-            <name>graph</name>
+            <name>number</name>
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>

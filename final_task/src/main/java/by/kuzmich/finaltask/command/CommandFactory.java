@@ -35,9 +35,7 @@ final public class CommandFactory {
                         CookieHandlerFactory.getInstance().get()
                 );
             case MAP_GET:
-                return new GetMap(
-                        MapServiceFactory.getInstance().get()
-                );
+                return new GetMap();
             case ACTION_GET:
                 return new GetAction(
                         ActionServiceFactory.getInstance().get()

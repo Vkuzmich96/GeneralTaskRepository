@@ -34,6 +34,7 @@
     <input type="submit" value="add"/>
     <input type="checkbox" name="isNext"> next step
     </form>
+    <d:graph number="${graph_id}"/>
 </c:if>
 </body>
 </html>

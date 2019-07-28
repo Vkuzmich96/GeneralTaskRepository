@@ -31,6 +31,10 @@ public class MapServiceImpl implements MapService {
         Graph rootGraph = null;
         try {
             edgeList = graphEdgeDAO.select(number);
+            if(edgeList.isEmpty()){
+                String name = nameDAO.select(number).getName();
+                return new Graph(name);
+            }
             GraphEdge rootEdge = edgeList.get(0);
             if (rootEdge.getParent().getId() != 0) {
                 logger.error("data structure is abnormal");

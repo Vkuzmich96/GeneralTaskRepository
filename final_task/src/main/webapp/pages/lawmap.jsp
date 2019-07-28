@@ -8,14 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="/WEB-INF/treePrinterTag" prefix="d"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
     <title>LawMap</title>
-    <link href="../support/lawmap_style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <u:menu/>
-    <d:graph graph="${graph}"/>
+    <d:graph number="${number}"/>
 </body>
 </html>
