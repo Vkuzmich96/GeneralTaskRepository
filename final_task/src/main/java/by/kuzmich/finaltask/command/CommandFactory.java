@@ -71,6 +71,16 @@ final public class CommandFactory {
                         SessionHandlerFactory.getInstance().get(),
                         MapServiceFactory.getInstance().get()
                 );
+            case GET_USER_PROFILE:
+                return new GetUserProfile(
+                        SessionHandlerFactory.getInstance().get(),
+                        UserServiceFactory.getInstance().get()
+                );
+            case POST_UPDATE_USER_PROFILE:
+                return new PostUpdateUserProfile(
+                        UserServiceFactory.getInstance().get(),
+                        SessionHandlerFactory.getInstance().get()
+                );
             default:
                 return null;
         }

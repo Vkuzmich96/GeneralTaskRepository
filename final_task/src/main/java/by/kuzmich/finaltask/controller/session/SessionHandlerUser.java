@@ -25,11 +25,11 @@ public class SessionHandlerUser implements SessionHandler {
     }
 
     public String getRole(HttpServletRequest req){
-        return (String) req.getAttribute(KeyWordsList.ROLE);
+        return (String) req.getSession().getAttribute(KeyWordsList.ROLE);
     }
 
     public String getLogin(HttpServletRequest req){
-        return (String) req.getAttribute(KeyWordsList.LOGIN);
+        return (String) req.getSession().getAttribute(KeyWordsList.LOGIN);
     }
 
     public int getGraphId (HttpServletRequest req) {

@@ -3,11 +3,14 @@
 
 <div>
     <p> ${login} </p>
-    <form action="/logout.html" method="post">
+    <form action="/logout.html" method="get">
         <input type="submit" value="logout">
     </form>
-    <form action="/update.html" method="post">
-        <input type="submit" value="update profile">
+    <form action="/profile.html" method="get">
+        <input type="submit" value="profile">
+    </form>
+    <form action="/pages/list.html" method="get">
+        <input type="submit" value="general page">
     </form>
     <c:set var="role" value="${role}"/>
     <c:set var="lawerRoleNumber" value="2"/>

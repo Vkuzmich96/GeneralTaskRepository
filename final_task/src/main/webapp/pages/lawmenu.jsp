@@ -18,7 +18,7 @@
 </c:if>
 
 <c:if test="${null != gaphId}">
-<u:step/>
+    <p>current step is ${step}</p>
 <form action="/addAction.html" method="post" enctype="multipart/form-data">
     <p>Add action</p>
     <input type="text" placeholder="enter action name" name="name">

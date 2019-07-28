@@ -11,5 +11,7 @@ public enum CommandKind {
     ADD_MATERIAL,
     GET_ALL_MAP_NAMES,
     POST_MAP_NAME,
-    POST_ACTION
+    POST_ACTION,
+    GET_USER_PROFILE,
+    POST_UPDATE_USER_PROFILE
 }

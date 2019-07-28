@@ -25,4 +25,8 @@ public class UserServiceImpl implements UserService {
     public User get (String login) throws SQLException {
         return dao.select(login);
     }
+
+    public void update (User user) throws SQLException {
+        dao.update(user);
+    }
 }

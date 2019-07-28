@@ -8,6 +8,8 @@ public enum PagePathList {
     ACTION("/pages/action.jsp"),
     REGISTRATION("/"),
     LAWER_MENU("/pages/lawmenu.jsp"),
+    USER_PROFILE("/pages/userInformation.jsp"),
+    USER_PROFILE_REDIRECTED("/profile.html"),
     GAP("");
 
     private String path;
