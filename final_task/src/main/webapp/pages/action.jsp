@@ -8,12 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="/WEB-INF/treePrinterTag" prefix="d"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
 
 <html>
 <head>
     <title>Action</title>
 </head>
 <body>
+    <u:menu/>
     <div>
         <h4> ${action.getName()} </h4>
         <p> ${action.getInstructions()} </p>

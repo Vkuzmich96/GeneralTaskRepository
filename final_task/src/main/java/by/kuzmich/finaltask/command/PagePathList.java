@@ -3,7 +3,7 @@ package by.kuzmich.finaltask.command;
 public enum PagePathList {
     NAME_LIST_REDIRECTED("/pages/list.html"),
     NAME_LIST_FORWARDED("/pages/list.jsp"),
-    ENTER("/pages/enter.jsp"),
+    ENTER("/enter.jsp"),
     MAP("/pages/lawmap.jsp"),
     ACTION("/pages/action.jsp"),
     REGISTRATION("/"),

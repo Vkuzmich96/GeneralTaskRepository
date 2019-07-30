@@ -14,17 +14,18 @@
     <title>NamesList</title>
 </head>
 <body>
+    <u:menu/>
     <div>
-        <h4>You may work</h4>
-        <u:menu/>
-        <p>Law map list</p>
-        <c:forEach var="map" items="${maps}">
-            <li>
-                 <span>
-                        <a href = /lawmap.html?number=${map.getId()}> ${map.getName()} </a>
-                 </span>
-            </li>
-        </c:forEach>
+        <p>Law map list:</p>
+        <ul>
+            <c:forEach var="map" items="${maps}">
+                <li>
+                     <span>
+                            <a href = /lawmap.html?number=${map.getId()}> ${map.getName()} </a>
+                     </span>
+                </li>
+            </c:forEach>
+        </ul>
     </div>
 </body>
 </html>
