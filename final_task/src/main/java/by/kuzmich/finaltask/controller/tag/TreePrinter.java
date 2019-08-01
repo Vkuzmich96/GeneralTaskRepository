@@ -32,7 +32,7 @@ public class TreePrinter extends TagSupport {
     private void renderRootDiv() throws IOException {
         Graph graph = service.get(number);
         pageContext.getOut().print("<link href=\"../support/lawmap_style.css\" rel=\"stylesheet\" type=\"text/css\">");
-        pageContext.getOut().print("<div id=\"multi-derevo\">");
+        pageContext.getOut().print("<div id=\"multi-derevo list-group\">");
         pageContext.getOut().print(String.format("<h4> %s </h4>", graph.getName()));
         if (graph.getActionSet()!=null) {
             renderNode(graph);
@@ -42,7 +42,7 @@ public class TreePrinter extends TagSupport {
     private void renderNode(Graph rootGraph) throws IOException {
         pageContext.getOut().print("<ul>");
             pageContext.getOut().print(
-                    String.format("<li><span><a href = /action.html?id=%s> %s </a></span>",
+                    String.format("<li ><span><a href = /action.html?id=%s class=\"list-group-item\"> %s </a></span>",
                             rootGraph.getNode().getId(),
                             rootGraph.getNode().getName()
                     )

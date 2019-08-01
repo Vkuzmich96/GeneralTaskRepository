@@ -15,17 +15,13 @@
 </head>
 <body>
     <u:menu/>
-    <div>
-        <p>Law map list:</p>
-        <ul>
+    <div class="list-group">
+        <p class="list-group-item active">Law map list:</p>
             <c:forEach var="map" items="${maps}">
-                <li>
-                     <span>
+                     <span class="list-group-item list-group-item-action">
                             <a href = /lawmap.html?number=${map.getId()}> ${map.getName()} </a>
                      </span>
-                </li>
             </c:forEach>
-        </ul>
     </div>
 </body>
 </html>

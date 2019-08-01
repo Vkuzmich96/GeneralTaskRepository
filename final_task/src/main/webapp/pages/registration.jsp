@@ -3,7 +3,6 @@
     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
     <title>Registration</title>
     <meta charset="UTF-8">
-    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../support/css/util.css">
     <link rel="stylesheet" type="text/css" href="../support/css/main.css">
 </head>

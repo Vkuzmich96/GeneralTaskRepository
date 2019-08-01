@@ -24,7 +24,7 @@
                         <c:set var="lawerRoleNumber" value="2"/>
                         <c:if test="${lawerRoleNumber==role.getNumber()}">
                             <li class="nav-item active">
-                                <a href="/lawermenu.html" class="nav-link">lawer menu</a>
+                                <a href="/lawyerMenu.html" class="nav-link">lawyer menu</a>
                             </li>
                         </c:if>
                     </ul>
