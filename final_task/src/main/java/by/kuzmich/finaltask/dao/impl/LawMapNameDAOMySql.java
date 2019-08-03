@@ -17,7 +17,7 @@ public class LawMapNameDAOMySql implements DAO<LawMapName, LawMapName> {
         this.connection = connection;
     }
 
-    public int insert (LawMapName lawMapName) throws SQLException {
+    public int insert (LawMapName lawMapName) {
         int id = 0;
         try {
             String sql = "INSERT INTO `lawmapsdb`.`law_map_name` VALUES (null, ?)";
@@ -39,7 +39,7 @@ public class LawMapNameDAOMySql implements DAO<LawMapName, LawMapName> {
         return id;
     }
 
-    public List<LawMapName> selectAll() throws SQLException {
+    public List<LawMapName> selectAll(){
         List<LawMapName> names = null;
         try {
             String sql = "SELECT * FROM lawmapsdb.law_map_name";
@@ -58,7 +58,7 @@ public class LawMapNameDAOMySql implements DAO<LawMapName, LawMapName> {
         return names;
     }
 
-    public LawMapName select(String  id) throws SQLException{
+    public LawMapName select(String  id){
         LawMapName name = null;
         try {
             String sql = "SELECT * FROM lawmapsdb.law_map_name WHERE id = ?";
@@ -79,7 +79,7 @@ public class LawMapNameDAOMySql implements DAO<LawMapName, LawMapName> {
         return name;
     }
 
-    public void delete (int id) throws SQLException {
+    public void delete (int id){
         try {
             String sql = "DELETE FROM `lawmapsdb`.`law_map_name` WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -96,7 +96,7 @@ public class LawMapNameDAOMySql implements DAO<LawMapName, LawMapName> {
         }
     }
 
-    public void update (LawMapName name) throws SQLException {
+    public void update (LawMapName name){
         try {
             String sql = "UPDATE `lawmapsdb`.`law_map_name` SET `name` = ? WHERE `id` = ?";
             PreparedStatement statement = connection.prepareStatement(sql);

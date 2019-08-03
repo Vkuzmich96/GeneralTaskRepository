@@ -26,24 +26,24 @@ public class GraphEdgeDAOMySqlTest {
         }
     }
 
-    private GraphEdge findFirst() throws SQLException {
+    private GraphEdge findFirst() throws DAOException {
         return dao.selectAll().get(0);
     }
 
     private GraphEdge edge = new GraphEdge(1, new Action(1), new Action(1));
 
     @Test
-    public void insert() throws SQLException {
+    public void insert() throws DAOException {
         dao.insert(edge);
     }
 
     @Test
-    public void selectAll() throws SQLException {
+    public void selectAll() throws DAOException {
         assertFalse(dao.selectAll().isEmpty());
     }
 
     @Test
-    public void select() throws SQLException {
+    public void select() throws DAOException {
         assertFalse(dao.select(String.valueOf(1)).isEmpty());
     }
 

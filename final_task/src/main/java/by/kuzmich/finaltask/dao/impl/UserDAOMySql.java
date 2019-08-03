@@ -3,6 +3,7 @@ package by.kuzmich.finaltask.dao.impl;
 import by.kuzmich.finaltask.dao.DAO;
 import by.kuzmich.finaltask.bean.Role;
 import by.kuzmich.finaltask.bean.User;
+import by.kuzmich.finaltask.exception.DAOException;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -18,7 +19,7 @@ public class UserDAOMySql implements DAO<User, User> {
     }
 
     @Override
-    public int insert (User user) throws SQLException {
+    public int insert (User user){
         int id = 0;
         try {
             String sql = "INSERT INTO `lawmapsdb`.`users` VALUES (null, ?, ?,?, ?,?,? )";
@@ -41,7 +42,7 @@ public class UserDAOMySql implements DAO<User, User> {
     }
 
     @Override
-    public List<User> selectAll () throws SQLException {
+    public List<User> selectAll (){
         List<User> users = null;
         try {
             String sql = "SELECT * FROM lawmapsdb.users";
@@ -61,7 +62,7 @@ public class UserDAOMySql implements DAO<User, User> {
     }
 
 
-    public User select(String email) throws SQLException{
+    public User select(String email){
         User user = null;
         try {
             String sql = "SELECT * FROM lawmapsdb.users WHERE email = ?";
@@ -82,7 +83,7 @@ public class UserDAOMySql implements DAO<User, User> {
         return user;
     }
 
-    public void delete (int id) throws SQLException {
+    public void delete (int id) {
         try {
             String sql = "DELETE FROM `lawmapsdb`.`users` WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);

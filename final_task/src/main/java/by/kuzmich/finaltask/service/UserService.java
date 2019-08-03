@@ -1,12 +1,11 @@
 package by.kuzmich.finaltask.service;
 
 import by.kuzmich.finaltask.bean.User;
-
-import java.sql.SQLException;
+import by.kuzmich.finaltask.exception.ServiceException;
 
 public interface UserService {
-    void add (User user) throws SQLException;
-    boolean checkPassword (User user) throws SQLException;
-    User get (String login) throws SQLException;
-    void update (User user) throws SQLException;
+    void add (User user) throws ServiceException;
+    boolean checkPassword (User user) throws ServiceException;
+    User get (String login) throws ServiceException;
+    void update (User user) throws ServiceException;
 }

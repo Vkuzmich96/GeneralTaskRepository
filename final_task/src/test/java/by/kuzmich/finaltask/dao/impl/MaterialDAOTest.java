@@ -39,37 +39,37 @@ public class MaterialDAOTest {
     );
 
 
-    private Material findFirst() throws SQLException {
+    private Material findFirst() throws DAOException {
         return dao.selectAll().get(0);
     }
 
     @Test
-    public void insert() throws SQLException {
+    public void insert() throws DAOException {
         int id = dao.insert(material);
         dao.select(String.valueOf(id));
     }
 
     @Test
-    public void selectAll() throws SQLException{
+    public void selectAll() throws DAOException{
         assertFalse(dao.selectAll().isEmpty());
     }
 
     @Test
-    public void select() throws SQLException {
+    public void select() throws DAOException {
         int id = findFirst().getId();
         Material material = dao.select(String.valueOf(id));
         assertEquals(id, material.getId());
     }
 
-    @Test(expected = SQLException.class)
-    public void delete() throws SQLException {
+    @Test(expected = DAOException.class)
+    public void delete() throws DAOException {
         int id  = findFirst().getId();
         dao.delete(id);
         dao.select(String.valueOf(id));
     }
 
     @Test
-    public void update() throws SQLException {
+    public void update() throws DAOException {
         int id  = findFirst().getId();
         materialUpdate.setId(id);
         dao.update(materialUpdate);

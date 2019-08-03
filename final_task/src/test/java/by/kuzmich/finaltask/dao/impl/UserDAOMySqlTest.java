@@ -28,37 +28,37 @@ public class UserDAOMySqlTest {
     private User userUpdate = new User(4,"22", "test ", Role.USER,"22","zczxc2",222324234L);
 
 
-    private User findFirst() throws SQLException {
+    private User findFirst() throws DAOException {
         return dao.selectAll().get(0);
     }
 
     @Test
-    public void insert() throws SQLException {
+    public void insert() throws DAOException {
         int id = dao.insert(user);
         dao.select(String.valueOf(id));
     }
 
     @Test
-    public void selectAll() throws SQLException {
+    public void selectAll() throws DAOException {
         assertFalse(dao.selectAll().isEmpty());
     }
 
     @Test
-    public void select() throws SQLException {
+    public void select() throws DAOException {
         int id = findFirst().getId();
         User user = dao.select(String.valueOf(id));
         assertEquals(id, user.getId());
     }
 
-    @Test(expected = SQLException.class)
-    public void delete() throws SQLException {
+    @Test(expected = DAOException.class)
+    public void delete() throws DAOException {
         int id  = findFirst().getId();
         dao.delete(id);
         dao.select(String.valueOf(id));
     }
 
    @Test
-    public void update() throws SQLException {
+    public void update() throws DAOException {
         int id  = findFirst().getId();
         userUpdate.setId(id);
         dao.update(userUpdate);

@@ -27,37 +27,37 @@ public class ActionDAOMySqlTest {
     private Action action = new Action(0,"loren ipsum", "loren ipsum", null, new User (1));
     private Action actionUpdate = new Action(2,"just a test", "just a test", null, new User (2));
 
-    private Action findFirst() throws SQLException {
+    private Action findFirst() throws DAOException {
         return dao.selectAll().get(0);
     }
 
     @Test
-    public void insert() throws SQLException {
+    public void insert() throws DAOException {
         int id = dao.insert(action);
         dao.select(String.valueOf(id));
     }
 
     @Test
-    public void selectAll() throws SQLException {
+    public void selectAll() throws DAOException {
         assertFalse(dao.selectAll().isEmpty());
     }
 
     @Test
-    public void select() throws SQLException {
+    public void select() throws DAOException {
         int id = findFirst().getId();
         Action action = dao.select(String.valueOf(id));
         assertEquals(id, action.getId());
     }
 
-    @Test(expected = SQLException.class)
-    public void delete() throws SQLException {
+    @Test(expected = DAOException.class)
+    public void delete() throws DAOException {
         int id  = findFirst().getId();
         dao.delete(id);
         dao.select(String.valueOf(id));
     }
 
     @Test
-    public void update() throws SQLException {
+    public void update() throws DAOException {
         int id  = findFirst().getId();
         actionUpdate.setId(id);
         dao.update(actionUpdate);

@@ -3,6 +3,8 @@ package by.kuzmich.finaltask.dao.impl;
 import by.kuzmich.finaltask.bean.Action;
 import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.dao.DAO;
+import by.kuzmich.finaltask.exception.DAOException;
+import by.kuzmich.finaltask.exception.ExceptionMessageList;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -90,17 +92,17 @@ public class ActionDAOMySql implements DAO<Action, Action> {
             statement.setInt(1, id);
             statement.execute();
         } catch (SQLException e){
-            logger.error("its impossible to delete data");
+            logger.error(ExceptionMessageList.UNABLE_TO_DELETE);
         } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
-                logger.error("its impossible to close connection");
+                logger.error(ExceptionMessageList.UNABLE_TO_CLOSE);
             }
         }
     }
 
-    public void update (Action action){
+    public void update (Action action) throws DAOException {
         try {
             String sql = "UPDATE `lawmapsdb`.`action` SET `name` = ? `instructions` = ?, `user_id` = ? WHERE `id` = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -108,12 +110,13 @@ public class ActionDAOMySql implements DAO<Action, Action> {
             statement.setInt(4, action.getId());
             statement.execute();
         } catch (SQLException e){
-            logger.error("its impossible to update data");
+            logger.error(ExceptionMessageList.UNABLE_TO_UPDATE);
+            throw new DAOException(ExceptionMessageList.UNABLE_TO_UPDATE);
         } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
-                logger.error("its impossible to close connection");
+                logger.error(ExceptionMessageList.UNABLE_TO_CLOSE);
             }
         }
     }

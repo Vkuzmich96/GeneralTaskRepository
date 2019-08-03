@@ -2,11 +2,13 @@ package by.kuzmich.finaltask.service.impl;
 
 import by.kuzmich.finaltask.bean.*;
 import by.kuzmich.finaltask.dao.DAO;
+import by.kuzmich.finaltask.exception.DAOException;
+import by.kuzmich.finaltask.exception.ExceptionMessageList;
+import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.MapService;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.*;
 
 public class MapServiceImpl implements MapService {
@@ -26,7 +28,7 @@ public class MapServiceImpl implements MapService {
         this.nameDAO = nameDAO;
     }
 
-    public Graph get (String number) {
+    public Graph get (String number) throws ServiceException {
         List<GraphEdge> edgeList = null;
         Graph rootGraph = null;
         try {
@@ -40,23 +42,18 @@ public class MapServiceImpl implements MapService {
                 logger.error("data structure is abnormal");
             }
             rootGraph = buildRootNode(edgeList, number);
-        } catch (SQLException e) {
-            e.printStackTrace();
+            return buildNodes(edgeList, rootGraph);
+        } catch (DAOException e) {
+            logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
         }
-        return buildNodes(edgeList, rootGraph);
     }
 
-    private Action buildAction(int key) {
-        Action action = null;
-        try {
-            action = actionDAO.select(String.valueOf(key));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return action;
+    private Action buildAction(int key) throws DAOException {
+        return actionDAO.select(String.valueOf(key));
     }
 
-    private Graph buildRootNode(List<GraphEdge> edgeList, String key) throws SQLException {
+    private Graph buildRootNode(List<GraphEdge> edgeList, String key) throws DAOException {
         Action action = buildAction(edgeList.get(0).getChild().getId());
         Graph graph = new Graph(action, null );
         LawMapName name = nameDAO.select(key);
@@ -64,7 +61,7 @@ public class MapServiceImpl implements MapService {
         return graph;
     }
 
-    private Graph buildNodes(List<GraphEdge> edgeList, Graph rootGraph) {
+    private Graph buildNodes(List<GraphEdge> edgeList, Graph rootGraph) throws DAOException {
         Set<Graph> actionSet = new LinkedHashSet<>();
         for (int i = 1; i < edgeList.size(); i++) {
             GraphEdge edge = edgeList.get(i);
@@ -79,7 +76,12 @@ public class MapServiceImpl implements MapService {
         return rootGraph;
     }
 
-    public int addEdge(GraphEdge edge) throws SQLException {
-        return graphEdgeDAO.insert(edge);
+    public int addEdge(GraphEdge edge) throws ServiceException {
+        try {
+            return graphEdgeDAO.insert(edge);
+        } catch (DAOException e) {
+            logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
+        }
     }
 }

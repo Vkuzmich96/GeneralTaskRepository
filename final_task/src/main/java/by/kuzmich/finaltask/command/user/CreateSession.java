@@ -5,11 +5,11 @@ import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.command.PagePathList;
 import by.kuzmich.finaltask.controller.cookie.CookieHandler;
 import by.kuzmich.finaltask.controller.session.SessionHandler;
+import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
 
 public class CreateSession extends Command {
     private UserService service;
@@ -23,7 +23,7 @@ public class CreateSession extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String login = cookieHandler.getValue(req);
         User user = service.get(login);
         sessionHandler.create(req, user);

@@ -6,11 +6,11 @@ import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.command.PagePathList;
 import by.kuzmich.finaltask.controller.session.SessionHandler;
+import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
 
 public class PostUpdateUserProfile extends Command {
 
@@ -23,7 +23,7 @@ public class PostUpdateUserProfile extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String kind  = req.getParameter(KeyWordsList.PROFILE_ACTION_KIND);
         switch (kind){
             case KeyWordsList.NAME:
@@ -46,7 +46,7 @@ public class PostUpdateUserProfile extends Command {
         return PagePathList.USER_PROFILE_REDIRECTED;
     }
 
-    private User getUser(HttpServletRequest req) throws SQLException {
+    private User getUser(HttpServletRequest req) throws ServiceException {
         String login = sessionHandler.getLogin(req);
         return userService.get(login);
     }
@@ -55,18 +55,18 @@ public class PostUpdateUserProfile extends Command {
         return req.getParameter(KeyWordsList.VALUE);
     }
 
-    private void setUser(User user) throws SQLException {
+    private void setUser(User user) throws ServiceException {
         userService.update(user);
     }
 
-    private void updateName(HttpServletRequest req) throws SQLException {
+    private void updateName(HttpServletRequest req) throws ServiceException {
         User user = getUser(req);
         String name = getValue(req);
         user.setName(name);
         setUser(user);
     }
 
-    private void updateRole(HttpServletRequest req) throws SQLException {
+    private void updateRole(HttpServletRequest req) throws ServiceException {
         User user = getUser(req);
         Role role;
         String roleParameter = getValue(req);
@@ -87,19 +87,19 @@ public class PostUpdateUserProfile extends Command {
         user.setRole(role);
         setUser(user);
     }
-    private void updatePassword(HttpServletRequest req) throws SQLException {
+    private void updatePassword(HttpServletRequest req) throws ServiceException {
         User user = getUser(req);
         String password = getValue(req);
         user.setPassword(password);
         setUser(user);
     }
-    private void updateAddress(HttpServletRequest req) throws SQLException {
+    private void updateAddress(HttpServletRequest req) throws ServiceException {
         User user = getUser(req);
         String address = getValue(req);
         user.setAddress(address);
         setUser(user);
     }
-    private void updatePhone(HttpServletRequest req) throws SQLException {
+    private void updatePhone(HttpServletRequest req) throws ServiceException {
         User user = getUser(req);
         String phone = getValue(req);
         user.setNumber(Long.valueOf(phone));

@@ -7,6 +7,7 @@ import by.kuzmich.finaltask.KeyWordsList;
 import by.kuzmich.finaltask.command.builder.Builder;
 import by.kuzmich.finaltask.command.builder.DefaultValues;
 import by.kuzmich.finaltask.controller.cookie.CookieHandler;
+import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.UserService;
 
 import javax.servlet.ServletException;
@@ -33,7 +34,7 @@ public class ActionChildBuilder implements Builder<Action> {
         User user = null;
         try {
             user = userService.get(login);
-        } catch (SQLException e) {
+        } catch (ServiceException e) {
             e.printStackTrace();
         }
         String name = req.getParameter(KeyWordsList.NAME);

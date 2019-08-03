@@ -7,6 +7,7 @@ import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.command.PagePathList;
 import by.kuzmich.finaltask.command.builder.Builder;
 import by.kuzmich.finaltask.controller.session.SessionHandler;
+import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.ActionService;
 import by.kuzmich.finaltask.service.MapService;
 
@@ -19,7 +20,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Paths;
-import java.sql.SQLException;
 
 public class PostAction extends Command {
     private String DIRECTORY = "C:\\Users\\user\\IdeaProjects\\GeneralTaskRepository\\final_task\\src\\main\\webapp\\doks";
@@ -39,7 +39,7 @@ public class PostAction extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         Action child = childActionBuilder.build(req);
         int childId = actionService.add(child);
         child.setId(childId);

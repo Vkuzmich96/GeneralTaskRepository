@@ -2,6 +2,7 @@ package by.kuzmich.finaltask.command.map;
 
 import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.command.PagePathList;
+import by.kuzmich.finaltask.exception.ServiceException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ public class PostMaterial extends Command {
     private String PARAM_NAME = "file";
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
 //        try {
 //            Part filePart = req.getPart(PARAM_NAME);
 //            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();

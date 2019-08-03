@@ -4,6 +4,9 @@ import by.kuzmich.finaltask.bean.Action;
 import by.kuzmich.finaltask.bean.ActionMaterialLink;
 import by.kuzmich.finaltask.bean.Material;
 import by.kuzmich.finaltask.dao.DAO;
+import by.kuzmich.finaltask.exception.DAOException;
+import by.kuzmich.finaltask.exception.ExceptionMessageList;
+import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.ActionService;
 import org.apache.log4j.Logger;
 
@@ -28,29 +31,35 @@ public class ActionServiceImpl implements ActionService {
     }
 
     @Override
-    public int add (Action action) throws SQLException {
-        int actionId = actionDAO.insert(action);
-        List<Material> materials = action.getMaterials();
-        for (Material material : materials) {
-            int materialId = materialDAO.insert(material);
-            linkListDAO.insert(new ActionMaterialLink(actionId, materialId));
+    public int add (Action action) throws ServiceException {
+        int actionId = 0;
+        try {
+            actionId = actionDAO.insert(action);
+            List<Material> materials = action.getMaterials();
+            for (Material material : materials) {
+                int materialId = materialDAO.insert(material);
+                linkListDAO.insert(new ActionMaterialLink(actionId, materialId));
+            }
+            return actionId;
+        } catch (DAOException e) {
+            logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
         }
-        return actionId;
     }
 
     @Override
-    public Action get(String key) {
-        Action action = null;
+    public Action get(String key) throws ServiceException {
         try {
-            action = actionDAO.select(key);
-            action.setMaterials(buildMaterials (key));
-        } catch (SQLException e) {
-            e.printStackTrace();
+            Action action = actionDAO.select(key);
+            action.setMaterials(buildMaterials(key));
+            return action;
+        } catch (DAOException e) {
+            logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
         }
-        return action;
     }
 
-    private List<Material> buildMaterials (String key) throws SQLException {
+    private List<Material> buildMaterials (String key) throws DAOException {
         List<ActionMaterialLink> links = linkListDAO.select(key);
         List<Material> materials = new ArrayList<>();
         for (ActionMaterialLink link: links){
@@ -60,7 +69,11 @@ public class ActionServiceImpl implements ActionService {
         return materials;
     }
 
-    public int addMaterial(Material material) throws SQLException {
-        return materialDAO.insert(material);
+    public int addMaterial(Material material) throws ServiceException {
+        try {
+            return materialDAO.insert(material);
+        } catch (DAOException e) {
+            logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);        }
     }
 }

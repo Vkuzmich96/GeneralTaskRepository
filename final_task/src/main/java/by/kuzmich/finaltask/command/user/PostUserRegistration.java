@@ -5,6 +5,7 @@ import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.command.PagePathList;
 import by.kuzmich.finaltask.command.builder.Builder;
 import by.kuzmich.finaltask.controller.cookie.CookieHandler;
+import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,7 @@ public class PostUserRegistration extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         User user = builder.build(req);
         service.add(user);
         cookieHandler.add(resp, user);

@@ -5,12 +5,12 @@ import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.command.PagePathList;
 import by.kuzmich.finaltask.command.builder.Builder;
 import by.kuzmich.finaltask.controller.cookie.CookieHandler;
+import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.LawMapNameService;
 import by.kuzmich.finaltask.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.sql.SQLException;
 
 public class PostUserLogIn extends Command {
 
@@ -28,7 +28,7 @@ public class PostUserLogIn extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
+    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         User user = builder.build(req);
             if (!userService.checkPassword(user)){
                 req.setAttribute("massage", "wrong login or password try again");

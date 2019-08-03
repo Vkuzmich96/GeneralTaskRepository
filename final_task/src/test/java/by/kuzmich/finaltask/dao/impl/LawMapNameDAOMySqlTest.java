@@ -6,6 +6,7 @@ import by.kuzmich.finaltask.dao.DAOFactory;
 import by.kuzmich.finaltask.bean.LawMapName;
 import by.kuzmich.finaltask.dao.pool.ConnectionPool;
 import by.kuzmich.finaltask.exception.DAOException;
+import by.kuzmich.finaltask.exception.ServiceException;
 import org.junit.Test;
 
 import java.sql.SQLException;
@@ -27,38 +28,38 @@ public class LawMapNameDAOMySqlTest {
     private LawMapName lawMapNameUpdate = new LawMapName(0,"just a test");
 
 
-    private LawMapName findFirst() throws SQLException {
+    private LawMapName findFirst() throws DAOException {
         return dao.selectAll().get(0);
     }
 
     @Test
-    public void insert() throws SQLException {
+    public void insert() throws DAOException {
         int id = dao.insert(lawMapName);
         dao.select(String.valueOf(id));
     }
 
     @Test
-    public void selectAll() throws SQLException {
+    public void selectAll() throws DAOException {
         int size = dao.selectAll().size();
         assertTrue(size>=4);
     }
 
     @Test
-    public void select() throws SQLException{
+    public void select() throws DAOException{
         int id = findFirst().getId();
         LawMapName lawMapName = dao.select(String.valueOf(id));
         assertEquals(id, lawMapName.getId());
     }
 
-    @Test(expected = SQLException.class)
-    public void delete() throws SQLException {
+    @Test(expected = DAOException.class)
+    public void delete() throws DAOException {
         int id  = findFirst().getId();
         dao.delete(id);
         dao.select(String.valueOf(id));
     }
 
     @Test
-    public void update() throws SQLException {
+    public void update() throws DAOException {
         int id  = findFirst().getId();
         lawMapNameUpdate.setId(id);
         dao.update(lawMapNameUpdate);

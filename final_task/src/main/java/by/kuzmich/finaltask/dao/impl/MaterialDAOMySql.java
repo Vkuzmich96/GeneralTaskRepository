@@ -18,7 +18,7 @@ public class MaterialDAOMySql implements DAO <Material, Material> {
     }
 
     @Override
-    public int insert (Material material) throws SQLException {
+    public int insert (Material material){
         int id = 0;
         try {
             String sql = "INSERT INTO `lawmapsdb`.`materials` VALUES (null, ?, ?, ?)";
@@ -41,7 +41,7 @@ public class MaterialDAOMySql implements DAO <Material, Material> {
     }
 
     @Override
-    public List<Material> selectAll() throws SQLException {
+    public List<Material> selectAll(){
         List<Material> materials = null;
         try {
             String sql = "SELECT * FROM lawmapsdb.materials";
@@ -61,7 +61,7 @@ public class MaterialDAOMySql implements DAO <Material, Material> {
     }
 
     @Override
-    public Material select(String id) throws SQLException{
+    public Material select(String id){
         Material material = null;
         try {
             String sql = "SELECT * FROM lawmapsdb.materials WHERE id = ?";
@@ -83,7 +83,7 @@ public class MaterialDAOMySql implements DAO <Material, Material> {
     }
 
     @Override
-    public void delete (int id) throws SQLException {
+    public void delete (int id){
         try {
             String sql = "DELETE FROM `lawmapsdb`.`materials` WHERE id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -100,7 +100,7 @@ public class MaterialDAOMySql implements DAO <Material, Material> {
         }
     }
 
-    public void update (Material material) throws SQLException {
+    public void update (Material material){
         try {
             String sql = "UPDATE `lawmapsdb`.`materials` SET `url` = ?, `discription` = ?, `name` = ? WHERE `id` = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
