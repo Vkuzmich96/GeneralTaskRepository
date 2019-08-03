@@ -28,9 +28,9 @@ public class LawMapNameServiceImpl implements LawMapNameService {
         }
     }
 
-    public int add (String name) throws ServiceException {
+    public int add (LawMapName name) throws ServiceException {
         try {
-            return dao.insert(new LawMapName(0, name));
+            return dao.insert(name);
         } catch (DAOException e) {
             logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
             throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);

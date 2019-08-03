@@ -1,5 +1,6 @@
 package by.kuzmich.finaltask.command.map;
 
+import by.kuzmich.finaltask.bean.LawMapName;
 import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.command.PagePathList;
 import by.kuzmich.finaltask.controller.session.SessionHandler;
@@ -20,7 +21,8 @@ public class PostMapName extends Command {
 
     @Override
     public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
-        String lawMapName = req.getParameter("name");
+        String name = req.getParameter("name");
+        LawMapName lawMapName = new LawMapName(0, name, false);
         int id = nameService.add(lawMapName);
         sessionHandler.setGraphId(req, id);
         super.setRedirected(true);

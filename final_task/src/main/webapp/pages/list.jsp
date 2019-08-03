@@ -15,13 +15,25 @@
 </head>
 <body>
     <u:menu/>
-    <div class="list-group">
-        <p class="list-group-item active">Law map list:</p>
-            <c:forEach var="map" items="${maps}">
-                     <span class="list-group-item list-group-item-action">
-                            <a href = /lawmap.html?number=${map.getId()}> ${map.getName()} </a>
-                     </span>
-            </c:forEach>
+    <div class="container">
+        <div class="list-group text-center">
+            <p class="list-group-item active">Law map list:</p>
+                <c:set var="number" value="${0}"/>
+                <c:forEach var="map" items="${maps}">
+                    <c:set var="readiness" value="${map.getReadiness()}"/>
+                    <c:if test="${(role.getNumber() == 2) || readiness}">
+                         <c:set var="id" value="${map.getId()}"/>
+                         <c:set var="name" value="${map.getName()}"/>
+                        <span class="list-group-item list-group-item-action">
+                                ${number = number + 1}
+                                <a href = /lawmap.html?number=${id}> ${name} </a>
+                                <c:if test="${!readiness}">
+                                    <a href = /lawmap.html?number=${id}> continue work </a>
+                                </c:if>
+                         </span>
+                    </c:if>
+                </c:forEach>
+        </div>
     </div>
 </body>
 </html>

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface LawMapNameService {
     List<LawMapName> getAll() throws ServiceException;
-    int add (String name) throws ServiceException;
+    int add (LawMapName name) throws ServiceException;
 }

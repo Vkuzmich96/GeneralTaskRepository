@@ -1,140 +1,51 @@
 package by.kuzmich.finaltask.dao.impl;
 
-import by.kuzmich.finaltask.dao.DAO;
 import by.kuzmich.finaltask.bean.LawMapName;
-import org.apache.log4j.Logger;
+import by.kuzmich.finaltask.dao.DAOMySQL;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class LawMapNameDAOMySql implements DAO<LawMapName, LawMapName> {
-    private static Logger logger = Logger.getLogger(LawMapNameDAOMySql.class);
+public class LawMapNameDAOMySql extends DAOMySQL<LawMapName, LawMapName> {
+    private final String READINESS = "readiness";
+    private final int NAME_INDEX = 1;
+    private final int READINESS_INDEX = 2;
+    private final int ID_INDEX = 3;
+    private final int TRUE_FLAG = 1;
+    private final int FALSE_FLAG = 0;
 
-    private Connection connection;
 
     public LawMapNameDAOMySql(Connection connection) {
-        this.connection = connection;
-    }
-
-    public int insert (LawMapName lawMapName) {
-        int id = 0;
-        try {
-            String sql = "INSERT INTO `lawmapsdb`.`law_map_name` VALUES (null, ?)";
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            prepareStatement(statement, lawMapName);
-            statement.execute();
-            ResultSet set = statement.getGeneratedKeys();
-            set.next();
-            id = set.getInt(1);
-        } catch (SQLException e){
-            logger.error("its impossible to insert data");
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                logger.error("its impossible to close connection");
-            }
-        }
-        return id;
-    }
-
-    public List<LawMapName> selectAll(){
-        List<LawMapName> names = null;
-        try {
-            String sql = "SELECT * FROM lawmapsdb.law_map_name";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
-            names = buildList(resultSet);
-        } catch (SQLException e){
-            logger.error("its impossible to select data");
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                logger.error("its impossible to close connection");
-            }
-        }
-        return names;
-    }
-
-    public LawMapName select(String  id){
-        LawMapName name = null;
-        try {
-            String sql = "SELECT * FROM lawmapsdb.law_map_name WHERE id = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, Integer.valueOf(id));
-            ResultSet set = statement.executeQuery();
-            set.next();
-            name = build(set);
-        } catch (SQLException e){
-            logger.error("its impossible to select data");
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                logger.error("its impossible to close connection");
-            }
-        }
-        return name;
-    }
-
-    public void delete (int id){
-        try {
-            String sql = "DELETE FROM `lawmapsdb`.`law_map_name` WHERE id = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
-            statement.execute();
-        } catch (SQLException e){
-            logger.error("its impossible to delete data");
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                logger.error("its impossible to close connection");
-            }
-        }
-    }
-
-    public void update (LawMapName name){
-        try {
-            String sql = "UPDATE `lawmapsdb`.`law_map_name` SET `name` = ? WHERE `id` = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            prepareStatement(statement, name);
-            statement.setInt(2, name.getId());
-            statement.execute();
-        } catch (SQLException e){
-            logger.error("its impossible to delete data");
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                logger.error("its impossible to close connection");
-            }
-        }
+        super(connection,
+                "INSERT INTO `lawmapsdb`.`law_map_name` VALUES (null, ?, ?)",
+                "SELECT * FROM lawmapsdb.law_map_name",
+                "SELECT * FROM lawmapsdb.law_map_name WHERE id = ?",
+                "DELETE FROM `lawmapsdb`.`law_map_name` WHERE id = ?",
+                "UPDATE `lawmapsdb`.`law_map_name` SET `name` = ?, `readiness` = ?  WHERE `id` = ?"
+        );
     }
 
     @Override
-    public void finalize() throws SQLException {
-        connection.close();
+    protected void prepareStatementInsert(PreparedStatement statement, LawMapName name) throws SQLException {
+        statement.setString(NAME_INDEX, name.getName());
+        statement.setInt(READINESS_INDEX, name.getReadiness() ? TRUE_FLAG : FALSE_FLAG);
     }
 
-    private void prepareStatement(PreparedStatement statement, LawMapName name) throws SQLException {
-        statement.setString(1, name.getName());
+    @Override
+    protected void prepareStatementUpdate(PreparedStatement statement, LawMapName name) throws SQLException {
+        prepareStatementInsert(statement, name);
+        statement.setInt(ID_INDEX, name.getId());
     }
 
-    private List<LawMapName> buildList (ResultSet set) throws SQLException {
-        List<LawMapName> materials = new ArrayList<>();
-        while (set.next()){
-            LawMapName lawMapName = build(set);
-            materials.add(lawMapName);
-        }
-        return materials;
+    protected LawMapName build(ResultSet set) throws SQLException {
+        int id = set.getInt(super.ID);
+        String name = set.getString(super.NAME);
+        boolean readiness = set.getInt(READINESS) == TRUE_FLAG;
+        return new LawMapName(id, name, readiness);
     }
 
-    private LawMapName build(ResultSet set) throws SQLException {
-        int id = set.getInt("id");
-        String name = set.getString("name");
-        return new LawMapName(id, name);
+    @Override
+    protected LawMapName buildToSelect(ResultSet set) throws SQLException {
+        set.next();
+        return build(set);
     }
 }

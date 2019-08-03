@@ -16,6 +16,10 @@
 </head>
 <body>
     <u:menu/>
-    <d:graph number="${number}"/>
+    <div class="container">
+        <div class="list-group text-center">
+            <d:graph number="${number}"/>
+        </div>
+    </div>
 </body>
 </html>

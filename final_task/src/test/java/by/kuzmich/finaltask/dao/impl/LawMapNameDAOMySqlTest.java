@@ -24,8 +24,8 @@ public class LawMapNameDAOMySqlTest {
         }
     }
 
-    private LawMapName lawMapName = new LawMapName(0,"loren ipsum");
-    private LawMapName lawMapNameUpdate = new LawMapName(0,"just a test");
+    private LawMapName lawMapName = new LawMapName(0,"loren ipsum", false);
+    private LawMapName lawMapNameUpdate = new LawMapName(0,"just a test", true);
 
 
     private LawMapName findFirst() throws DAOException {

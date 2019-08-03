@@ -42,7 +42,8 @@ final public class CommandFactory {
                 );
             case LOG_OUT:
                 return new UserLogOut(
-                        CookieHandlerFactory.getInstance().get()
+                        CookieHandlerFactory.getInstance().get(),
+                        SessionHandlerFactory.getInstance().get()
                 );
             case CREATE_SESSION:
                 return new CreateSession(

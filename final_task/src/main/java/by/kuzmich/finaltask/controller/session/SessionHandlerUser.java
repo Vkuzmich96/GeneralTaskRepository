@@ -59,4 +59,8 @@ public class SessionHandlerUser implements SessionHandler {
         step = ++step;
         req.getSession().setAttribute(KeyWordsList.STEP, step);
     }
+
+    public void close (HttpServletRequest req) {
+        req.getSession().invalidate();
+    }
 }

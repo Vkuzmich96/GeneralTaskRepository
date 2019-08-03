@@ -21,8 +21,7 @@ public class ActionMaterialLinkDAOMySql implements DAO<ActionMaterialLink, List<
         try {
             String sql = "INSERT INTO `lawmapsdb`.`material_links_list` VALUES (null, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, link.getActionId());
-            statement.setInt(2, link.getMaterialId());
+            prepareStatement(statement, link);
             statement.executeUpdate();
             ResultSet set = statement.getGeneratedKeys();
             set.next();
@@ -63,7 +62,7 @@ public class ActionMaterialLinkDAOMySql implements DAO<ActionMaterialLink, List<
         try {
             String sql = "SELECT * FROM lawmapsdb.material_links_list WHERE action_id = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, Integer.valueOf(id));
+            statement.setInt(1, Integer.parseInt(id));
             ResultSet resultSet = statement.executeQuery();
             links = buildList(resultSet);
         } catch (SQLException e){
