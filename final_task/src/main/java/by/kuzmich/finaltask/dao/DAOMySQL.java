@@ -34,12 +34,13 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
         try {
             PreparedStatement statement = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
             prepareStatementInsert(statement, object);
-            statement.execute();
+            statement.executeUpdate();
             ResultSet set = statement.getGeneratedKeys();
             set.next();
             return set.getInt(1);
         } catch (SQLException e){
             logger.error(ExceptionMessageList.UNABLE_TO_UPDATE);
+            e.printStackTrace();
             throw new DAOException(ExceptionMessageList.UNABLE_TO_UPDATE);
         } finally {
             try {

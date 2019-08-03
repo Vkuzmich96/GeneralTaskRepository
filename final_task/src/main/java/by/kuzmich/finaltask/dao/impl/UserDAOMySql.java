@@ -1,130 +1,56 @@
 package by.kuzmich.finaltask.dao.impl;
 
-import by.kuzmich.finaltask.dao.DAO;
 import by.kuzmich.finaltask.bean.Role;
 import by.kuzmich.finaltask.bean.User;
+import by.kuzmich.finaltask.dao.DAOMySQL;
 import by.kuzmich.finaltask.exception.DAOException;
+import by.kuzmich.finaltask.exception.ExceptionMessageList;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class UserDAOMySql implements DAO<User, User> {
+public class UserDAOMySql extends DAOMySQL<User, User> {
     private static Logger logger = Logger.getLogger(UserDAOMySql.class);
     private Connection connection;
-
+    private final String SELECT = "SELECT * FROM lawmapsdb.users WHERE email = ?";
+    private final String EMAIL ="email";
+    private final String PASSWORD = "password";
+    private final String ROLE = "role";
+    private final String ADDRESS = "address";
+    private final String PHONE = "phone";
     public UserDAOMySql(Connection connection) {
+        super(connection,
+             "INSERT INTO `lawmapsdb`.`users` VALUES (null, ?, ?,?, ?,?,? )",
+             "SELECT * FROM lawmapsdb.users",
+             "",
+             "DELETE FROM `lawmapsdb`.`users` WHERE id = ?",
+             "UPDATE `lawmapsdb`.`users` SET `email` = ?, `password` = ?, `role` = ?, `name` = ?, `address` = ?, `phone` = ? WHERE `id` = ?"
+        );
         this.connection = connection;
     }
 
-    @Override
-    public int insert (User user){
-        int id = 0;
-        try {
-            String sql = "INSERT INTO `lawmapsdb`.`users` VALUES (null, ?, ?,?, ?,?,? )";
-            PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            prepareStatement(statement, user);
-            statement.executeUpdate();
-            ResultSet set = statement.getGeneratedKeys();
-            set.next();
-            id = set.getInt(1);
-        } catch (SQLException e){
-            logger.error("its impossible to insert data");
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                logger.error("its impossible to close connection");
-            }
-        }
-        return id;
-    }
 
-    @Override
-    public List<User> selectAll (){
-        List<User> users = null;
+    public User select(String email) throws DAOException {
         try {
-            String sql = "SELECT * FROM lawmapsdb.users";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
-            users = buildList(resultSet);
-        } catch (SQLException e){
-            logger.error("its impossible to select data");
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                logger.error("its impossible to close connection");
-            }
-        }
-        return users;
-    }
-
-
-    public User select(String email){
-        User user = null;
-        try {
-            String sql = "SELECT * FROM lawmapsdb.users WHERE email = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
+            PreparedStatement statement = connection.prepareStatement(SELECT);
             statement.setString(1, email);
             ResultSet set = statement.executeQuery();
             set.next();
-            user = build(set);
+            return build(set);
         } catch (SQLException e){
-            logger.error("its impossible to select data");
+            logger.error(ExceptionMessageList.UNABLE_TO_SELECT);
+            throw new DAOException(ExceptionMessageList.UNABLE_TO_SELECT);
         } finally {
             try {
                 connection.close();
             } catch (SQLException e) {
-                logger.error("its impossible to close connection");
-            }
-        }
-        return user;
-    }
-
-    public void delete (int id) {
-        try {
-            String sql = "DELETE FROM `lawmapsdb`.`users` WHERE id = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
-            statement.execute();
-        } catch (SQLException e){
-            logger.error("its impossible to delete data");
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                logger.error("its impossible to close connection");
-            }
-        }
-    }
-
-
-    public void update(User user){
-        try {
-            String sql = "UPDATE `lawmapsdb`.`users` SET `email` = ?, `password` = ?, `role` = ?, `name` = ?, `address` = ?, `phone` = ? WHERE `id` = ?";
-            PreparedStatement statement = connection.prepareStatement(sql);
-            prepareStatement(statement, user);
-            statement.setInt(7, user.getId());
-            statement.executeUpdate();
-        } catch (SQLException e){
-            logger.error("its impossible to update data");
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                logger.error("its impossible to close connection");
+                logger.error(ExceptionMessageList.UNABLE_TO_CLOSE);
             }
         }
     }
 
     @Override
-    public void finalize() throws SQLException {
-        connection.close();
-    }
-
-    private void prepareStatement(PreparedStatement statement, User user) throws SQLException {
+    protected void prepareStatementInsert(PreparedStatement statement, User user) throws SQLException {
         statement.setString(1, user.getEmail());
         statement.setString(2, user.getPassword());
         statement.setInt(3, user.getRole().getNumber());
@@ -133,25 +59,29 @@ public class UserDAOMySql implements DAO<User, User> {
         statement.setLong(6, user.getNumber());
     }
 
-    private List<User> buildList (ResultSet set) throws SQLException {
-        List<User> users = new ArrayList<>();
-        while (set.next()){
-            User user = build(set);
-            users.add(user);
-        }
-        return users;
+    @Override
+    protected void prepareStatementUpdate(PreparedStatement statement, User user) throws SQLException {
+        prepareStatementInsert(statement, user);
+        statement.setInt(7, user.getId());
     }
 
-    private User build (ResultSet set) throws SQLException {
-        int id = set.getInt("id");
-        String email = set.getString("email");
-        String password = set.getString("password");
-        int roleNumber = set.getInt("role");
+
+    protected User build (ResultSet set) throws SQLException {
+        int id = set.getInt(super.ID);
+        String email = set.getString(EMAIL);
+        String password = set.getString(PASSWORD);
+        int roleNumber = set.getInt(ROLE);
         Role role = choseRole(roleNumber);
-        String name = set.getString("name");
-        String address = set.getString("address");
-        long phone = set.getLong("phone");
+        String name = set.getString(super.NAME);
+        String address = set.getString(ADDRESS);
+        long phone = set.getLong(PHONE);
         return new User(id,email,password,role,name,address,phone);
+    }
+
+    @Override
+    protected User buildToSelect(ResultSet set) throws SQLException {
+        set.next();
+        return build(set);
     }
 
     private Role choseRole (int number){
