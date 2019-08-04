@@ -87,6 +87,10 @@ final public class CommandFactory {
                         SessionHandlerFactory.getInstance().get(),
                         MapServiceFactory.getInstance().get()
                 );
+            case DELETE:
+                return new PostDeleteMap(
+                        LawMapNameServiceFactory.getInstance().get()
+                );
             default:
                 return null;
         }

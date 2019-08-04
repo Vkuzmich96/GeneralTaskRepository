@@ -18,6 +18,7 @@ use `lawmapsdb`;
   `id` INT NOT NULL AUTO_INCREMENT,
   `url` VARCHAR(3000) NOT NULL,
   `discription` VARCHAR(1000) NULL,
+  `name` VARCHAR(1000) NOT NULL,
   PRIMARY KEY (`id`));
   
   CREATE TABLE `lawmapsdb`.`action` (
@@ -42,7 +43,7 @@ use `lawmapsdb`;
   CONSTRAINT `action_link_fk`
     FOREIGN KEY (`action_id`)
     REFERENCES `lawmapsdb`.`action` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `material_link_fk`
     FOREIGN KEY (`materia_id`)
@@ -53,6 +54,7 @@ use `lawmapsdb`;
   CREATE TABLE `lawmapsdb`.`law_map_name` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
+  `readiness` TINYINT NOT NULL,
   PRIMARY KEY (`id`));  
 
   CREATE TABLE `lawmapsdb`.`action_graphs` (
@@ -64,7 +66,7 @@ use `lawmapsdb`;
   CONSTRAINT `graphs_parent_action_id`
     FOREIGN KEY (`parent`)
     REFERENCES `lawmapsdb`.`action` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE NO ACTION 
     ON UPDATE NO ACTION,
   CONSTRAINT `graphs_child_action_id`
     FOREIGN KEY (`child`)
@@ -74,5 +76,5 @@ use `lawmapsdb`;
   CONSTRAINT `graphs_law_map_name_id`
     FOREIGN KEY (`law_map_name_id`)
     REFERENCES `lawmapsdb`.`law_map_name` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION);

@@ -36,4 +36,14 @@ public class LawMapNameServiceImpl implements LawMapNameService {
             throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
         }
     }
+
+    @Override
+    public void delete(int key) throws ServiceException {
+        try {
+            dao.delete(key);
+        } catch (DAOException e) {
+            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+        }
+    }
 }

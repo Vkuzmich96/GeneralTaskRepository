@@ -8,4 +8,5 @@ import java.util.List;
 public interface LawMapNameService {
     List<LawMapName> getAll() throws ServiceException;
     int add (LawMapName name) throws ServiceException;
+    void delete (int key) throws ServiceException;
 }

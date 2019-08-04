@@ -18,23 +18,24 @@
 </c:if>
 
 <c:if test="${null != gaphId}">
-    <p>current step is ${step}</p>
-<form action="/addAction.html" method="post" enctype="multipart/form-data">
-    <p>Add action</p>
-    <input type="text" placeholder="enter action name" name="name">
-    <p/>
-    <input type="text" placeholder="enter instructions" name="instructions">
-    <p>Add material</p>
-    <input type="text" placeholder="enter material name" name="name">
-    <p/>
-    <input type="text" placeholder="enter description" name="description">
-    <p/>
-    <input type="file" name="file">
-    <p/>
-    <input type="submit" value="add"/>
-    <input type="checkbox" name="isNext"> next step
+    <form action="/addAction.html" method="post" enctype="multipart/form-data">
+        <p>Add action</p>
+        <input type="text" placeholder="enter action name" name="name">
+        <p/>
+        <input type="text" placeholder="enter instructions" name="instructions">
+        <p>Add material</p>
+        <input type="text" placeholder="enter material name" name="name">
+        <p/>
+        <input type="text" placeholder="enter description" name="description">
+        <p/>
+        <input type="file" name="file">
+        <p/>
+        <input type="submit" value="add"/>
+        <input type="checkbox" name="isNext"> next step
     </form>
     <d:graph number="${graph_id}"/>
+    <a href="/realise.html?number=${graph_id}"> realise map </a>
+    <a href="/delete.html?number=${graph_id}"> delete map </a>
 </c:if>
 </body>
 </html>
