@@ -7,36 +7,43 @@
     <title>LawerMenu</title>
 </head>
 <body>
+<u:menu/>
 <c:set var="gaphId" value="${graph_id}"/>
 <c:if test="${null == gaphId}">
+<div class="container">
     <form action="/addMap.html" method="post">
-        <p>Create map</p>
-        <input type="text" placeholder="enter map name" name="name"/>
-        <p/>
-        <input type="submit" value="create"/>
+        <div class="form-group text-center">
+            <p class="text-left">Create map</p>
+            <input class="form-control" type="text" placeholder="enter map name" name="name"/>
+            <div class="text-left">
+                <input type="submit" value="create"/>
+            </div>
+        </div>
     </form>
+</div>
 </c:if>
 
 <c:if test="${null != gaphId}">
+    <div class="container">
     <form action="/addAction.html" method="post" enctype="multipart/form-data">
-        <p>Add action</p>
-        <input type="text" placeholder="enter action name" name="name">
-        <p/>
-        <input type="text" placeholder="enter instructions" name="instructions">
-        <p>Add material</p>
-        <input type="text" placeholder="enter material name" name="name">
-        <p/>
-        <input type="text" placeholder="enter description" name="description">
-        <p/>
-        <input type="file" name="file">
-        <p/>
-        <input type="submit" value="add"/>
-        <input type="checkbox" name="isNext"> next step
+        <div class="form-group text-center">
+            <p class="text-left">Add action</p>
+            <input class="form-control" type="text" placeholder="enter action name" name="name">
+            <textarea class="form-control" type="text" placeholder="enter instructions" name="instructions"></textarea>
+            <p class="text-left">Add material</p>
+            <input class="form-control" type="text" placeholder="enter material name" name="materialName">
+            <textarea class="form-control" type="text" placeholder="enter description" name="description"></textarea>
+            <div class="text-left">
+                <input type="file" name="file">
+                <input type="submit" value="add"/>
+                <input type="checkbox" name="isNext"> next step
+                <a href="/realise.html?number=${graph_id}"> realise map </a>
+                <a href="/delete.html?number=${graph_id}"> delete map </a>
+            </div>
+        </div>
     </form>
     <d:graph number="${graph_id}"/>
-    <p/>
-    <a href="/realise.html?number=${graph_id}"> realise map </a>
-    <a href="/delete.html?number=${graph_id}"> delete map </a>
+    </div>
 </c:if>
 </body>
 </html>

@@ -12,7 +12,7 @@ public class MaterialBuilder implements Builder<Material> {
     public Material build(HttpServletRequest req) {
         String url = (String) req.getAttribute(KeyWordsList.URL);
         String description = req.getParameter(KeyWordsList.DESCRIPTION);
-        String name = req.getParameter(KeyWordsList.NAME);
+        String name = req.getParameter(KeyWordsList.MATERIAL_NAME);
         return new Material(DefaultValues.DEFAULT_ID, url, description, name);
     }
 }
