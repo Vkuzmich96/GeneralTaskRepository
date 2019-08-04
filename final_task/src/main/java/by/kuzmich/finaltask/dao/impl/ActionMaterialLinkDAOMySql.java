@@ -46,7 +46,7 @@ public class ActionMaterialLinkDAOMySql extends DAOMySQL<ActionMaterialLink, Lis
     }
 
     @Override
-    protected List<ActionMaterialLink> buildToSelect(ResultSet set) throws SQLException {
+    protected List<ActionMaterialLink> prepareSelectResult(ResultSet set) throws SQLException {
         return super.buildList(set);
     }
 }

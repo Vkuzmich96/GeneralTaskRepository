@@ -79,7 +79,7 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
             PreparedStatement statement = connection.prepareStatement(SELECT_BY_ID);
             statement.setInt(1, Integer.parseInt(str));
             ResultSet set = statement.executeQuery();
-            return buildToSelect(set);
+            return prepareSelectResult(set);
         } catch (SQLException e){
             logger.error(ExceptionMessageList.UNABLE_TO_SELECT);
             throw new DAOException(ExceptionMessageList.UNABLE_TO_SELECT);
@@ -150,6 +150,6 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
 
     protected abstract T build(ResultSet set) throws SQLException;
 
-    protected abstract S buildToSelect(ResultSet set) throws SQLException;
+    protected abstract S prepareSelectResult(ResultSet set) throws SQLException;
 
 }

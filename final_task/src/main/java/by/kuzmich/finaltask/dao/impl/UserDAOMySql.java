@@ -79,7 +79,7 @@ public class UserDAOMySql extends DAOMySQL<User, User> {
     }
 
     @Override
-    protected User buildToSelect(ResultSet set) throws SQLException {
+    protected User prepareSelectResult(ResultSet set) throws SQLException {
         set.next();
         return build(set);
     }

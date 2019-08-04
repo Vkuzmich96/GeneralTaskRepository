@@ -39,15 +39,6 @@ public class ActionDAOMySql extends  DAOMySQL<Action, Action> {
         statement.setInt(4, action.getId());
     }
 
-    protected List<Action> buildList (ResultSet set) throws SQLException {
-        List<Action> materials = new ArrayList<>();
-        while (set.next()){
-            Action action = build(set);
-            materials.add(action);
-        }
-        return materials;
-    }
-
     protected Action build(ResultSet set) throws SQLException {
         int id = set.getInt(super.ID);
         String name = set.getString(super.NAME);
@@ -57,7 +48,7 @@ public class ActionDAOMySql extends  DAOMySQL<Action, Action> {
     }
 
     @Override
-    protected Action buildToSelect(ResultSet set) throws SQLException {
+    protected Action prepareSelectResult(ResultSet set) throws SQLException {
         set.next();
         return build(set);
     }

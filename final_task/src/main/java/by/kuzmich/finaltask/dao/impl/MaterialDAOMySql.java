@@ -47,7 +47,7 @@ public class MaterialDAOMySql extends DAOMySQL <Material, Material> {
     }
 
     @Override
-    protected Material buildToSelect(ResultSet set) throws SQLException {
+    protected Material prepareSelectResult(ResultSet set) throws SQLException {
         set.next();
         return build(set);
     }

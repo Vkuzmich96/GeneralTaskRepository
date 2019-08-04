@@ -65,7 +65,7 @@ public class GraphEdgeDAOMySql extends DAOMySQL<GraphEdge, List<GraphEdge>> {
     }
 
     @Override
-    protected List<GraphEdge> buildToSelect(ResultSet set) throws SQLException {
+    protected List<GraphEdge> prepareSelectResult(ResultSet set) throws SQLException {
         return super.buildList(set);
     }
 }
