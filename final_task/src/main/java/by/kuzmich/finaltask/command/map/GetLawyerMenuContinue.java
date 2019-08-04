@@ -1,6 +1,7 @@
 package by.kuzmich.finaltask.command.map;
 
 import by.kuzmich.finaltask.KeyWordsList;
+import by.kuzmich.finaltask.bean.Action;
 import by.kuzmich.finaltask.bean.GraphEdge;
 import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.command.PagePathList;
@@ -25,11 +26,12 @@ public class GetLawyerMenuContinue extends Command {
         String graphNumber = req.getParameter(KeyWordsList.NUMBER);
         GraphEdge lastEdge = mapService.getLastEdge(graphNumber);
         sessionHandler.setGraphId(req, Integer.parseInt(graphNumber));
-        int parentId = lastEdge.getParent().getId();
-        if (parentId != 0){
+        Action parent = lastEdge.getParent();
+        int parentId = parent != null ? parent.getId() : 0;
+        if (parentId != 0) {
             sessionHandler.incrementStep(req);
+            sessionHandler.setActualActionId(req, parentId);
         }
-        sessionHandler.setActualActionId(req, parentId);
         super.setRedirected(true);
         return PagePathList.LAWER_MENU;
     }

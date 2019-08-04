@@ -34,6 +34,7 @@
         <input type="checkbox" name="isNext"> next step
     </form>
     <d:graph number="${graph_id}"/>
+    <p/>
     <a href="/realise.html?number=${graph_id}"> realise map </a>
     <a href="/delete.html?number=${graph_id}"> delete map </a>
 </c:if>

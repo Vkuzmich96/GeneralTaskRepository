@@ -47,7 +47,7 @@ public class PostAction extends Command {
         sessionHandler.setActionId(req, childId);
         Action parent = parentActionBuilder.build(req);
         int graphId = sessionHandler.getGraphId(req);
-        System.out.println(parent);
+        fileHandler(req);
         mapService.addEdge(new GraphEdge(graphId, parent, child));
         super.setRedirected(true);
         return PagePathList.LAWER_MENU;
