@@ -29,10 +29,8 @@ public class MapServiceImpl implements MapService {
     }
 
     public Graph get (String number) throws ServiceException {
-        List<GraphEdge> edgeList = null;
-        Graph rootGraph = null;
         try {
-            edgeList = graphEdgeDAO.select(number);
+            List<GraphEdge> edgeList = graphEdgeDAO.select(number);
             if(edgeList.isEmpty()){
                 String name = nameDAO.select(number).getName();
                 return new Graph(name);
@@ -41,11 +39,11 @@ public class MapServiceImpl implements MapService {
             if (rootEdge.getParent().getId() != 0) {
                 logger.error("data structure is abnormal");
             }
-            rootGraph = buildRootNode(edgeList, number);
+            Graph rootGraph = buildRootNode(edgeList, number);
             return buildNodes(edgeList, rootGraph);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
+            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
         }
     }
 
@@ -80,8 +78,18 @@ public class MapServiceImpl implements MapService {
         try {
             return graphEdgeDAO.insert(edge);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
+            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+        }
+    }
+
+    public GraphEdge getLastEdge(String key) throws ServiceException {
+        try {
+            List<GraphEdge> edges = graphEdgeDAO.select(key);
+            return edges.isEmpty() ? new GraphEdge() : edges.get(edges.size() - 1);
+        } catch (DAOException e) {
+            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
         }
     }
 }

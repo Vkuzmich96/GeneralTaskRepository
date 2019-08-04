@@ -44,9 +44,12 @@ public class SessionHandlerUser implements SessionHandler {
         req.getSession().setAttribute(KeyWordsList.GRAPH_ID, id);
     }
 
-
     public void setActionId(HttpServletRequest req, int childId) {
         req.getSession().setAttribute(KeyWordsList.ACTION_ID, childId);
+    }
+
+    public void setActualActionId(HttpServletRequest req, int actualId) {
+        req.getSession().setAttribute(KeyWordsList.ACTUAL_ACTION_ID, actualId);
     }
 
     public void changeActualActionId(HttpServletRequest req) {

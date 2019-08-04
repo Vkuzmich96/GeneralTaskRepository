@@ -28,7 +28,7 @@
                                 ${number = number + 1}
                                 <a href = /lawmap.html?number=${id}> ${name} </a>
                                 <c:if test="${!readiness}">
-                                    <a href = /lawmap.html?number=${id}> continue work </a>
+                                    <a href = /continue.html?number=${id}> continue work </a>
                                 </c:if>
                          </span>
                     </c:if>

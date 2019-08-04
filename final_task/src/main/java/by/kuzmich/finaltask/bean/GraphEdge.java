@@ -5,6 +5,9 @@ public class GraphEdge {
     private Action parent;
     private Action child;
 
+    public GraphEdge() {
+    }
+
     public GraphEdge(int id, Action parent, Action child) {
         this.id = id;
         this.parent = parent;

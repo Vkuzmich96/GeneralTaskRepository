@@ -32,9 +32,8 @@ public class ActionServiceImpl implements ActionService {
 
     @Override
     public int add (Action action) throws ServiceException {
-        int actionId = 0;
         try {
-            actionId = actionDAO.insert(action);
+            int actionId = actionDAO.insert(action);
             List<Material> materials = action.getMaterials();
             for (Material material : materials) {
                 int materialId = materialDAO.insert(material);
@@ -42,8 +41,8 @@ public class ActionServiceImpl implements ActionService {
             }
             return actionId;
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
+            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
         }
     }
 
@@ -54,8 +53,8 @@ public class ActionServiceImpl implements ActionService {
             action.setMaterials(buildMaterials(key));
             return action;
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
+            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
         }
     }
 
@@ -73,7 +72,7 @@ public class ActionServiceImpl implements ActionService {
         try {
             return materialDAO.insert(material);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);        }
+            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);        }
     }
 }

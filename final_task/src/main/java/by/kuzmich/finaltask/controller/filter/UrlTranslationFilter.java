@@ -28,6 +28,7 @@ public class UrlTranslationFilter implements Filter{
         map.put("/addAction.html", CommandKind.POST_ACTION);
         map.put("/profile.html", CommandKind.GET_USER_PROFILE);
         map.put("/update.html", CommandKind.POST_UPDATE_USER_PROFILE);
+        map.put("/continue.html", CommandKind.CONTINUE);
     }
 
     @Override

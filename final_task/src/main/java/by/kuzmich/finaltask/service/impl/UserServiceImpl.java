@@ -22,8 +22,8 @@ public class UserServiceImpl implements UserService {
         try {
             dao.insert(user);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
+            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
         }
     }
 
@@ -32,8 +32,8 @@ public class UserServiceImpl implements UserService {
             User userDB = dao.select(user.getEmail());
             return user.equals(userDB);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
+            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
         }
     }
 
@@ -41,8 +41,8 @@ public class UserServiceImpl implements UserService {
         try {
             return dao.select(login);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
+            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
         }
     }
 
@@ -50,8 +50,8 @@ public class UserServiceImpl implements UserService {
         try {
             dao.update(user);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
+            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
         }
     }
 }

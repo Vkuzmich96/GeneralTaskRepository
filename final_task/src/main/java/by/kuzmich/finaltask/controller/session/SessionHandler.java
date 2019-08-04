@@ -15,4 +15,5 @@ public interface SessionHandler {
     void incrementStep(HttpServletRequest req);
     void changeActualActionId(HttpServletRequest req);
     void close (HttpServletRequest req);
+    void setActualActionId(HttpServletRequest req, int actualId);
 }

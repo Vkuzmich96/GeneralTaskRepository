@@ -82,6 +82,11 @@ final public class CommandFactory {
                         UserServiceFactory.getInstance().get(),
                         SessionHandlerFactory.getInstance().get()
                 );
+            case CONTINUE:
+                return new GetLawyerMenuContinue(
+                        SessionHandlerFactory.getInstance().get(),
+                        MapServiceFactory.getInstance().get()
+                );
             default:
                 return null;
         }

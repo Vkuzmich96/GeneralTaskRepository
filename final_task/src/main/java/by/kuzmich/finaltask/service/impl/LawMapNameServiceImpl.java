@@ -23,8 +23,8 @@ public class LawMapNameServiceImpl implements LawMapNameService {
         try {
             return dao.selectAll();
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
+            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
         }
     }
 
@@ -32,8 +32,8 @@ public class LawMapNameServiceImpl implements LawMapNameService {
         try {
             return dao.insert(name);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_DATA_ACCESS);
+            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
         }
     }
 }
