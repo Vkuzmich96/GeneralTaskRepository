@@ -30,6 +30,8 @@ public class UrlTranslationFilter implements Filter{
         map.put("/update.html", CommandKind.POST_UPDATE_USER_PROFILE);
         map.put("/continue.html", CommandKind.CONTINUE);
         map.put("/delete.html", CommandKind.DELETE);
+        map.put("/realise.html", CommandKind.REALISE);
+
     }
 
     @Override

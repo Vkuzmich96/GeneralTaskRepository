@@ -91,6 +91,10 @@ final public class CommandFactory {
                 return new PostDeleteMap(
                         LawMapNameServiceFactory.getInstance().get()
                 );
+            case REALISE:
+                return new PostRealise(
+                        LawMapNameServiceFactory.getInstance().get()
+                );
             default:
                 return null;
         }

@@ -24,7 +24,7 @@
                     <c:if test="${(role.getNumber() == 2) || readiness}">
                          <c:set var="id" value="${map.getId()}"/>
                          <c:set var="name" value="${map.getName()}"/>
-                        <span class="list-group-item list-group-item-action">
+                        <span class="list-group-item list-group-item-action text-left">
                                 ${number = number + 1}
                                 <a href = /lawmap.html?number=${id}> ${name} </a>
                                 <c:if test="${!readiness}">
