@@ -19,6 +19,7 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
     private String UPDATE;
     protected final String ID = "id";
     protected final String NAME = "name";
+    private final int EMPTY_RESULT_SET = 0;
 
     public DAOMySQL(Connection connection, String INSERT, String SELECT_ALL, String SELECT_BY_ID, String DELETE, String UPDATE) {
         this.connection = connection;
@@ -36,8 +37,11 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
             prepareStatementInsert(statement, object);
             statement.executeUpdate();
             ResultSet set = statement.getGeneratedKeys();
-            set.next();
-            return set.getInt(1);
+            if (set.next()) {
+                return set.getInt(1);
+            } else {
+                return EMPTY_RESULT_SET;
+            }
         } catch (SQLException e){
             logger.error(ExceptionMessageList.UNABLE_TO_UPDATE);
             e.printStackTrace();
@@ -71,7 +75,6 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
 
     @Override
     public S select(String str) throws DAOException {
-        LawMapName name = null;
         try {
             PreparedStatement statement = connection.prepareStatement(SELECT_BY_ID);
             statement.setInt(1, Integer.parseInt(str));
