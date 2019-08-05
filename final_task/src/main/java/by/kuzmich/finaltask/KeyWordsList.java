@@ -25,4 +25,6 @@ final public class KeyWordsList {
     public final static String ADMIN = "admin";
     public final static String LAWER = "lawer";
     public final static String MATERIAL_NAME = "materialName";
+    public final static String COMMAND = "command";
+    public final static String ACTION = "action";
 }

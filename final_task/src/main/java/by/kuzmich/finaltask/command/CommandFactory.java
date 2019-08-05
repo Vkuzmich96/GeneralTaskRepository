@@ -95,6 +95,10 @@ final public class CommandFactory {
                 return new PostRealise(
                         LawMapNameServiceFactory.getInstance().get()
                 );
+            case UPDATE_ACTION:
+                return new GetUpdateAction(
+                        ActionServiceFactory.getInstance().get()
+                );
             default:
                 return null;
         }

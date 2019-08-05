@@ -15,7 +15,7 @@
     <title>LawMap</title>
 </head>
 <body>
-    <u:menu/>
+    <u:header/>
     <div class="container">
         <div class="list-group text-center">
             <d:graph number="${number}"/>

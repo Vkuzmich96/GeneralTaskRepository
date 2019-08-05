@@ -21,6 +21,9 @@ public class GetLawyerMenuContinue extends Command {
         this.mapService = mapService;
     }
 
+    //todo нашёл баг, если сразу после логирования переходить к добавлению нового этапа, то экшен добавится в конец,
+    //todo а не перейдёт на новый этап. Нам нужен предпоследний предок, чтобы исправить эту проблему.
+    //todo Резюме: добавить метод который будет просто тащить из бд список рёбер графа и доставть всё что нам нужно здесь.
     @Override
     public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String graphNumber = req.getParameter(KeyWordsList.NUMBER);
@@ -30,6 +33,7 @@ public class GetLawyerMenuContinue extends Command {
         int parentId = parent != null ? parent.getId() : 0;
         if (parentId != 0) {
             sessionHandler.incrementStep(req);
+            sessionHandler.setActionId(req, parentId);
             sessionHandler.setActualActionId(req, parentId);
         }
         super.setRedirected(true);

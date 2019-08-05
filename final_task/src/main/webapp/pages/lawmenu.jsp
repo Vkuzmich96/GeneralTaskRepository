@@ -4,10 +4,10 @@
 <%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
 <html>
 <head>
-    <title>LawerMenu</title>
+    <title>LawyerMenu</title>
 </head>
 <body>
-<u:menu/>
+<u:header/>
 <c:set var="gaphId" value="${graph_id}"/>
 <c:if test="${null == gaphId}">
 <div class="container">
@@ -27,12 +27,7 @@
     <div class="container">
     <form action="/addAction.html" method="post" enctype="multipart/form-data">
         <div class="form-group text-center">
-            <p class="text-left">Add action</p>
-            <input class="form-control" type="text" placeholder="enter action name" name="name">
-            <textarea class="form-control" type="text" placeholder="enter instructions" name="instructions"></textarea>
-            <p class="text-left">Add material</p>
-            <input class="form-control" type="text" placeholder="enter material name" name="materialName">
-            <textarea class="form-control" type="text" placeholder="enter description" name="description"></textarea>
+            <u:actiomBody/>
             <div class="text-left">
                 <input type="file" name="file">
                 <input type="submit" value="add"/>

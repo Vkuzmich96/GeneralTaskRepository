@@ -1,5 +1,6 @@
 package by.kuzmich.finaltask.controller.filter;
 
+import by.kuzmich.finaltask.KeyWordsList;
 import by.kuzmich.finaltask.command.CommandKind;
 
 import javax.servlet.Filter;
@@ -31,7 +32,7 @@ public class UrlTranslationFilter implements Filter{
         map.put("/continue.html", CommandKind.CONTINUE);
         map.put("/delete.html", CommandKind.DELETE);
         map.put("/realise.html", CommandKind.REALISE);
-
+        map.put("/updateAction.html", CommandKind.UPDATE_ACTION);
     }
 
     @Override
@@ -45,7 +46,7 @@ public class UrlTranslationFilter implements Filter{
             HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
             String url = httpRequest.getRequestURI();
             CommandKind kind = map.get(url);
-            httpRequest.setAttribute("command", kind);
+            httpRequest.setAttribute(KeyWordsList.COMMAND, kind);
             chain.doFilter(httpRequest,servletResponse);
         }
     }

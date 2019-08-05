@@ -10,7 +10,8 @@ public enum PagePathList {
     LAWER_MENU("/pages/lawmenu.jsp"),
     USER_PROFILE("/pages/userInformation.jsp"),
     USER_PROFILE_REDIRECTED("/profile.html"),
-    GAP("");
+    GAP(""),
+    UPDATE_ACTION("/pages/actionUpdate.jsp");
 
     private String path;
 

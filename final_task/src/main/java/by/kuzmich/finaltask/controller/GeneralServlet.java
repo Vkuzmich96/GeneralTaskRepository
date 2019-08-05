@@ -1,10 +1,10 @@
 package by.kuzmich.finaltask.controller;
 
+import by.kuzmich.finaltask.KeyWordsList;
 import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.command.CommandFactory;
 import by.kuzmich.finaltask.command.CommandKind;
 import by.kuzmich.finaltask.command.PagePathList;
-import by.kuzmich.finaltask.controller.filter.SessionFilter;
 import by.kuzmich.finaltask.exception.ServiceException;
 import org.apache.log4j.Logger;
 
@@ -14,19 +14,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.ws.Service;
 import java.io.IOException;
-import java.sql.SQLException;
 
 @WebServlet(urlPatterns = "*.html")
 @MultipartConfig
 public class GeneralServlet extends HttpServlet {
     private static Logger logger = Logger.getLogger(GeneralServlet.class);
-    private String COMMAND_ENUM_ATTRIBUTE = "command";
-
 
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        CommandKind kind = (CommandKind) req.getAttribute(COMMAND_ENUM_ATTRIBUTE);
+        CommandKind kind = (CommandKind) req.getAttribute(KeyWordsList.COMMAND);
         Command command = CommandFactory.getInstance().get(kind);
         String url = null;
         try {

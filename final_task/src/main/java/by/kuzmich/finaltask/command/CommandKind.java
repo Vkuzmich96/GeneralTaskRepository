@@ -16,5 +16,6 @@ public enum CommandKind {
     POST_UPDATE_USER_PROFILE,
     CONTINUE,
     DELETE,
-    REALISE
+    REALISE,
+    UPDATE_ACTION
 }

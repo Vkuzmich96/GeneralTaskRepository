@@ -14,7 +14,7 @@
     <title>NamesList</title>
 </head>
 <body>
-    <u:menu/>
+    <u:header/>
     <div class="container">
         <div class="list-group text-center">
             <p class="list-group-item active">Law map list:</p>

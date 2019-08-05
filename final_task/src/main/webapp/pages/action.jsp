@@ -15,16 +15,20 @@
     <title>Action</title>
 </head>
 <body>
-    <u:menu/>
+    <u:header/>
     <div>
         <h4> ${action.getName()} </h4>
+        <c:set var="lawerRoleNumber" value="2"/>
+        <c:if test="${lawerRoleNumber==role.getNumber()}">
+            <a href="/updateAction.html?number=${action.getId()}"> update </a>
+        </c:if>
         <p> ${action.getInstructions()} </p>
         <c:set var="prefix" value="/doks/"/>
         <c:forEach var="material" items="${action.getMaterials()}">
-            <p> ${material.getDiscription()} </p>
             <p>
                 ${material.getName()} <a href = ${prefix}${material.getUrl()}> download </a>
             </p>
+            <p> ${material.getDiscription()} </p>
         </c:forEach>
     </div>
 </body>

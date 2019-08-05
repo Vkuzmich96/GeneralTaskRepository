@@ -11,7 +11,6 @@ import by.kuzmich.finaltask.service.ActionService;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,6 +72,7 @@ public class ActionServiceImpl implements ActionService {
             return materialDAO.insert(material);
         } catch (DAOException e) {
             logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);        }
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+        }
     }
 }

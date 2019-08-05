@@ -54,7 +54,7 @@ public class ActionChildBuilder implements Builder<Action> {
         }
         String url = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         String description = req.getParameter(KeyWordsList.DESCRIPTION);
-        String name = req.getParameter(KeyWordsList.NAME);
+        String name = req.getParameter(KeyWordsList.MATERIAL_NAME);
         return new Material(DefaultValues.DEFAULT_ID, url, description, name);
     }
 }
