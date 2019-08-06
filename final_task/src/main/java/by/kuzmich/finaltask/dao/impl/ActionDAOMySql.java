@@ -22,7 +22,7 @@ public class ActionDAOMySql extends  DAOMySQL<Action, Action> {
                 "SELECT * FROM lawmapsdb.action",
                 "SELECT * FROM lawmapsdb.action WHERE id = ?",
                 "DELETE FROM `lawmapsdb`.`action` WHERE id = ?",
-                "UPDATE `lawmapsdb`.`action` SET `name` = ? `instructions` = ?, `user_id` = ? WHERE `id` = ?"
+                "UPDATE `lawmapsdb`.`action` SET `name` = ?, `instructions` = ?, `user_id` = ? WHERE `id` = ?"
         );
     }
 

@@ -75,4 +75,16 @@ public class ActionServiceImpl implements ActionService {
             throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
         }
     }
+
+    public void update(Action action) throws ServiceException {
+        try {
+            actionDAO.update(action);
+        for (Material material : action.getMaterials()){
+            materialDAO.update(material);
+        }
+        } catch (DAOException e) {
+            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+        }
+    }
 }

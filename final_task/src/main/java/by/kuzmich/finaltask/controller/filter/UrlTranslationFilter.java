@@ -32,7 +32,8 @@ public class UrlTranslationFilter implements Filter{
         map.put("/continue.html", CommandKind.CONTINUE);
         map.put("/delete.html", CommandKind.DELETE);
         map.put("/realise.html", CommandKind.REALISE);
-        map.put("/updateAction.html", CommandKind.UPDATE_ACTION);
+        map.put("/updateActionMenu.html", CommandKind.GET_UPDATE_ACTION);
+        map.put("/updateAction.html", CommandKind.POST_UPDATE_ACTION);
     }
 
     @Override

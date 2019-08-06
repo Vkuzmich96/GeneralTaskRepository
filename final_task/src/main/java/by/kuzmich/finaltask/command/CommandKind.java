@@ -17,5 +17,6 @@ public enum CommandKind {
     CONTINUE,
     DELETE,
     REALISE,
-    UPDATE_ACTION
+    GET_UPDATE_ACTION,
+    POST_UPDATE_ACTION
 }

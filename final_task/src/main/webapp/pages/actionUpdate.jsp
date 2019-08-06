@@ -15,7 +15,7 @@
 <body>
     <u:header/>
     <div class="container">
-        <form action="/addAction.html" method="post">
+        <form action="/updateAction.html" method="post">
             <div class="form-group text-center">
                 <u:actiomBody/>
                 <div class="text-left">

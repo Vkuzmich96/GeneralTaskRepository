@@ -17,7 +17,7 @@
         <c:set var="materialName" value="${material.getName()}"/>
         <c:set var="description" value="${material.getDiscription()}"/>
     </c:if>
-    <input hidden value="${actionId}">
+    <input hidden value="${actionId}" name="actionId">
     <label class="text-left">Action</label>
     <input class="form-control" type="text"  value="${name}" placeholder="enter action name" name="name">
     <textarea class="form-control" type="text" rows="7" placeholder="enter instructions" name="instructions">

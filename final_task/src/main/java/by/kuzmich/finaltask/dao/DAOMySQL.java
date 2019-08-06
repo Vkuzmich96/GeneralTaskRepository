@@ -111,14 +111,15 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
     }
 
     @Override
-    public void update(T name) throws DAOException {
+    public void update(T object) throws DAOException {
         try {
             PreparedStatement statement = connection.prepareStatement(UPDATE);
-            prepareStatementUpdate(statement, name);
+            prepareStatementUpdate(statement, object);
             statement.execute();
         } catch (SQLException e){
-            logger.error(ExceptionMessageList.UNABLE_TO_DELETE);
-            throw new DAOException(ExceptionMessageList.UNABLE_TO_DELETE);
+            e.printStackTrace();
+            logger.error(ExceptionMessageList.UNABLE_TO_UPDATE);
+            throw new DAOException(ExceptionMessageList.UNABLE_TO_UPDATE);
         } finally {
             try {
                 connection.close();

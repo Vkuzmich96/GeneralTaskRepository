@@ -10,4 +10,5 @@ public interface ActionService {
     Action get(String key) throws ServiceException;
     int add (Action action) throws ServiceException;
     int addMaterial(Material material) throws ServiceException;
+    void update(Action action) throws ServiceException;
 }
