@@ -117,7 +117,6 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
             prepareStatementUpdate(statement, object);
             statement.execute();
         } catch (SQLException e){
-            e.printStackTrace();
             logger.error(ExceptionMessageList.UNABLE_TO_UPDATE);
             throw new DAOException(ExceptionMessageList.UNABLE_TO_UPDATE);
         } finally {
