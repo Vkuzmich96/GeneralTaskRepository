@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="/WEB-INF/treePrinterTag" prefix="d"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +22,7 @@
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
             <form action="/enter.html" method="post" class="login100-form validate-form">
                 <span class="login100-form-title p-b-33">
-					Account Login
+                    Account Login
 				</span>
                 <c:if test="${not empty massage}">
                     <div class="text-center">
@@ -29,12 +31,13 @@
                         </span>
                     </div>
                 </c:if>
+                ${wrongEmail}
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                     <input type="text" name="email" class="input100" placeholder="Email">
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>
-
+                ${wrongPassword}
                 <div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
                     <input type="text" class="input100" name="password"  placeholder="Password" >
                     <span class="focus-input100-1"></span>

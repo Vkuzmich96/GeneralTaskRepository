@@ -15,26 +15,31 @@
                 <span class="login100-form-title p-b-33">
 						Registration
 				</span>
+                ${wrongEmail}
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                     <input type="text" placeholder="Email" name="email" class="input100">
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>
+                ${wrongPassword}
                 <div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
                     <input type="text" placeholder="Password" name="password" class="input100">
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>
+                ${wrongName}
                 <div class="wrap-input100">
                     <input type="text" placeholder="Name" name="name" class="input100">
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>
+                ${wrongAddress}
                 <div class="wrap-input100">
                     <input type="text" placeholder="Address" name="address" class="input100">
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>
+                ${wrongAddress}
                 <div class="wrap-input100">
                     <input type="text" placeholder="Phone number" name="number" class="input100">
                     <span class="focus-input100-1"></span>

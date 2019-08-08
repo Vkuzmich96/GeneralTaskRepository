@@ -27,4 +27,5 @@ final public class KeyWordsList {
     public final static String MATERIAL_NAME = "materialName";
     public final static String COMMAND = "command";
     public final static String ACTION = "action";
+    public final static String EMAIL = "email";
 }
