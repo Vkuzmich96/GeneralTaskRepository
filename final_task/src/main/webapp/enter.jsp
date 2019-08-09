@@ -24,21 +24,21 @@
                 <span class="login100-form-title p-b-33">
                     Account Login
 				</span>
-                <c:if test="${not empty errorMassage}">
+                <c:if test="${not empty param}">
                     <div class="text-center">
                         <span class="txt1">
-                                ${errorMassage.get("wrongLoginOrPassword")}
+                                ${param.get("wrongLoginOrPassword")}
                         </span>
                     </div>
                 </c:if>
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                    <input type="text" name="email" class="input100" placeholder="Email">
+                    <input type="text" value="${param.get("email")}" name="email" class="input100" placeholder="Email" maxlength="100">
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>
                 <div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
-                    <input type="text" class="input100" name="password"  placeholder="Password" >
+                    <input type="text" value="${param.get("password")}" class="input100" name="password"  placeholder="Password" maxlength="12">
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>

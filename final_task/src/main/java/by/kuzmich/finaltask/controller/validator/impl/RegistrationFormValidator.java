@@ -10,10 +10,15 @@ public class RegistrationFormValidator extends Validator {
     @Override
     public boolean isValid(HttpServletRequest req) {
         String email = req.getParameter(KeyWordsList.EMAIL);
+        putValidateParameterMap(KeyWordsList.EMAIL, email);
         String password = req.getParameter(KeyWordsList.PASSWORD);
+        putValidateParameterMap(KeyWordsList.PASSWORD, password);
         String name = req.getParameter(KeyWordsList.NAME);
+        putValidateParameterMap(KeyWordsList.NAME, name);
         String address = req.getParameter(KeyWordsList.ADDRESS);
+        putValidateParameterMap(KeyWordsList.ADDRESS, address);
         String number = req.getParameter(KeyWordsList.NUMBER);
+        putValidateParameterMap(KeyWordsList.NUMBER, number);
 
         return  isParameterValid(email, EMAIL, WRONG_EMAIL_NAME, WRONG_EMAIL_MASSAGE) &
                 isParameterValid(password, PASSWORD, WRONG_PASSWORD_NAME, WRONG_PASSWORD_MASSAGE) &

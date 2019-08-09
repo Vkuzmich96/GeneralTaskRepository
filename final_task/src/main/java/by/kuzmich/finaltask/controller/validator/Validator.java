@@ -33,12 +33,23 @@ public abstract class Validator {
     WRONG_NUMBER_MASSAGE = "invalid number",
     WRONG_NUMBER_NAME = "wrongNumber";
 
-    public abstract boolean isValid (HttpServletRequest req);
     private Map<String, String> errorMap = new HashMap<>();
+
+    private Map<String, String> validatedParametersMap = new HashMap<>();
 
     public Map<String, String> getErrorMap() {
         return errorMap;
     }
+
+    protected void putValidateParameterMap(String name, String value){
+        validatedParametersMap.put(name, value);
+    }
+
+    public Map<String, String> getValidatedParametersMap() {
+        return validatedParametersMap;
+    }
+
+    public abstract boolean isValid (HttpServletRequest req);
 
     protected boolean isParameterValid (String parameter, Pattern pattern, String errorMapKey, String errorMessage) {
         Matcher matcher = pattern.matcher(parameter);

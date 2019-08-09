@@ -5,13 +5,13 @@
 <html>
 <head>
     <title>Profile</title>
-    <link rel="stylesheet" type="text/css" href="../support/css/util.css">
-    <link rel="stylesheet" type="text/css" href="../support/css/main.css">
 </head>
 <body>
     <u:header/>
     <c:set var="role" value="${role}"/>
     <c:set var="adminRoleNumber" value="1"/>
+    <link rel="stylesheet" type="text/css" href="../support/css/util.css">
+    <link rel="stylesheet" type="text/css" href="../support/css/main.css">
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">

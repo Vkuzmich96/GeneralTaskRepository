@@ -11,13 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 
 public class ValidationFilter implements Filter {
-    private static Map<CommandKind, String> forwardMap = new HashMap<>();
+    private static Map<CommandKind, String> redirectUrlMap = new HashMap<>();
     static {
-        forwardMap.put(CommandKind.ADD_USER, "/pages/registration.jsp");
-        forwardMap.put(CommandKind.ENTER_USER, "/enter.jsp");
+        redirectUrlMap.put(CommandKind.ADD_USER, "/pages/registration.jsp?");
+        redirectUrlMap.put(CommandKind.POST_UPDATE_USER_PROFILE, "/pages/userInformation.jsp?");
+        redirectUrlMap.put(CommandKind.ENTER_USER, "/enter.jsp?");
     }
 
     @Override
@@ -36,9 +38,27 @@ public class ValidationFilter implements Filter {
             chain.doFilter(req, resp);
         } else {
             req.setAttribute(KeyWordsList.ERROR_MASSAGE, validator.getErrorMap());
-            req.getServletContext().getRequestDispatcher(forwardMap.get(command)).forward(req, resp);
+            resp.sendRedirect(
+                    req.getContextPath() +
+                    redirectUrlMap.get(command) +
+                    printParameters(validator.getErrorMap()) +
+                    printParameters(validator.getValidatedParametersMap()));
         }
+    }
 
+    private String printParameters(Map<String, String> map){
+        Set<Map.Entry<String, String>> set = map.entrySet();
+        if (!set.isEmpty()) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (Map.Entry<String, String> entry : set) {
+                stringBuilder.append(entry.getKey());
+                stringBuilder.append('=');
+                stringBuilder.append(entry.getValue());
+                stringBuilder.append('&');
+            }
+            return stringBuilder.toString();
+        }
+        return "";
     }
 
     @Override
