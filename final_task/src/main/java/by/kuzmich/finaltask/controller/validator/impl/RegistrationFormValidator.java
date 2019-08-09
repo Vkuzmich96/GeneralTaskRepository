@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class UserFormValidator implements Validator {
+public class RegistrationFormValidator implements Validator {
 
     @Override
     public boolean isValid(HttpServletRequest req) {

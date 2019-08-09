@@ -32,7 +32,7 @@
                 <input type="file" name="file">
                 <input type="submit" value="add"/>
                 <input type="checkbox" name="isNext"> next step
-                <a href="/realise.html?number=${graph_id}"> realise map </a>
+                <a href="/release.html?number=${graph_id}"> release map </a>
                 <a href="/delete.html?number=${graph_id}"> delete map </a>
             </div>
         </div>

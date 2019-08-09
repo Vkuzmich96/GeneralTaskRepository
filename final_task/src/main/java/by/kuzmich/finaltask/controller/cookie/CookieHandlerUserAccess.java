@@ -11,7 +11,7 @@ public class CookieHandlerUserAccess implements CookieHandler<User> {
     private String COOKIE_NAME = "lawmapAccess";
     private int DELETE_KEY = 0;
     private String postfix = "*.html";
-
+    //TODO токен COOKIE_TOKEN
     public void add(HttpServletResponse resp, User user){
         Cookie cookie = new Cookie(COOKIE_NAME, user.getEmail());
         cookie.setPath(postfix);
