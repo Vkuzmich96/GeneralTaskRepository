@@ -1,5 +1,6 @@
 package by.kuzmich.finaltask.command.user;
 
+import by.kuzmich.finaltask.KeyWordsList;
 import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.command.PagePathList;
@@ -11,8 +12,12 @@ import by.kuzmich.finaltask.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 
 public class PostUserLogIn extends Command {
+    private final static String
+    WRONG_LOGIN_OR_PASSWORD_MASSAGE = "Wrong login or password try again",
+    WRONG_LOGIN_OR_PASSWORD_NAME = "wrongLoginOrPassword";
 
     private Builder<User> builder;
     private UserService userService;
@@ -31,7 +36,7 @@ public class PostUserLogIn extends Command {
     public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         User user = builder.build(req);
             if (!userService.checkPassword(user)){
-                req.setAttribute("massage", "wrong login or password try again");
+                req.setAttribute(KeyWordsList.ERROR_MASSAGE, new HashMap<String, String>().put(WRONG_LOGIN_OR_PASSWORD_NAME, WRONG_LOGIN_OR_PASSWORD_MASSAGE));
                 return PagePathList.ENTER;
             }
         cookieHandler.add(resp, user);

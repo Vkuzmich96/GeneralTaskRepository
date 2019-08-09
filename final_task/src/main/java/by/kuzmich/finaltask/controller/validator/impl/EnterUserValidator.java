@@ -1,10 +1,18 @@
 package by.kuzmich.finaltask.controller.validator.impl;
 
+import by.kuzmich.finaltask.KeyWordsList;
+import by.kuzmich.finaltask.controller.validator.Validator;
+
+
+
 import javax.servlet.http.HttpServletRequest;
 
-public class EnterUserValidator extends RegistrationFormValidator{
+public class EnterUserValidator extends Validator {
     @Override
-    public boolean isValid(HttpServletRequest req) {
-        return super.isEmailValid(req) & super.isPasswordValid(req);
+    public boolean isValid (HttpServletRequest req) {
+        String email = req.getParameter(KeyWordsList.EMAIL);
+        String password = req.getParameter(KeyWordsList.PASSWORD);
+        return isParameterValid(email, EMAIL, WRONG_LOGIN_OR_PASSWORD_NAME, WRONG_LOGIN_OR_PASSWORD_MASSAGE) &
+               isParameterValid(password, PASSWORD, WRONG_LOGIN_OR_PASSWORD_NAME, WRONG_LOGIN_OR_PASSWORD_MASSAGE);
     }
 }

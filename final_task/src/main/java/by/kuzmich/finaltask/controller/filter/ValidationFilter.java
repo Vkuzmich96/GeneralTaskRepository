@@ -35,6 +35,7 @@ public class ValidationFilter implements Filter {
         if (isValidFlag){
             chain.doFilter(req, resp);
         } else {
+            req.setAttribute(KeyWordsList.ERROR_MASSAGE, validator.getErrorMap());
             req.getServletContext().getRequestDispatcher(forwardMap.get(command)).forward(req, resp);
         }
 

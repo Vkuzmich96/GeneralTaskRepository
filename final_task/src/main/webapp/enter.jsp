@@ -24,20 +24,19 @@
                 <span class="login100-form-title p-b-33">
                     Account Login
 				</span>
-                <c:if test="${not empty massage}">
+                <c:if test="${not empty errorMassage}">
                     <div class="text-center">
                         <span class="txt1">
-                            ${massage}
+                                ${errorMassage.get("wrongLoginOrPassword")}
                         </span>
                     </div>
                 </c:if>
-                ${wrongEmail}
+
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                     <input type="text" name="email" class="input100" placeholder="Email">
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>
-                ${wrongPassword}
                 <div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
                     <input type="text" class="input100" name="password"  placeholder="Password" >
                     <span class="focus-input100-1"></span>

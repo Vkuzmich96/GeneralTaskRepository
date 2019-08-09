@@ -1,14 +1,8 @@
 package by.kuzmich.finaltask.controller.validator.impl;
 
 import by.kuzmich.finaltask.KeyWordsList;
-import by.kuzmich.finaltask.controller.validator.PatternRegExList;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static by.kuzmich.finaltask.controller.validator.WarningMessageList.*;
-import static by.kuzmich.finaltask.controller.validator.WarningMessageList.WRONG_ADDRESS_MASSAGE;
 
 public class UpdateUserValidator extends RegistrationFormValidator {
 
@@ -16,61 +10,19 @@ public class UpdateUserValidator extends RegistrationFormValidator {
     public boolean isValid(HttpServletRequest req) {
         switch (req.getParameter(KeyWordsList.PROFILE_ACTION_KIND)){
             case KeyWordsList.NAME:
-                return isNameValid(req);
+                String name = req.getParameter(KeyWordsList.NAME);
+                return isParameterValid(name, STRING_WITH_NUMBERS, WRONG_NAME_NAME, WRONG_NAME_MASSAGE);
             case KeyWordsList.PASSWORD:
-                return isPasswordValid(req);
+                String password = req.getParameter(KeyWordsList.PASSWORD);
+                return isParameterValid(password, PASSWORD, WRONG_PASSWORD_NAME, WRONG_PASSWORD_MASSAGE);
             case KeyWordsList.ADDRESS:
-                return isAddressValid(req);
+                String address = req.getParameter(KeyWordsList.ADDRESS);
+                return isParameterValid(address, STRING_WITH_NUMBERS, WRONG_ADDRESS_NAME, WRONG_ADDRESS_MASSAGE);
             case KeyWordsList.PHONE:
-                return isNumberValid(req);
+                String number = req.getParameter(KeyWordsList.PHONE);
+                return isParameterValid(number, NUMBERS, WRONG_NUMBER_NAME, WRONG_NUMBER_MASSAGE);
             default:
                 return false;
         }
     }
-
-
-    public boolean isPasswordValid (HttpServletRequest req){
-        Pattern pattern = Pattern.compile(PatternRegExList.PASSWORD);
-        Matcher matcher = pattern.matcher(req.getParameter(KeyWordsList.VALUE));
-        if (matcher.find()){
-            return true;
-        } else {
-            req.setAttribute(WRONG_PASSWORD_PARAMETER_NAME, WRONG_PASSWORD_MASSAGE);
-            return false;
-        }
-    }
-
-    public boolean isNameValid (HttpServletRequest req){
-        Pattern pattern = Pattern.compile(PatternRegExList.STRING_WITH_NUMBERS);
-        Matcher matcher = pattern.matcher(req.getParameter(KeyWordsList.VALUE));
-        if (matcher.find()){
-            return true;
-        } else {
-            req.setAttribute(WRONG_NAME_PARAMETER_NAME, WRONG_NAME_MASSAGE);
-            return false;
-        }
-    }
-
-    public boolean isAddressValid (HttpServletRequest req){
-        Pattern pattern = Pattern.compile(PatternRegExList.STRING_WITH_NUMBERS);
-        Matcher matcher = pattern.matcher(req.getParameter(KeyWordsList.VALUE));
-        if (matcher.find()){
-            return true;
-        } else {
-            req.setAttribute(WRONG_ADDRESS_PARAMETER_NAME, WRONG_ADDRESS_MASSAGE);
-            return false;
-        }
-    }
-
-    public boolean isNumberValid (HttpServletRequest req){
-        Pattern pattern = Pattern.compile(PatternRegExList.NUMBERS);
-        Matcher matcher = pattern.matcher(req.getParameter(KeyWordsList.VALUE));
-        if (matcher.find()){
-            return true;
-        } else {
-            req.setAttribute(WRONG_NUMBER_PARAMETER_NAME, WRONG_NUMBER_MASSAGE);
-            return false;
-        }
-    }
-
 }

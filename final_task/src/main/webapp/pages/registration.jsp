@@ -39,7 +39,7 @@
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>
-                ${wrongAddress}
+                ${wrongNumber}
                 <div class="wrap-input100">
                     <input type="text" placeholder="Phone number" name="number" class="input100">
                     <span class="focus-input100-1"></span>
