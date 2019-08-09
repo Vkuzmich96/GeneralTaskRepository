@@ -12,7 +12,7 @@ public abstract class Validator {
     EMAIL = Pattern.compile("^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$"),
     PASSWORD = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$"),
     STRING_WITH_NUMBERS = Pattern.compile("^[а-яА-ЯёЁa-zA-Z0-9]+$"),
-    NUMBERS = Pattern.compile("${12,}");
+    NUMBERS = Pattern.compile("^[-0-9]{12,}$");
 
     protected final static String
     WRONG_LOGIN_OR_PASSWORD_MASSAGE = "Wrong login or password",
