@@ -12,6 +12,7 @@ import by.kuzmich.finaltask.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class PostUserLogIn extends Command {
@@ -20,25 +21,17 @@ public class PostUserLogIn extends Command {
     WRONG_LOGIN_OR_PASSWORD_NAME = "wrongLoginOrPassword";
 
     private Builder<User> builder;
-    private UserService userService;
-    private LawMapNameService nameService;
     private CookieHandler<User> cookieHandler;
 
 
-    public PostUserLogIn(Builder<User> builder, UserService userService, LawMapNameService nameService, CookieHandler<User> cookieHandler) {
+    public PostUserLogIn(Builder<User> builder, CookieHandler<User> cookieHandler) {
         this.builder = builder;
-        this.userService = userService;
-        this.nameService = nameService;
         this.cookieHandler = cookieHandler;
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) {
         User user = builder.build(req);
-            if (!userService.checkPassword(user)){
-                req.setAttribute(KeyWordsList.ERROR_MASSAGE, new HashMap<String, String>().put(WRONG_LOGIN_OR_PASSWORD_NAME, WRONG_LOGIN_OR_PASSWORD_MASSAGE));
-                return PagePathList.ENTER;
-            }
         cookieHandler.add(resp, user);
         super.setRedirected(true);
         return PagePathList.NAME_LIST_REDIRECTED;

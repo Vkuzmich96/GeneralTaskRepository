@@ -33,12 +33,12 @@
                 </c:if>
 
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-                    <input type="text" value="${param.get("email")}" name="email" class="input100" placeholder="Email" maxlength="100">
+                    <input type="text" value="${param.get("email")}" name="email" class="input100" placeholder="Email" maxlength="30" pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$">
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>
                 <div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
-                    <input type="text" value="${param.get("password")}" class="input100" name="password"  placeholder="Password" maxlength="12">
+                    <input type="text" value="${param.get("password")}" class="input100" name="password"  placeholder="Password" maxlength="12" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$">
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>

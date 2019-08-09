@@ -4,6 +4,8 @@ import by.kuzmich.finaltask.KeyWordsList;
 import by.kuzmich.finaltask.command.CommandKind;
 import by.kuzmich.finaltask.controller.validator.Validator;
 import by.kuzmich.finaltask.controller.validator.ValidatorFactory;
+import by.kuzmich.finaltask.exception.ServiceException;
+import org.apache.log4j.Logger;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import java.util.Set;
 
 
 public class ValidationFilter implements Filter {
+    private static Logger logger = Logger.getLogger(ValidationFilter.class);
     private static Map<CommandKind, String> redirectUrlMap = new HashMap<>();
     static {
         redirectUrlMap.put(CommandKind.ADD_USER, "/pages/registration.jsp?");
@@ -33,7 +36,12 @@ public class ValidationFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) response;
         CommandKind command = (CommandKind) req.getAttribute(KeyWordsList.COMMAND);
         Validator validator = ValidatorFactory.getInstance().get(command);
-        boolean isValidFlag = validator.isValid(req);
+        boolean isValidFlag = false;
+        try {
+            isValidFlag = validator.isValid(req);
+        } catch (ServiceException e) {
+            logger.error(e.getMessage());
+        }
         if (isValidFlag){
             chain.doFilter(req, resp);
         } else {

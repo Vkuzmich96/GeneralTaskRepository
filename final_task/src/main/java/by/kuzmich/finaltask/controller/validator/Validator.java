@@ -1,5 +1,7 @@
 package by.kuzmich.finaltask.controller.validator;
 
+import by.kuzmich.finaltask.exception.ServiceException;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +13,8 @@ public abstract class Validator {
     protected final static Pattern
     EMAIL = Pattern.compile("^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$"),
     PASSWORD = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$"),
-    STRING_WITH_NUMBERS = Pattern.compile("^[а-яА-ЯёЁa-zA-Z0-9]+$"),
+    STRING_WITH_NUMBERS = Pattern.compile("^[-а-яА-ЯёЁa-zA-Z0-9]{4,25}$"),
+    STRING_WITHOUT_NUMBERS = Pattern.compile("^[-а-яА-ЯёЁa-zA-Z]{4,30}$"),
     NUMBERS = Pattern.compile("^[-0-9]{12,}$");
 
     protected final static String
@@ -49,7 +52,7 @@ public abstract class Validator {
         return validatedParametersMap;
     }
 
-    public abstract boolean isValid (HttpServletRequest req);
+    public abstract boolean isValid (HttpServletRequest req) throws ServiceException;
 
     protected boolean isParameterValid (String parameter, Pattern pattern, String errorMapKey, String errorMessage) {
         Matcher matcher = pattern.matcher(parameter);

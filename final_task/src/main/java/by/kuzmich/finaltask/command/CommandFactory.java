@@ -30,8 +30,6 @@ final public class CommandFactory {
             case ENTER_USER:
                 return new PostUserLogIn(
                         BuilderFactory.getInstance().get(BuilderKind.USER_ENTER),
-                        UserServiceFactory.getInstance().get(),
-                        LawMapNameServiceFactory.getInstance().get(),
                         CookieHandlerFactory.getInstance().get()
                 );
             case MAP_GET:
