@@ -15,7 +15,7 @@ public class ValidatorFactory {
     }
     private ValidatorFactory() {}
 
-    public Validator get (CommandKind key) {
+    public RequestValidator get (CommandKind key) {
         switch (key){
             case ADD_USER:
                 return new RegistrationFormValidator(

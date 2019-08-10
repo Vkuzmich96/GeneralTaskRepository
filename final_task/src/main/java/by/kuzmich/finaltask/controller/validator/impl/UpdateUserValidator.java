@@ -1,11 +1,11 @@
 package by.kuzmich.finaltask.controller.validator.impl;
 
 import by.kuzmich.finaltask.KeyWordsList;
-import by.kuzmich.finaltask.controller.validator.Validator;
+import by.kuzmich.finaltask.controller.validator.RequestValidator;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class UpdateUserValidator extends Validator {
+public class UpdateUserValidator extends RequestValidator {
 
     @Override
     public boolean isValid(HttpServletRequest req) {

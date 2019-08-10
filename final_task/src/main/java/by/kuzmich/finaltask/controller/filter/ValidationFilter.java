@@ -2,7 +2,7 @@ package by.kuzmich.finaltask.controller.filter;
 
 import by.kuzmich.finaltask.KeyWordsList;
 import by.kuzmich.finaltask.command.CommandKind;
-import by.kuzmich.finaltask.controller.validator.Validator;
+import by.kuzmich.finaltask.controller.validator.RequestValidator;
 import by.kuzmich.finaltask.controller.validator.ValidatorFactory;
 import by.kuzmich.finaltask.exception.ServiceException;
 import org.apache.log4j.Logger;
@@ -37,7 +37,7 @@ public class ValidationFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         CommandKind command = (CommandKind) req.getAttribute(KeyWordsList.COMMAND);
-        Validator validator = ValidatorFactory.getInstance().get(command);
+        RequestValidator validator = ValidatorFactory.getInstance().get(command);
         boolean isValidFlag = false;
         try {
             isValidFlag = validator.isValid(req);
