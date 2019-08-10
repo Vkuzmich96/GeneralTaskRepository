@@ -35,8 +35,10 @@ public class UserDAOMySql extends DAOMySQL<User, User> {
             PreparedStatement statement = connection.prepareStatement(SELECT);
             statement.setString(1, email);
             ResultSet set = statement.executeQuery();
-            set.next();
-            return build(set);
+            if(set.next()) {
+                return build(set);
+            }
+            return new User();
         } catch (SQLException e){
             logger.error(ExceptionMessageList.UNABLE_TO_SELECT);
             throw new DAOException(ExceptionMessageList.UNABLE_TO_SELECT);
@@ -80,7 +82,6 @@ public class UserDAOMySql extends DAOMySQL<User, User> {
 
     @Override
     protected User prepareSelectResult(ResultSet set) throws SQLException {
-        set.next();
         return build(set);
     }
 

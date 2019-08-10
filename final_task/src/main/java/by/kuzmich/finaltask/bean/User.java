@@ -11,6 +11,9 @@ public class User {
     private String address;
     private long number;
 
+    public User() {
+    }
+
     public User(int id, String email, String password, Role role, String name, String address, long number) {
         this.id = id;
         this.email = email;

@@ -18,9 +18,6 @@ public abstract class Validator {
     NUMBERS = Pattern.compile("^[-0-9]{12}$");
 
     protected final static String
-    WRONG_LOGIN_OR_PASSWORD_MASSAGE = "Wrong login or password",
-    WRONG_LOGIN_OR_PASSWORD_NAME = "wrongLoginOrPassword",
-
     WRONG_EMAIL_MASSAGE = "invalid email",
     WRONG_EMAIL_NAME = "wrongEmail",
 

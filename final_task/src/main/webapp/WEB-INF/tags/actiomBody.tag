@@ -20,12 +20,12 @@
     <input hidden value="${actionId}" name="actionId">
     <label class="text-left">Action</label>
     <input class="form-control" type="text"  value="${name}" placeholder="enter action name" name="name">
-    <textarea class="form-control" type="text" rows="5" placeholder="enter instructions" name="instructions">
+    <textarea class="form-control" type="text" rows="4" placeholder="enter instructions" name="instructions">
         ${instructions}
     </textarea>
     <label class="text-left">Material</label>
     <input class="form-control" type="text" value="${materialName}" placeholder="enter material name" name="materialName">
-    <textarea class="form-control" type="text" rows="5" placeholder="enter description" name="description">
+    <textarea class="form-control" type="text" rows="4" placeholder="enter description" name="description">
         ${description}
     </textarea>
 </body>

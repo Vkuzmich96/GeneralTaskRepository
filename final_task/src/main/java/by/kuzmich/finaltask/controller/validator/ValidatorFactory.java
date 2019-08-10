@@ -8,9 +8,6 @@ import by.kuzmich.finaltask.controller.validator.impl.RegistrationFormValidator;
 import by.kuzmich.finaltask.controller.validator.impl.UpdateUserValidator;
 import by.kuzmich.finaltask.service.UserServiceFactory;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class ValidatorFactory {
     private static ValidatorFactory factory = new ValidatorFactory();
     public static ValidatorFactory getInstance(){
@@ -21,7 +18,9 @@ public class ValidatorFactory {
     public Validator get (CommandKind key) {
         switch (key){
             case ADD_USER:
-                return new RegistrationFormValidator();
+                return new RegistrationFormValidator(
+                        UserServiceFactory.getInstance().get()
+                );
             case ENTER_USER:
                 return new EnterUserValidator(
                     BuilderFactory.getInstance().get(BuilderKind.USER_ENTER),

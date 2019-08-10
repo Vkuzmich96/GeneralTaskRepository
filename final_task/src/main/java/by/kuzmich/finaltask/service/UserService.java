@@ -3,6 +3,8 @@ package by.kuzmich.finaltask.service;
 import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.exception.ServiceException;
 
+import java.util.List;
+
 public interface UserService {
     void add (User user) throws ServiceException;
     boolean checkPassword (User user) throws ServiceException;

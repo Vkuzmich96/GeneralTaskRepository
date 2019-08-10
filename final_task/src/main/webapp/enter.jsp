@@ -14,6 +14,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="support/css/util.css">
     <link rel="stylesheet" type="text/css" href="support/css/main.css">
+    <link rel="stylesheet" type="text/css" href="./support/vendor/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
 
@@ -26,7 +27,7 @@
 				</span>
                 <c:if test="${not empty param}">
                     <div class="text-center">
-                        <span class="txt1">
+                        <span class="txt1 text-danger">
                                 ${param.get("wrongLoginOrPassword")}
                         </span>
                     </div>

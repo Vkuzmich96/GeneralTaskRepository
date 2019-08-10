@@ -9,6 +9,7 @@ import by.kuzmich.finaltask.service.UserService;
 import org.apache.log4j.Logger;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserServiceImpl implements UserService {
     private static Logger logger = Logger.getLogger(MapServiceImpl.class);

@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 public class EnterUserValidator extends Validator {
     private Builder<User> builder;
     private UserService userService;
+    private static final String
+    WRONG_LOGIN_OR_PASSWORD_MASSAGE = "Wrong login or password",
+    WRONG_LOGIN_OR_PASSWORD_NAME = "wrongLoginOrPassword";
 
     public EnterUserValidator(Builder<User> builder, UserService userService) {
         this.builder = builder;
