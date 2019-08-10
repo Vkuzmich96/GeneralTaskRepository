@@ -21,8 +21,8 @@ public class RegistrationFormValidator extends Validator {
         putValidateParameterMap(KeyWordsList.NUMBER, number);
         return  isParameterValid(email, EMAIL, WRONG_EMAIL_NAME, WRONG_EMAIL_MASSAGE) &
                 isParameterValid(password, PASSWORD, WRONG_PASSWORD_NAME, WRONG_PASSWORD_MASSAGE) &
-                isParameterValid(name, STRING_WITHOUT_NUMBERS, WRONG_NAME_NAME, WRONG_NAME_MASSAGE) &
-                isParameterValid(address, STRING_WITH_NUMBERS, WRONG_ADDRESS_NAME, WRONG_ADDRESS_MASSAGE) &
+                isParameterValid(name, NAME, WRONG_NAME_NAME, WRONG_NAME_MASSAGE) &
+                isParameterValid(address, ADDRESS, WRONG_ADDRESS_NAME, WRONG_ADDRESS_MASSAGE) &
                 isParameterValid(number, NUMBERS, WRONG_NUMBER_NAME, WRONG_NUMBER_MASSAGE);
     }
 }

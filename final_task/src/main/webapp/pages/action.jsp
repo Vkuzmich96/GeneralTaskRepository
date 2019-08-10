@@ -20,13 +20,13 @@
         <h4> ${action.getName()} </h4>
         <c:set var="lawerRoleNumber" value="2"/>
         <c:if test="${lawerRoleNumber==role.getNumber()}">
-            <a href="/updateActionMenu.html?number=${action.getId()}"> update </a>
+            <a href="/updateActionMenu.html?number=${action.getId()}" class="btn btn-primary"> update </a>
         </c:if>
         <p> ${action.getInstructions()} </p>
         <c:set var="prefix" value="/doks/"/>
         <c:forEach var="material" items="${action.getMaterials()}">
             <p>
-                ${material.getName()} <a href = ${prefix}${material.getUrl()}> download </a>
+                ${material.getName()} <a href="${prefix}${material.getUrl()}" class="btn btn-primary"> download </a>
             </p>
             <p> ${material.getDiscription()} </p>
         </c:forEach>

@@ -16,7 +16,7 @@
             <p class="text-left">Create map</p>
             <input class="form-control" type="text" placeholder="enter map name" name="name"/>
             <div class="text-left">
-                <input type="submit" value="create"/>
+                <input type="submit" class="btn btn-primary" value="create"/>
             </div>
         </div>
     </form>
@@ -30,10 +30,10 @@
             <u:actiomBody/>
             <div class="text-left">
                 <input type="file" name="file">
-                <input type="submit" value="add"/>
+                <input type="submit" class="btn btn-primary" value="add"/>
                 <input type="checkbox" name="isNext"> next step
-                <a href="/release.html?number=${graph_id}"> release map </a>
-                <a href="/delete.html?number=${graph_id}"> delete map </a>
+                <a href="/release.html?number=${graph_id}" class="btn btn-primary"> release map </a>
+                <a href="/delete.html?number=${graph_id}" class="btn btn-primary"> delete map </a>
             </div>
         </div>
     </form>

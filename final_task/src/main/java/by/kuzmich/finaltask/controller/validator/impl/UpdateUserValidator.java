@@ -8,19 +8,19 @@ public class UpdateUserValidator extends RegistrationFormValidator {
 
     @Override
     public boolean isValid(HttpServletRequest req) {
+        String value = req.getParameter(KeyWordsList.VALUE);
+        String kind = req.getParameter(KeyWordsList.PROFILE_ACTION_KIND);
+        putValidateParameterMap(KeyWordsList.VALUE, value);
+        putValidateParameterMap(KeyWordsList.PROFILE_ACTION_KIND, kind);
         switch (req.getParameter(KeyWordsList.PROFILE_ACTION_KIND)){
             case KeyWordsList.NAME:
-                String name = req.getParameter(KeyWordsList.NAME);
-                return isParameterValid(name, STRING_WITH_NUMBERS, WRONG_NAME_NAME, WRONG_NAME_MASSAGE);
+                return isParameterValid(value, NAME, WRONG_NAME_NAME, WRONG_NAME_MASSAGE);
             case KeyWordsList.PASSWORD:
-                String password = req.getParameter(KeyWordsList.PASSWORD);
-                return isParameterValid(password, PASSWORD, WRONG_PASSWORD_NAME, WRONG_PASSWORD_MASSAGE);
+                return isParameterValid(value, PASSWORD, WRONG_PASSWORD_NAME, WRONG_PASSWORD_MASSAGE);
             case KeyWordsList.ADDRESS:
-                String address = req.getParameter(KeyWordsList.ADDRESS);
-                return isParameterValid(address, STRING_WITH_NUMBERS, WRONG_ADDRESS_NAME, WRONG_ADDRESS_MASSAGE);
+                return isParameterValid(value, ADDRESS, WRONG_ADDRESS_NAME, WRONG_ADDRESS_MASSAGE);
             case KeyWordsList.PHONE:
-                String number = req.getParameter(KeyWordsList.PHONE);
-                return isParameterValid(number, NUMBERS, WRONG_NUMBER_NAME, WRONG_NUMBER_MASSAGE);
+                return isParameterValid(value, NUMBERS, WRONG_NUMBER_NAME, WRONG_NUMBER_MASSAGE);
             default:
                 return false;
         }

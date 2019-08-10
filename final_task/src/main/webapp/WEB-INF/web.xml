@@ -15,6 +15,8 @@
   <filter-mapping>
     <filter-name>EncodingFilter</filter-name>
     <url-pattern>/</url-pattern>
+    <url-pattern>*.html</url-pattern>
+    <url-pattern>*.jsp</url-pattern>
   </filter-mapping>
 
   <filter>
@@ -64,6 +66,6 @@
     <filter-name>ValidationFilter</filter-name>
     <url-pattern>/registration.html</url-pattern>
     <url-pattern>/enter.html</url-pattern>
+    <url-pattern>/update.html</url-pattern>
   </filter-mapping>
-
 </web-app>

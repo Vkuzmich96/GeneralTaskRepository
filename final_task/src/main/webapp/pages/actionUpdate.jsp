@@ -19,7 +19,7 @@
             <div class="form-group text-center">
                 <u:actiomBody/>
                 <div class="text-left">
-                    <input type="submit" value="update">
+                    <input type="submit" class="btn btn-primary" value="update">
                 </div>
             </div>
         </form>

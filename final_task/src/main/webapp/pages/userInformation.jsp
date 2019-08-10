@@ -10,95 +10,107 @@
     <u:header/>
     <c:set var="role" value="${role}"/>
     <c:set var="adminRoleNumber" value="1"/>
-    <link rel="stylesheet" type="text/css" href="../support/css/util.css">
-    <link rel="stylesheet" type="text/css" href="../support/css/main.css">
+    <c:set var="kind" value="${param.get('kind')}"/>
+    <c:set var="val" value="${param.get('value')}"/>
+    <c:choose>
+        <c:when test="${kind eq 'name'}">
+            <c:set var="wrongName" value="${val}"/>
+        </c:when>
+        <c:when test="${kind eq 'role'}">
+            <c:set var="wrongRole" value="${val}"/>
+        </c:when>
+        <c:when test="${kind eq 'address'}">
+            <c:set var="wrongAddress" value="${val}"/>
+        </c:when>
+        <c:when test="${kind eq 'phone'}">
+            <c:set var="wrongPhone" value="${val}"/>
+        </c:when>
+    </c:choose>
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
                 <div>
-                    <span>
-                        current name: ${user.getName()}
-                    </span>
-                    <form class="wrap-input100" action="/update.html" method="post">
+                    <div class="text-center">
+                        <span class="txt1">
+                            current name: ${user.getName()}
+                        </span>
+                    </div>
+                    <form action="/update.html" method="post">
                         <input type="hidden" value="name" name="kind">
                         <div class="wrap-input100">
-                            <input type="text" class="input100" placeholder="enter new name" name="value">
+                            <input type="text" value="${wrongName}" class="input100" required placeholder="enter new name" name="value">
                             <span class="focus-input100-1"></span>
                             <span class="focus-input100-2"></span>
                         </div>
-                        <div class="container-login100-form-btn m-t-20">
-                            <input type="submit" class="login100-form-btn" value="update name">
-                        </div>
+                        <input type="submit" class="btn btn-primary" value="update name">
                     </form>
                 </div>
                 <div>
                     <c:if test="${adminRoleNumber==role.getNumber()}">
-                        <span>
-                            current role: ${user.getRole()}
-                        </span>
+                        <div class="text-center">
+                            <span class="txt1">
+                                current role: ${user.getRole()}
+                            </span>
+                        </div>
                         <form class="wrap-input100" action="/update.html" method="post">
                             <input type="hidden" value="role" name="kind">
                             <div class="wrap-input100">
-                                <select name="value" class="input100">
+                                <select value="${wrongRole}" name="value" required class="input100">
                                     <option>User</option>
                                     <option>Admin</option>
                                     <option>Lawyer</option>
                                 </select>
                             </div>
-                            <div class="container-login100-form-btn m-t-20">
-                                <input type="submit" class="login100-form-btn" value="update role">
-                            </div>
+                            <input type="submit" class="btn btn-primary" value="update role">
                         </form>
                     </c:if>
                 </div>
                 <div>
-                    <c:if test="${adminRoleNumber!=role.getNumber()}">
-                        <span>
-                            password
+                    <div class="text-center">
+                        <span class="txt1">
+                                password
                         </span>
-                        <form  action="/update.html" method="post">
-                            <input type="hidden" value="password" name="kind">
-                            <div class="wrap-input100">
-                                <input type="password" class="input100" placeholder="enter new password" name="value">
-                                <span class="focus-input100-1"></span>
-                                <span class="focus-input100-2"></span>
-                            </div>
-                            <div class="container-login100-form-btn m-t-20">
-                                <input type="submit" class="login100-form-btn" value="update password">
-                            </div>
-                        </form>
-                    </c:if>
-                </div>
-                <div>
-                    <span>
-                        current address: ${user.getAddress()}
-                    </span>
-                    <form action="/update.html" method="post">
-                        <input type="hidden" value="address" name="kind">
+                    </div>
+                    <form  action="/update.html" method="post">
+                        <input type="hidden" value="password" required name="kind">
                         <div class="wrap-input100">
-                            <input type="text" class="input100" placeholder="enter new address" name="value">
-                            <span class="focus-input100-1"></span>
-                            <span class="focus-input100-2"></span>
+                             <input type="password" class="input100" required placeholder="enter new password" name="value">
+                             <span class="focus-input100-1"></span>
+                             <span class="focus-input100-2"></span>
                         </div>
-                        <div class="container-login100-form-btn m-t-20">
-                            <input type="submit" class="login100-form-btn" value="update address">
-                        </div>
+                        <input type="submit" class="btn btn-primary" value="update password">
                     </form>
                 </div>
                 <div>
-                    <span>
-                        current phone: ${user.getNumber()}
-                    </span>
+                    <div class="text-center">
+                        <span class="txt1">
+                            current address: ${user.getAddress()}
+                        </span>
+                    </div>
                     <form action="/update.html" method="post">
-                        <input type="hidden" value="phone" name="kind">
+                        <input type="hidden" value="address" name="kind">
                         <div class="wrap-input100">
-                            <input type="text" class="input100" placeholder="enter new phone number" name="value">
+                            <input type="text" value="${wrongAddress}" class="input100" required placeholder="enter new address" name="value">
                             <span class="focus-input100-1"></span>
                             <span class="focus-input100-2"></span>
                         </div>
-                        <div class="container-login100-form-btn m-t-20">
-                            <input type="submit" class="login100-form-btn" value="update phone number">
+                        <input type="submit" class="btn btn-primary" value="update address">
+                    </form>
+                </div>
+                <div>
+                    <div class="text-center">
+                        <span class="txt1">
+                            current phone: +${user.getNumber()}
+                        </span>
+                    </div>
+                    <form action="/update.html" method="post">
+                        <input type="hidden" value="phone" name="kind">
+                        <div class="wrap-input100">
+                            <input type="text" value="${wrongPhone}" class="input100" required placeholder="enter new phone number" name="value">
+                            <span class="focus-input100-1"></span>
+                            <span class="focus-input100-2"></span>
                         </div>
+                        <input type="submit" class="btn btn-primary" value="update phone number">
                     </form>
                 </div>
             </div>

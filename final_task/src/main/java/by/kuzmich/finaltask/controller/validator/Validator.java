@@ -13,9 +13,9 @@ public abstract class Validator {
     protected final static Pattern
     EMAIL = Pattern.compile("^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$"),
     PASSWORD = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$"),
-    STRING_WITH_NUMBERS = Pattern.compile("^[-а-яА-ЯёЁa-zA-Z0-9]{4,25}$"),
-    STRING_WITHOUT_NUMBERS = Pattern.compile("^[-а-яА-ЯёЁa-zA-Z]{4,30}$"),
-    NUMBERS = Pattern.compile("^[-0-9]{12,}$");
+    ADDRESS = Pattern.compile("^[-а-яА-ЯёЁa-zA-Z0-9 ,.]{4,50}$"),
+    NAME = Pattern.compile("^[-а-яА-ЯёЁa-zA-Z ]{4,45}$"),
+    NUMBERS = Pattern.compile("^[-0-9]{12}$");
 
     protected final static String
     WRONG_LOGIN_OR_PASSWORD_MASSAGE = "Wrong login or password",
