@@ -45,8 +45,6 @@ final public class CommandFactory {
                 );
             case GET_LAWER_MENU:
                 return new GetLawerMenu();
-            case ADD_MATERIAL:
-                return new PostMaterial();
             case GET_ALL_MAP_NAMES:
                 return new GetAllMpaNames(
                         LawMapNameServiceFactory.getInstance().get()
