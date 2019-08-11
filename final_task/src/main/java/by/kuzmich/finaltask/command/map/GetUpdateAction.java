@@ -18,7 +18,7 @@ public class GetUpdateAction extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String number = req.getParameter(KeyWordsList.NUMBER);
         Action action = actionService.get(number);
         req.setAttribute(KeyWordsList.ACTION, action);

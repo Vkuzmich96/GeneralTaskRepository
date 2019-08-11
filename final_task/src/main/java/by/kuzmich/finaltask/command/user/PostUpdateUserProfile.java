@@ -23,7 +23,7 @@ public class PostUpdateUserProfile extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String kind  = req.getParameter(KeyWordsList.PROFILE_ACTION_KIND);
         switch (kind){
             case KeyWordsList.NAME:

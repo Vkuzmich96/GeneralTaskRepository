@@ -17,7 +17,7 @@ public class PostRealise extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String number = req.getParameter(KeyWordsList.NUMBER);
         nameService.realise(number);
         super.setRedirected(true);

@@ -24,18 +24,17 @@ public class GeneralServlet extends HttpServlet {
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CommandKind kind = (CommandKind) req.getAttribute(KeyWordsList.COMMAND);
         Command command = CommandFactory.getInstance().get(kind);
-        String url = null;
+        String path = null;
         try {
-            PagePathList pathEnum = command.execute(req, resp);
-            url = pathEnum.toString();
+            path = command.execute(req, resp);
         } catch (ServiceException e) {
             logger.error(e.getMessage());
             e.printStackTrace();
         }
         if(command.isRedirected()){
-            doRedirect(url,req,resp);
+            doRedirect(path,req,resp);
         }else{
-            doForward(url,req,resp);
+            doForward(path,req,resp);
         }
     }
 

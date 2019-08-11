@@ -19,7 +19,7 @@ public class PostMaterial extends Command {
     private String PARAM_NAME = "file";
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
 //        try {
 //            Part filePart = req.getPart(PARAM_NAME);
 //            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();

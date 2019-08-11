@@ -25,7 +25,7 @@ public class PostUserRegistration extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         User user = builder.build(req);
         service.add(user);
         cookieHandler.add(resp, user);

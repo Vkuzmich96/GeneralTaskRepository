@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class GetLawerMenu extends Command {
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         super.setRedirected(true);
         return PagePathList.LAWER_MENU;
     }

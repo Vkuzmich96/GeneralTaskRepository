@@ -16,7 +16,7 @@ public class GetAction extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String key = req.getParameter("id");
         req.setAttribute("action",service.get(key));
         return PagePathList.ACTION;

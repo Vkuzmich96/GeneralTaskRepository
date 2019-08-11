@@ -39,7 +39,7 @@ public class PostAction extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         Action child = childActionBuilder.build(req);
         int childId = actionService.add(child);
         child.setId(childId);

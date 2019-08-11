@@ -21,7 +21,7 @@ public class PostMapName extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String name = req.getParameter(KeyWordsList.NAME);
         LawMapName lawMapName = new LawMapName(0, name, false);
         int id = nameService.add(lawMapName);

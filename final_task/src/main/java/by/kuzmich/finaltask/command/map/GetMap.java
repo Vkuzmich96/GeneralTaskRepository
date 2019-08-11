@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GetMap extends Command {
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String number = req.getParameter(KeyWordsList.NUMBER);
         req.setAttribute(KeyWordsList.NUMBER, number);
         return PagePathList.MAP;

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
 public abstract class Command {
-    public abstract PagePathList execute (HttpServletRequest req, HttpServletResponse resp) throws ServiceException;
+    public abstract String execute (HttpServletRequest req, HttpServletResponse resp) throws ServiceException;
     private boolean isRedirected;
 
     public boolean isRedirected() {

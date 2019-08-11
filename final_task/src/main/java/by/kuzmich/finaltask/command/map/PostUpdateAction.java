@@ -19,7 +19,7 @@ public class PostUpdateAction extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String actionId = req.getParameter(KeyWordsList.ACTION_ID);
         Action action = actionService.get(actionId);
         String name = req.getParameter(KeyWordsList.NAME);

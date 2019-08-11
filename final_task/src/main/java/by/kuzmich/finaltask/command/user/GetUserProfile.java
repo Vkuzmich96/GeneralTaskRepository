@@ -21,7 +21,7 @@ public class GetUserProfile extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String login = sessionHandler.getLogin(req);
         User user = userService.get(login);
         req.setAttribute(KeyWordsList.USER, user);

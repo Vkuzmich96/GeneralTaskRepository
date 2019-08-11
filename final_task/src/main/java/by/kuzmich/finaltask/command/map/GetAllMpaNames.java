@@ -16,7 +16,7 @@ public class GetAllMpaNames extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         req.setAttribute("maps", nameService.getAll());
         return PagePathList.NAME_LIST_FORWARDED;
     }

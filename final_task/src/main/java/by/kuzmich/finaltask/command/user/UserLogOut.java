@@ -20,7 +20,7 @@ public class UserLogOut extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp){
+    public String execute(HttpServletRequest req, HttpServletResponse resp){
         cookieHandler.delete(req, resp);
         sessionHandler.close(req);
         super.setRedirected(true);

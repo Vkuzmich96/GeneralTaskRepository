@@ -23,7 +23,7 @@ public class CreateSession extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String login = cookieHandler.getValue(req);
         User user = service.get(login);
         sessionHandler.create(req, user);

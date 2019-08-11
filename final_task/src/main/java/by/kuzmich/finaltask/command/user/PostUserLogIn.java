@@ -30,7 +30,7 @@ public class PostUserLogIn extends Command {
     }
 
     @Override
-    public PagePathList execute(HttpServletRequest req, HttpServletResponse resp) {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) {
         User user = builder.build(req);
         cookieHandler.add(resp, user);
         super.setRedirected(true);
