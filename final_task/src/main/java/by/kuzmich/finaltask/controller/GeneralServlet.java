@@ -4,7 +4,7 @@ import by.kuzmich.finaltask.KeyWordsList;
 import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.command.CommandFactory;
 import by.kuzmich.finaltask.command.CommandKind;
-import by.kuzmich.finaltask.command.PagePathList;
+import by.kuzmich.finaltask.exception.ControllerException;
 import by.kuzmich.finaltask.exception.ServiceException;
 import org.apache.log4j.Logger;
 
@@ -27,7 +27,7 @@ public class GeneralServlet extends HttpServlet {
         String path = null;
         try {
             path = command.execute(req, resp);
-        } catch (ServiceException e) {
+        } catch (ServiceException | ControllerException e) {
             logger.error(e.getMessage());
             e.printStackTrace();
         }

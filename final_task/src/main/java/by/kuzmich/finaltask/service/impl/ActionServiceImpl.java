@@ -8,14 +8,12 @@ import by.kuzmich.finaltask.exception.DAOException;
 import by.kuzmich.finaltask.exception.ExceptionMessageList;
 import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.ActionService;
-import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ActionServiceImpl implements ActionService {
-    private static Logger logger = Logger.getLogger(ActionServiceImpl.class);
 
     private Connection connection;
     private DAO<Action, Action> actionDAO;
@@ -40,8 +38,7 @@ public class ActionServiceImpl implements ActionService {
             }
             return actionId;
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
 
@@ -52,8 +49,7 @@ public class ActionServiceImpl implements ActionService {
             action.setMaterials(buildMaterials(key));
             return action;
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
 
@@ -71,8 +67,7 @@ public class ActionServiceImpl implements ActionService {
         try {
             return materialDAO.insert(material);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
 
@@ -83,8 +78,7 @@ public class ActionServiceImpl implements ActionService {
             materialDAO.update(material);
         }
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
 }

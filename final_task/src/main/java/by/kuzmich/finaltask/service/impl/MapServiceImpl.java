@@ -42,8 +42,7 @@ public class MapServiceImpl implements MapService {
             Graph rootGraph = buildRootNode(edgeList, number);
             return buildNodes(edgeList, rootGraph);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
 
@@ -78,8 +77,7 @@ public class MapServiceImpl implements MapService {
         try {
             return graphEdgeDAO.insert(edge);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
 
@@ -87,8 +85,7 @@ public class MapServiceImpl implements MapService {
         try {
             return graphEdgeDAO.selectAll();
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
 }

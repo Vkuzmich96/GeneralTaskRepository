@@ -43,8 +43,7 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
                 return EMPTY_RESULT_SET;
             }
         } catch (SQLException e){
-            logger.error(ExceptionMessageList.UNABLE_TO_UPDATE);
-            throw new DAOException(ExceptionMessageList.UNABLE_TO_UPDATE);
+            throw new DAOException(ExceptionMessageList.UNABLE_TO_UPDATE, e);
         } finally {
             try {
                 connection.close();
@@ -61,8 +60,7 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
             ResultSet resultSet = statement.executeQuery();
             return buildList(resultSet);
         } catch (SQLException e){
-            logger.error(ExceptionMessageList.UNABLE_TO_SELECT);
-            throw new DAOException(ExceptionMessageList.UNABLE_TO_SELECT);
+            throw new DAOException(ExceptionMessageList.UNABLE_TO_SELECT, e);
         } finally {
             try {
                 connection.close();
@@ -80,8 +78,7 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
             ResultSet set = statement.executeQuery();
             return prepareSelectResult(set);
         } catch (SQLException e){
-            logger.error(ExceptionMessageList.UNABLE_TO_SELECT);
-            throw new DAOException(ExceptionMessageList.UNABLE_TO_SELECT);
+            throw new DAOException(ExceptionMessageList.UNABLE_TO_SELECT, e);
         } finally {
             try {
                 connection.close();
@@ -98,8 +95,7 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
             statement.setInt(1, id);
             statement.execute();
         } catch (SQLException e){
-            logger.error(ExceptionMessageList.UNABLE_TO_DELETE);
-            throw new DAOException(ExceptionMessageList.UNABLE_TO_DELETE);
+            throw new DAOException(ExceptionMessageList.UNABLE_TO_DELETE, e);
         } finally {
             try {
                 connection.close();
@@ -116,8 +112,7 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
             prepareStatementUpdate(statement, object);
             statement.execute();
         } catch (SQLException e){
-            logger.error(ExceptionMessageList.UNABLE_TO_UPDATE);
-            throw new DAOException(ExceptionMessageList.UNABLE_TO_UPDATE);
+            throw new DAOException(ExceptionMessageList.UNABLE_TO_UPDATE, e);
         } finally {
             try {
                 connection.close();

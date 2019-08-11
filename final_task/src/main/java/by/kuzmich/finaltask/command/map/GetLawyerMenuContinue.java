@@ -6,6 +6,7 @@ import by.kuzmich.finaltask.bean.GraphEdge;
 import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.command.PagePathList;
 import by.kuzmich.finaltask.controller.session.SessionHandler;
+import by.kuzmich.finaltask.exception.ControllerException;
 import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.MapService;
 
@@ -26,7 +27,7 @@ public class GetLawyerMenuContinue extends Command {
     }
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException, ControllerException {
         Map<String, String> state = new HashMap<>();
         String graphNumber = req.getParameter(KeyWordsList.NUMBER);
         state.put(KeyWordsList.GRAPH_ID, graphNumber);

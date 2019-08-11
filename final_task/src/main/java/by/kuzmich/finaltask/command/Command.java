@@ -1,6 +1,7 @@
 package by.kuzmich.finaltask.command;
 
 import by.kuzmich.finaltask.KeyWordsList;
+import by.kuzmich.finaltask.exception.ControllerException;
 import by.kuzmich.finaltask.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,7 +13,7 @@ import java.util.Map;
 import java.util.Set;
 
 public abstract class Command {
-    public abstract String execute (HttpServletRequest req, HttpServletResponse resp) throws ServiceException;
+    public abstract String execute (HttpServletRequest req, HttpServletResponse resp) throws ServiceException, ControllerException;
     private boolean isRedirected;
 
     public boolean isRedirected() {
@@ -23,7 +24,7 @@ public abstract class Command {
         isRedirected = redirected;
     }
 
-    protected String translateStateInParameters (Map<String, String> state) {
+    protected String translateStateInParameters (Map<String, String> state) throws ControllerException {
         Set<Map.Entry<String, String>> set = state.entrySet();
         if (!set.isEmpty()) {
             StringBuilder stringBuilder = new StringBuilder("?");
@@ -33,7 +34,7 @@ public abstract class Command {
                 try {
                     stringBuilder.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
                 } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                    throw new ControllerException(e);
                 }
                 stringBuilder.append('&');
             }

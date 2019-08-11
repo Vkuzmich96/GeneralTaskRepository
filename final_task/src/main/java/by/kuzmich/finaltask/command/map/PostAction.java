@@ -7,6 +7,7 @@ import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.command.PagePathList;
 import by.kuzmich.finaltask.command.builder.Builder;
 import by.kuzmich.finaltask.controller.session.SessionHandler;
+import by.kuzmich.finaltask.exception.ControllerException;
 import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.ActionService;
 import by.kuzmich.finaltask.service.MapService;
@@ -37,7 +38,7 @@ public class PostAction extends Command {
     }
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException, ControllerException {
         Map<String, String> state = getState(req);
         Action child = childActionBuilder.build(req);
         int childId = actionService.add(child);

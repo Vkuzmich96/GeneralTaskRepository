@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    private static Logger logger = Logger.getLogger(MapServiceImpl.class);
     private DAO<User, User> dao;
 
     public UserServiceImpl(DAO<User, User> dao) {
@@ -23,8 +22,7 @@ public class UserServiceImpl implements UserService {
         try {
             dao.insert(user);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
 
@@ -33,8 +31,7 @@ public class UserServiceImpl implements UserService {
             User userDB = dao.select(user.getEmail());
             return user.equals(userDB);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
 
@@ -42,8 +39,7 @@ public class UserServiceImpl implements UserService {
         try {
             return dao.select(login);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
 
@@ -51,8 +47,7 @@ public class UserServiceImpl implements UserService {
         try {
             dao.update(user);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
 }

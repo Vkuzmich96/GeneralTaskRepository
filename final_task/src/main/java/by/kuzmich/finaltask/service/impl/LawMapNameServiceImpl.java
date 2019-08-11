@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class LawMapNameServiceImpl implements LawMapNameService {
-    private static Logger logger = Logger.getLogger(LawMapNameServiceImpl.class);
     private DAO<LawMapName, LawMapName> dao;
     private final boolean MAP_IS_READY_FLAG = true;
 
@@ -24,8 +23,7 @@ public class LawMapNameServiceImpl implements LawMapNameService {
         try {
             return dao.selectAll();
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
 
@@ -33,8 +31,7 @@ public class LawMapNameServiceImpl implements LawMapNameService {
         try {
             return dao.insert(name);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
 
@@ -43,8 +40,7 @@ public class LawMapNameServiceImpl implements LawMapNameService {
         try {
             dao.delete(key);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
 
@@ -55,8 +51,7 @@ public class LawMapNameServiceImpl implements LawMapNameService {
             name.setReadiness(MAP_IS_READY_FLAG);
             dao.update(name);
         } catch (DAOException e) {
-            logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
-            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
 }
