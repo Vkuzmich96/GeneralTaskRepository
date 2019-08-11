@@ -83,10 +83,9 @@ public class MapServiceImpl implements MapService {
         }
     }
 
-    public GraphEdge getLastEdge(String key) throws ServiceException {
+    public List<GraphEdge> getAll(String key) throws ServiceException {
         try {
-            List<GraphEdge> edges = graphEdgeDAO.select(key);
-            return edges.isEmpty() ? new GraphEdge() : edges.get(edges.size() - 1);
+            return graphEdgeDAO.selectAll();
         } catch (DAOException e) {
             logger.error(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);
             throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS);

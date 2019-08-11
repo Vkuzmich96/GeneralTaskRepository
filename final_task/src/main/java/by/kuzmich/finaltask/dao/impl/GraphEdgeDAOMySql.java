@@ -28,7 +28,7 @@ public class GraphEdgeDAOMySql extends DAOMySQL<GraphEdge, List<GraphEdge>> {
     public GraphEdgeDAOMySql(Connection connection) {
         super(connection,
              "INSERT INTO `lawmapsdb`.`action_graphs` VALUES (?, ?, ?)",
-             "SELECT * FROM action_graphs.action",
+             "SELECT * FROM lawmapsdb.action_graphs",
              "SELECT * FROM lawmapsdb.action_graphs WHERE law_map_name_id = ?",
              "DELETE FROM `lawmapsdb`.`action_graphs` WHERE law_map_name_id = ?",
              "UPDATE `lawmapsdb`.`action_graphs` SET `law_map_name_id` = ?, `parent` = ?, `child` = ? WHERE `id` = ?"

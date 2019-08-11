@@ -24,7 +24,6 @@ import java.util.Set;
 
 public class PostAction extends Command {
     private String DIRECTORY = "C:\\Users\\user\\IdeaProjects\\GeneralTaskRepository\\final_task\\src\\main\\webapp\\doks";
-    private String NEXT_STEP_FLAG_ON = "on";
     private ActionService actionService;
     private Builder<Action> childActionBuilder;
     private Builder<Action> parentActionBuilder;
@@ -56,7 +55,7 @@ public class PostAction extends Command {
     }
 
     private void nextStepHandler(HttpServletRequest req, Map<String, String> state){
-        if (NEXT_STEP_FLAG_ON.equals(req.getParameter(KeyWordsList.IS_NEXT))){
+        if (KeyWordsList.NEXT_STEP_FLAG_ON.equals(req.getParameter(KeyWordsList.IS_NEXT))){
             incrementStep(state);
             changeActualActionId(state);
         }
@@ -87,26 +86,6 @@ public class PostAction extends Command {
         String id = state.get(KeyWordsList.ACTION_ID);
         state.put(KeyWordsList.ACTUAL_ACTION_ID, id);
     }
-
-    private String translateStateInParameters (Map<String, String> state) {
-        Set<Map.Entry<String, String>> set = state.entrySet();
-        if (!set.isEmpty()) {
-            StringBuilder stringBuilder = new StringBuilder("?");
-            for (Map.Entry<String, String> entry : set) {
-                stringBuilder.append(entry.getKey());
-                stringBuilder.append('=');
-                try {
-                    stringBuilder.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                stringBuilder.append('&');
-            }
-            return stringBuilder.toString();
-        }
-        return KeyWordsList.EMPTY_STRING;
-    }
-
 
     private void fileHandler(HttpServletRequest req){
         try {

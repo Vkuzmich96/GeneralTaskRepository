@@ -26,11 +26,6 @@
     <div class="container">
         <form action="/addAction.html" method="post" enctype="multipart/form-data">
             <div>
-                <c:out value="$$$$$$$$$"/>
-                <c:out value="${param.get('graphId')}"/>
-                <c:out value="${param.get('step')}"/>
-                <c:out value="${param.get('actionId')}"/>
-                <c:out value="${param.get('actualActionId')}"/>
                 <input type="hidden" value="${param.get('graphId')}" name="graphId">
                 <input type="hidden" value="${param.get('step')}" name="step">
                 <input type="hidden" value="${param.get('actionId')}" name="actionId">

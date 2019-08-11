@@ -11,6 +11,12 @@ import by.kuzmich.finaltask.service.MapService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class GetLawyerMenuContinue extends Command {
     private SessionHandler sessionHandler;
@@ -21,22 +27,25 @@ public class GetLawyerMenuContinue extends Command {
         this.mapService = mapService;
     }
 
-    //todo нашёл баг, если сразу после логирования переходить к добавлению нового этапа, то экшен добавится в конец,
-    //todo а не перейдёт на новый этап. Нам нужен предпоследний предок, чтобы исправить эту проблему.
-    //todo Резюме: добавить метод который будет просто тащить из бд список рёбер графа и доставть всё что нам нужно здесь.
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+        Map<String, String> state = new HashMap<>();
         String graphNumber = req.getParameter(KeyWordsList.NUMBER);
-        GraphEdge lastEdge = mapService.getLastEdge(graphNumber);
-        sessionHandler.setGraphId(req, Integer.parseInt(graphNumber));
-        Action parent = lastEdge.getParent();
-        int parentId = parent != null ? parent.getId() : 0;
-        if (parentId != 0) {
-            sessionHandler.incrementStep(req);
-            sessionHandler.setActionId(req, parentId);
-            sessionHandler.setActualActionId(req, parentId);
+        state.put(KeyWordsList.GRAPH_ID, graphNumber);
+        List<GraphEdge> edges = mapService.getAll(graphNumber);
+        Action actionParent = getLastEdge(edges).getParent();
+        String actionId = String.valueOf(getLastEdge(edges).getChild().getId());
+        String actionActualId = actionParent != null ? String.valueOf(actionParent.getId()) : KeyWordsList.EMPTY_STRING;
+        state.put(KeyWordsList.STEP, KeyWordsList.SECOND_STEP_STRING);
+        state.put(KeyWordsList.ACTUAL_ACTION_ID, actionActualId);
+        if (actionParent!=null) {
+            state.put(KeyWordsList.ACTION_ID, actionId);
         }
         super.setRedirected(true);
-        return PagePathList.LAWER_MENU;
+        return PagePathList.LAWER_MENU + translateStateInParameters(state);
+    }
+
+    private GraphEdge getLastEdge (List<GraphEdge> edges) {
+        return edges.get(edges.size() -1);
     }
 }
