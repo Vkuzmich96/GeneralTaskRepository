@@ -27,10 +27,6 @@ public class PostUserLogIn extends Command {
         String email = req.getParameter(KeyWordsList.EMAIL);
         User user = userService.get(email);
         sessionHandler.create(req, user);
-
-//        User user = builder.build(req);
-//        cookieHandler.add(resp, user);
-//        sessionHandler.create(req, user);
         super.setRedirected(true);
         return PagePathList.NAME_LIST_REDIRECTED;
     }

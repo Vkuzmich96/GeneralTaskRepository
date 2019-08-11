@@ -5,6 +5,7 @@ import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.command.PagePathList;
 import by.kuzmich.finaltask.command.builder.Builder;
 import by.kuzmich.finaltask.controller.cookie.CookieHandler;
+import by.kuzmich.finaltask.controller.session.SessionHandler;
 import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.UserService;
 
@@ -16,21 +17,21 @@ public class PostUserRegistration extends Command {
 
     private Builder<User> builder;
     private UserService service;
-    private CookieHandler<User> cookieHandler;
+    private SessionHandler sessionHandler;
 
-    public PostUserRegistration(Builder<User> builder, UserService service, CookieHandler<User> cookieHandler) {
+    public PostUserRegistration(Builder<User> builder, UserService service, SessionHandler sessionHandler) {
         this.builder = builder;
         this.service = service;
-        this.cookieHandler = cookieHandler;
+        this.sessionHandler = sessionHandler;
     }
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         User user = builder.build(req);
         service.add(user);
-        cookieHandler.add(resp, user);
+        sessionHandler.create(req, user);
         super.setRedirected(true);
-        return PagePathList.ENTER;
+        return PagePathList.NAME_LIST_REDIRECTED;
     }
 
 }

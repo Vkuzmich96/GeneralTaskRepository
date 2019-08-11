@@ -25,7 +25,7 @@ final public class CommandFactory {
                 return new PostUserRegistration(
                         BuilderFactory.getInstance().get(BuilderKind.USER_REGISTRATION),
                         UserServiceFactory.getInstance().get(),
-                        CookieHandlerFactory.getInstance().get()
+                        SessionHandlerFactory.getInstance().get()
                 );
             case ENTER_USER:
                 return new PostUserLogIn(
