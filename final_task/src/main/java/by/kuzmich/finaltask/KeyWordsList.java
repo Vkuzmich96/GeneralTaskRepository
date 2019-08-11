@@ -6,7 +6,7 @@ final public class KeyWordsList {
     ROLE = "role",
     LOGIN = "login",
     EMPTY_COOKIE_VALUE = "",
-    GRAPH_ID = "graph_id",
+    GRAPH_ID = "graphId",
     STEP = "step",
     ACTION_ID = "actionId",
     ACTUAL_ACTION_ID = "actualActionId",

@@ -43,22 +43,50 @@ public class PostAction extends Command {
         Action child = childActionBuilder.build(req);
         int childId = actionService.add(child);
         child.setId(childId);
+        resetActionId(req);
         nextStepHandler(req);
-        sessionHandler.setActionId(req, childId);
+        req.setAttribute(KeyWordsList.ACTION_ID, childId);
         Action parent = parentActionBuilder.build(req);
-        int graphId = sessionHandler.getGraphId(req);
+        int graphId = Integer.parseInt(req.getParameter(KeyWordsList.GRAPH_ID));
+        req.setAttribute(KeyWordsList.GRAPH_ID, graphId);
         fileHandler(req);
         mapService.addEdge(new GraphEdge(graphId, parent, child));
-        super.setRedirected(true);
         return PagePathList.LAWER_MENU;
     }
 
     private void nextStepHandler(HttpServletRequest req){
         if (NEXT_STEP_FLAG_ON.equals(req.getParameter(KeyWordsList.IS_NEXT))){
-            sessionHandler.incrementStep(req);
-            sessionHandler.changeActualActionId(req);
+            incrementStep(req);
+            changeActualActionId(req);
+        } else {
+            Integer step = Integer.parseInt(req.getParameter(KeyWordsList.STEP));
+            if(step > KeyWordsList.FIRST_STEP) {
+                Integer actualParentId = Integer.parseInt(req.getParameter(KeyWordsList.ACTUAL_ACTION_ID));
+                req.setAttribute(KeyWordsList.ACTUAL_ACTION_ID, actualParentId);
+                req.setAttribute(KeyWordsList.STEP, step);
+            }
         }
     }
+
+    private void resetActionId(HttpServletRequest req){
+        String actionId = req.getParameter(KeyWordsList.ACTION_ID);
+        if (!"".equals(actionId)) {
+            Integer id = Integer.parseInt(actionId);
+            req.setAttribute(KeyWordsList.ACTION_ID, id);
+        }
+    }
+
+    public void incrementStep(HttpServletRequest req){
+        Integer step = Integer.parseInt(req.getParameter(KeyWordsList.STEP));
+        step = ++step;
+        req.setAttribute(KeyWordsList.STEP, step);
+    }
+
+    public void changeActualActionId(HttpServletRequest req) {
+        Integer id = (Integer) req.getAttribute(KeyWordsList.ACTION_ID);
+        req.setAttribute(KeyWordsList.ACTUAL_ACTION_ID, id);
+    }
+
 
     private void fileHandler(HttpServletRequest req){
         try {

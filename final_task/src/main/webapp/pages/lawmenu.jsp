@@ -8,36 +8,50 @@
 </head>
 <body>
 <u:header/>
-<c:set var="gaphId" value="${graph_id}"/>
-<c:if test="${null == gaphId}">
-<div class="container">
-    <form action="/addMap.html" method="post">
-        <div class="form-group text-center">
-            <p class="text-left">Create map</p>
-            <input class="form-control" type="text" placeholder="enter map name" name="name"/>
-            <div class="text-left">
-                <input type="submit" class="btn btn-primary" value="create"/>
+<c:if test="${empty graphId}">
+    <div class="container">
+        <form action="/addMap.html" method="post">
+            <div class="form-group text-center">
+                <p class="text-left">Create map</p>
+                <input class="form-control" type="text" placeholder="enter map name" name="name"/>
+                <div class="text-left">
+                    <input type="submit" class="btn btn-primary" value="create"/>
+                </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
 </c:if>
 
-<c:if test="${null != gaphId}">
+<c:if test="${not empty graphId}">
     <div class="container">
-    <form action="/addAction.html" method="post" enctype="multipart/form-data">
-        <div class="form-group text-center">
-            <u:actiomBody/>
-            <div class="text-left">
-                <input type="file" name="file">
-                <input type="submit" class="btn btn-primary" value="add"/>
-                <input type="checkbox" name="isNext"> next step
-                <a href="/release.html?number=${graph_id}" class="btn btn-primary"> release map </a>
-                <a href="/delete.html?number=${graph_id}" class="btn btn-primary"> delete map </a>
+        <form action="/addAction.html" method="post" enctype="multipart/form-data">
+            <div>
+                <c:out value="${step}"/>
+                <c:if test="${empty step}">
+                    <c:set var="step" value="${1}"/>
+                </c:if>
+                <c:out value="$$$$$$$$$"/>
+                <c:out value="${graphId}"/>
+                <c:out value="${step}"/>
+                <c:out value="${actionId}"/>
+                <c:out value="${actualActionId}"/>
+                <input type="hidden" value="${graphId}" name="graphId">
+                <input type="hidden" value="${step}" name="step">
+                <input type="hidden" value="${actionId}" name="actionId">
+                <input type="hidden" value="${actualActionId}" name="actualActionId">
             </div>
-        </div>
-    </form>
-    <d:graph number="${graph_id}"/>
+            <div class="form-group text-center">
+                <u:actiomBody/>
+                <div class="text-left">
+                    <input type="file" name="file">
+                    <input type="submit" class="btn btn-primary" value="add"/>
+                    <input type="checkbox" name="isNext"> next step
+                    <a href="/release.html?number=${graphId}" class="btn btn-primary"> release map </a>
+                    <a href="/delete.html?number=${graphId}" class="btn btn-primary"> delete map </a>
+                </div>
+            </div>
+        </form>
+        <d:graph number="${graphId}"/>
     </div>
 </c:if>
 </body>

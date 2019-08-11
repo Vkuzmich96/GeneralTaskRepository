@@ -10,10 +10,11 @@ public class ActionParentBuilder implements Builder <Action> {
     @Override
     public Action build(HttpServletRequest req) {
         Action parent = null;
-        int step = (int) req.getSession().getAttribute(KeyWordsList.STEP);
-        if (step!=KeyWordsList.FIRST_STEP){
+        Integer stepI = (Integer) req.getAttribute(KeyWordsList.STEP);
+        int step = stepI != null ? stepI :  KeyWordsList.FIRST_STEP;
+        if (step > KeyWordsList.FIRST_STEP){
             parent = new Action();
-            int parentId = (int) req.getSession().getAttribute(KeyWordsList.ACTUAL_ACTION_ID);
+            int parentId = (Integer) req.getAttribute(KeyWordsList.ACTUAL_ACTION_ID);
             parent.setId(parentId);
         }
         return parent;
