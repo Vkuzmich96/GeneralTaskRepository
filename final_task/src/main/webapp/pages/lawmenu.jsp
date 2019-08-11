@@ -2,20 +2,23 @@
 <%@ taglib uri="/WEB-INF/treePrinterTag" prefix="d"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="u"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>LawyerMenu</title>
 </head>
 <body>
 <u:header/>
+<fmt:setLocale value="${not empty cookie.lang.value ? cookie.lang.value : 'en'}"/>
+<fmt:setBundle basename="label"/>
 <c:if test="${param.get('graphId') eq null}">
     <div class="container">
         <form action="/addMap.html" method="post">
             <div class="form-group text-center">
-                <p class="text-left">Create map</p>
-                <input class="form-control" type="text" placeholder="enter map name" name="name"/>
+                <p class="text-left"><fmt:message key="create.map"/></p>
+                <input class="form-control" type="text" placeholder="<fmt:message key="name"/>" name="name"/>
                 <div class="text-left">
-                    <input type="submit" class="btn btn-primary" value="create"/>
+                    <input type="submit" class="btn btn-primary" value="<fmt:message key="create"/>"/>
                 </div>
             </div>
         </form>
@@ -35,10 +38,10 @@
                 <u:actiomBody/>
                 <div class="text-left">
                     <input type="file" name="file">
-                    <input type="submit" class="btn btn-primary" value="add"/>
-                    <input type="checkbox" name="isNext"> next step
-                    <a href="/release.html?number=${param.get('graphId')}" class="btn btn-primary"> release map </a>
-                    <a href="/delete.html?number=${param.get('graphId')}" class="btn btn-primary"> delete map </a>
+                    <input type="submit" class="btn btn-primary" value="<fmt:message key="add"/>"/>
+                    <input type="checkbox" name="isNext"> <fmt:message key="next.step"/>
+                    <a href="/release.html?number=${param.get('graphId')}" class="btn btn-primary"> <fmt:message key="release.map"/> </a>
+                    <a href="/delete.html?number=${param.get('graphId')}" class="btn btn-primary"> <fmt:message key="delete.map"/> </a>
                 </div>
             </div>
         </form>

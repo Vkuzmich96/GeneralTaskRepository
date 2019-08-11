@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="/WEB-INF/treePrinterTag" prefix="d"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,8 +23,10 @@
     <div class="container-login100">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
             <form action="/enter.html" method="post" class="login100-form validate-form">
+                <fmt:setLocale value="${not empty cookie.lang.value ? cookie.lang.value : 'en'}"/>
+                <fmt:setBundle basename="label"/>
                 <span class="login100-form-title p-b-33">
-                    Account Login
+                    <fmt:message key="account.login"/>
 				</span>
                 <c:if test="${not empty param}">
                     <div class="text-center">
@@ -34,26 +37,32 @@
                 </c:if>
 
                 <div class="wrap-input100">
-                    <input type="text" value="${param.get("email")}" name="email" class="input100" required placeholder="Email" minlength="4" maxlength="30" pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$">
+                    <input type="text" value="${param.get("email")}" name="email" class="input100" required placeholder="<fmt:message key="email"/>" minlength="4" maxlength="30" pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$">
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>
                 <div class="wrap-input100">
-                    <input type="text" value="${param.get("password")}" name="password" class="input100" required placeholder="Password" minlength="4" maxlength="12" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$">
+                    <input type="text" value="${param.get("password")}" name="password" class="input100" required placeholder="<fmt:message key="password"/>" minlength="4" maxlength="12" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$">
                     <span class="focus-input100-1"></span>
                     <span class="focus-input100-2"></span>
                 </div>
 
                 <div class="container-login100-form-btn m-t-20">
-                    <input type="submit" value="Sign in" class="login100-form-btn">
+                    <input type="submit" value="<fmt:message key="sign.in"/>" class="login100-form-btn">
                 </div>
 
                 <div class="text-center">
+                    <a href="/setLocale.html?locale=en&url=${pageContext.request.requestURI}" class="txt2 hov1">
+                        EN
+                    </a>
+                    <a href="/setLocale.html?locale=ru&url=${pageContext.request.requestURI}" class="txt2 hov1">
+                        RU
+                    </a>
 					<span class="txt1">
-							Create an account?
+						<fmt:message key="make.an.account"/>
 					</span>
                     <a href="/pages/registration.jsp" class="txt2 hov1">
-                        Sign up
+                        <fmt:message key="sign.up"/>
                     </a>
                 </div>
             </form>

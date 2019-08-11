@@ -34,11 +34,11 @@ public class UrlTranslationFilter implements Filter{
         map.put("/release.html", CommandKind.REALISE);
         map.put("/updateActionMenu.html", CommandKind.GET_UPDATE_ACTION);
         map.put("/updateAction.html", CommandKind.POST_UPDATE_ACTION);
+        map.put("/setLocale.html", CommandKind.GET_SET_LOCALE);
     }
 
     @Override
     public void init(FilterConfig filterConfig) {
-
     }
 
     @Override
@@ -54,6 +54,5 @@ public class UrlTranslationFilter implements Filter{
 
     @Override
     public void destroy() {
-
     }
 }

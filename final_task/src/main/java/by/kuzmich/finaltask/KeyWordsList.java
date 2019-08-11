@@ -34,7 +34,7 @@ final public class KeyWordsList {
     FIRST_STEP_STRING = "1",
     SECOND_STEP_STRING = "2",
     NEXT_STEP_FLAG_ON = "on",
-    ACCESS = "access";
+    LOCALE = "locale";
 
     public final static int FIRST_STEP = 1;
 

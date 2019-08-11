@@ -18,5 +18,6 @@ public enum CommandKind {
     DELETE,
     REALISE,
     GET_UPDATE_ACTION,
-    POST_UPDATE_ACTION
+    POST_UPDATE_ACTION,
+    GET_SET_LOCALE
 }

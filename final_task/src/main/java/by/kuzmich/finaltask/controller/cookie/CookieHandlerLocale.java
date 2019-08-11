@@ -1,19 +1,18 @@
 package by.kuzmich.finaltask.controller.cookie;
 
-import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.KeyWordsList;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class CookieHandlerUserAccess implements CookieHandler<User> {
-    private String COOKIE_NAME = "lawmapAccess";
-    private int DELETE_KEY = 0;
-    private String postfix = "*.html";
-    //TODO токен COOKIE_TOKEN
-    public void add(HttpServletResponse resp, User user){
-        Cookie cookie = new Cookie(COOKIE_NAME, user.getEmail());
+public class CookieHandlerLocale implements CookieHandler {
+    private String COOKIE_NAME = "lang";
+    private final int DELETE_LOCALE= 0;
+    private String postfix = "/";
+
+    public void add(HttpServletResponse resp, String locale){
+        Cookie cookie = new Cookie(COOKIE_NAME, locale);
         cookie.setPath(postfix);
         resp.addCookie(cookie);
     }
@@ -21,7 +20,7 @@ public class CookieHandlerUserAccess implements CookieHandler<User> {
     public void delete(HttpServletRequest req, HttpServletResponse resp){
         Cookie cookie = new Cookie(COOKIE_NAME, getValue(req));
         cookie.setPath(postfix);
-        cookie.setMaxAge(DELETE_KEY);
+        cookie.setMaxAge(DELETE_LOCALE);
         resp.addCookie(cookie);
     }
 

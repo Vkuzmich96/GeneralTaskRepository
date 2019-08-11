@@ -9,15 +9,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="/WEB-INF/treePrinterTag" prefix="d"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="u"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>NamesList</title>
 </head>
 <body>
     <u:header/>
+    <fmt:setLocale value="${not empty cookie.lang.value ? cookie.lang.value : 'en'}"/>
+    <fmt:setBundle basename="label"/>
     <div class="container">
         <div class="list-group text-center">
-            <p class="list-group-item active">Law map list:</p>
+            <p class="list-group-item active"><fmt:message key="law.map.list"/></p>
                 <c:set var="number" value="${0}"/>
                 <c:forEach var="map" items="${maps}">
                     <c:set var="readiness" value="${map.getReadiness()}"/>
@@ -28,7 +31,7 @@
                                 ${number = number + 1}
                                 <a href = /lawmap.html?number=${id}> ${name} </a>
                                 <c:if test="${!readiness}">
-                                    <a href = /continue.html?number=${id} class="btn btn-primary"> continue work </a>
+                                    <a href = /continue.html?number=${id} class="btn btn-primary"><fmt:message key="continue.work"/></a>
                                 </c:if>
                          </span>
                     </c:if>

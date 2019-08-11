@@ -48,14 +48,6 @@ final public class PostCommandFactory {
                         UserServiceFactory.getInstance().get(),
                         SessionHandlerFactory.getInstance().get()
                 );
-            case DELETE:
-                return new PostDeleteMap(
-                        LawMapNameServiceFactory.getInstance().get()
-                );
-            case REALISE:
-                return new PostRealise(
-                        LawMapNameServiceFactory.getInstance().get()
-                );
             case POST_UPDATE_ACTION:
                 return new PostUpdateAction(
                         ActionServiceFactory.getInstance().get()

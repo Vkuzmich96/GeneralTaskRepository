@@ -1,11 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: user
-  Date: 05.08.2019
-  Time: 21:42
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@tag language="java" pageEncoding="UTF-8"%>
 <html>
 <body>
@@ -17,12 +11,14 @@
         <c:set var="materialName" value="${material.getName()}"/>
         <c:set var="description" value="${material.getDiscription()}"/>
     </c:if>
+    <fmt:setLocale value="${not empty cookie.lang.value ? cookie.lang.value : 'en'}"/>
+    <fmt:setBundle basename="label"/>
     <input hidden value="${actionId}" name="actionId">
-    <label class="text-left">Action</label>
-    <input class="form-control" type="text"  value="${name}" placeholder="enter action name" name="name">
-    <textarea class="form-control" type="text" rows="4" placeholder="enter instructions" name="instructions">${instructions}</textarea>
-    <label class="text-left">Material</label>
-    <input class="form-control" type="text" value="${materialName}" placeholder="enter material name" name="materialName">
-    <textarea class="form-control" type="text" rows="4" placeholder="enter description" name="description">${description}</textarea>
+    <label class="text-left"><fmt:message key="action"/></label>
+    <input class="form-control" type="text" value="${name}" placeholder="<fmt:message key="enter.action.name"/>" name="name">
+    <textarea class="form-control" type="text" rows="4" placeholder="<fmt:message key="enter.instructions"/>" name="instructions">${instructions}</textarea>
+    <label class="text-left"><fmt:message key="material"/></label>
+    <input class="form-control" type="text" value="${materialName}" placeholder="<fmt:message key="enter.material.name"/>" name="materialName">
+    <textarea class="form-control" type="text" rows="4" placeholder="<fmt:message key="enter.description"/>" name="description">${description}</textarea>
 </body>
 </html>

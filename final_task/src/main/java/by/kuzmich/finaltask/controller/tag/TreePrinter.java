@@ -6,7 +6,6 @@ import by.kuzmich.finaltask.bean.Role;
 import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.MapService;
 import by.kuzmich.finaltask.service.MapServiceFactory;
-import by.kuzmich.finaltask.service.impl.ActionServiceImpl;
 import org.apache.log4j.Logger;
 
 import javax.servlet.jsp.JspException;

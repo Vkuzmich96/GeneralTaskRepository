@@ -40,6 +40,14 @@ final public class GetCommandFactory {
                 return new GetLawyerMenuContinue(
                         MapServiceFactory.getInstance().get()
                 );
+            case DELETE:
+                return new PostDeleteMap(
+                        LawMapNameServiceFactory.getInstance().get()
+                );
+            case REALISE:
+                return new PostRealise(
+                        LawMapNameServiceFactory.getInstance().get()
+                );
             case GET_UPDATE_ACTION:
                 return new GetUpdateAction(
                         ActionServiceFactory.getInstance().get()
@@ -48,6 +56,10 @@ final public class GetCommandFactory {
                 return new UserLogOut(
                         CookieHandlerFactory.getInstance().get(),
                         SessionHandlerFactory.getInstance().get()
+                );
+            case GET_SET_LOCALE:
+                return new GetSetLocale(
+                        CookieHandlerFactory.getInstance().get()
                 );
             default:
                 return null;

@@ -9,7 +9,7 @@ public class CookieHandlerFactory {
         return factory;
     }
 
-    public CookieHandler<User> get() {
-        return new CookieHandlerUserAccess();
+    public CookieHandler get() {
+        return new CookieHandlerLocale();
     }
 }

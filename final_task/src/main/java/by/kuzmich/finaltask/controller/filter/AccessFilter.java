@@ -1,10 +1,6 @@
 package by.kuzmich.finaltask.controller.filter;
 
-import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.command.PagePathList;
-import by.kuzmich.finaltask.KeyWordsList;
-import by.kuzmich.finaltask.controller.cookie.CookieHandler;
-import by.kuzmich.finaltask.controller.cookie.CookieHandlerFactory;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -18,11 +14,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class AccessFilter implements Filter{
-    private CookieHandler<User> cookieHandler = CookieHandlerFactory.getInstance().get();
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
+    public void init(FilterConfig filterConfig) {
     }
 
     @Override
