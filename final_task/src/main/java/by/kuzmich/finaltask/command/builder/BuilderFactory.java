@@ -2,6 +2,7 @@ package by.kuzmich.finaltask.command.builder;
 
 import by.kuzmich.finaltask.command.builder.impl.*;
 import by.kuzmich.finaltask.controller.cookie.CookieHandlerFactory;
+import by.kuzmich.finaltask.controller.session.SessionHandlerFactory;
 import by.kuzmich.finaltask.service.UserServiceFactory;
 
 final public class BuilderFactory {
@@ -22,7 +23,7 @@ final public class BuilderFactory {
             case ACTION_CHILD:
                 return new ActionChildBuilder(
                         UserServiceFactory.getInstance().get(),
-                        CookieHandlerFactory.getInstance().get()
+                        SessionHandlerFactory.getInstance().get()
                 );
             case ACTION_PARENT:
                 return new ActionParentBuilder();

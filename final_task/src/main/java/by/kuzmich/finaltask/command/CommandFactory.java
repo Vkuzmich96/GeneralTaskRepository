@@ -29,8 +29,8 @@ final public class CommandFactory {
                 );
             case ENTER_USER:
                 return new PostUserLogIn(
-                        BuilderFactory.getInstance().get(BuilderKind.USER_ENTER),
-                        CookieHandlerFactory.getInstance().get()
+                        SessionHandlerFactory.getInstance().get(),
+                        UserServiceFactory.getInstance().get()
                 );
             case MAP_GET:
                 return new GetMap();
@@ -42,12 +42,6 @@ final public class CommandFactory {
                 return new UserLogOut(
                         CookieHandlerFactory.getInstance().get(),
                         SessionHandlerFactory.getInstance().get()
-                );
-            case CREATE_SESSION:
-                return new CreateSession(
-                        UserServiceFactory.getInstance().get(),
-                        SessionHandlerFactory.getInstance().get(),
-                        CookieHandlerFactory.getInstance().get()
                 );
             case GET_LAWER_MENU:
                 return new GetLawerMenu();
@@ -80,7 +74,6 @@ final public class CommandFactory {
                 );
             case CONTINUE:
                 return new GetLawyerMenuContinue(
-                        SessionHandlerFactory.getInstance().get(),
                         MapServiceFactory.getInstance().get()
                 );
             case DELETE:

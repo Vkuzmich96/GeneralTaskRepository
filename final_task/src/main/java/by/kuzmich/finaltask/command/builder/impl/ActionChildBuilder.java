@@ -7,6 +7,7 @@ import by.kuzmich.finaltask.KeyWordsList;
 import by.kuzmich.finaltask.command.builder.Builder;
 import by.kuzmich.finaltask.command.builder.DefaultValues;
 import by.kuzmich.finaltask.controller.cookie.CookieHandler;
+import by.kuzmich.finaltask.controller.session.SessionHandler;
 import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.UserService;
 
@@ -21,16 +22,16 @@ import java.util.List;
 
 public class ActionChildBuilder implements Builder<Action> {
     private UserService userService;
-    private CookieHandler cookieHandler;
+    private SessionHandler sessionHandler;
 
-    public ActionChildBuilder(UserService userService, CookieHandler cookieHandler) {
+    public ActionChildBuilder(UserService userService, SessionHandler sessionHandler) {
         this.userService = userService;
-        this.cookieHandler = cookieHandler;
+        this.sessionHandler = sessionHandler;
     }
 
     @Override
     public Action build(HttpServletRequest req) {
-        String login = cookieHandler.getValue(req);
+        String login = sessionHandler.getLogin(req);
         User user = null;
         try {
             user = userService.get(login);

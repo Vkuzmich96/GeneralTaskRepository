@@ -14,6 +14,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class AccessFilter implements Filter{
@@ -28,11 +29,13 @@ public class AccessFilter implements Filter{
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) req;
         HttpServletResponse httpResponse = (HttpServletResponse) resp;
-        String actualCookieValue = cookieHandler.getValue(httpRequest);
-        if (KeyWordsList.EMPTY_COOKIE_VALUE.equals(actualCookieValue)){
-            httpResponse.sendRedirect(httpRequest.getContextPath() + PagePathList.REGISTRATION);
-        }else {
+        HttpSession session = httpRequest.getSession(false);
+        boolean notNull = session != null;
+        boolean hasMore = session.getAttributeNames().hasMoreElements();
+        if (notNull && hasMore){
             chain.doFilter(httpRequest, httpResponse);
+        }else {
+            httpResponse.sendRedirect(httpRequest.getContextPath() + PagePathList.REGISTRATION);
         }
     }
 

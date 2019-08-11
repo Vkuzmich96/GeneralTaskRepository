@@ -19,11 +19,9 @@ import java.util.Map;
 import java.util.Set;
 
 public class GetLawyerMenuContinue extends Command {
-    private SessionHandler sessionHandler;
     private MapService mapService;
 
-    public GetLawyerMenuContinue(SessionHandler sessionHandler, MapService mapService) {
-        this.sessionHandler = sessionHandler;
+    public GetLawyerMenuContinue(MapService mapService) {
         this.mapService = mapService;
     }
 

@@ -6,33 +6,31 @@ import by.kuzmich.finaltask.bean.User;
 import by.kuzmich.finaltask.command.PagePathList;
 import by.kuzmich.finaltask.command.builder.Builder;
 import by.kuzmich.finaltask.controller.cookie.CookieHandler;
+import by.kuzmich.finaltask.controller.session.SessionHandler;
 import by.kuzmich.finaltask.exception.ServiceException;
-import by.kuzmich.finaltask.service.LawMapNameService;
 import by.kuzmich.finaltask.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.HashMap;
 
 public class PostUserLogIn extends Command {
-    private final static String
-    WRONG_LOGIN_OR_PASSWORD_MASSAGE = "Wrong login or password try again",
-    WRONG_LOGIN_OR_PASSWORD_NAME = "wrongLoginOrPassword";
+    private SessionHandler sessionHandler;
+    private UserService userService;
 
-    private Builder<User> builder;
-    private CookieHandler<User> cookieHandler;
-
-
-    public PostUserLogIn(Builder<User> builder, CookieHandler<User> cookieHandler) {
-        this.builder = builder;
-        this.cookieHandler = cookieHandler;
+    public PostUserLogIn(SessionHandler sessionHandler, UserService userService) {
+        this.sessionHandler = sessionHandler;
+        this.userService = userService;
     }
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse resp) {
-        User user = builder.build(req);
-        cookieHandler.add(resp, user);
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+        String email = req.getParameter(KeyWordsList.EMAIL);
+        User user = userService.get(email);
+        sessionHandler.create(req, user);
+
+//        User user = builder.build(req);
+//        cookieHandler.add(resp, user);
+//        sessionHandler.create(req, user);
         super.setRedirected(true);
         return PagePathList.NAME_LIST_REDIRECTED;
     }

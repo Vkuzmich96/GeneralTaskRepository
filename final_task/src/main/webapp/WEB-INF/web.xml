@@ -36,18 +36,18 @@
     <url-pattern>/addMaterial.html</url-pattern>
   </filter-mapping>
 
-  <filter>
-    <filter-name>SessionFilter</filter-name>
-    <filter-class>by.kuzmich.finaltask.controller.filter.SessionFilter</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>SessionFilter</filter-name>
-    <url-pattern>/pages/list.html</url-pattern>
-    <url-pattern>/pages/list.jsp</url-pattern>
-    <url-pattern>/lawmap.html</url-pattern>
-    <url-pattern>/lawyerMenu.html</url-pattern>
-    <url-pattern>/addAction.html</url-pattern>
-  </filter-mapping>
+<!--  <filter>-->
+<!--    <filter-name>SessionFilter</filter-name>-->
+<!--    <filter-class>by.kuzmich.finaltask.controller.filter.SessionFilter</filter-class>-->
+<!--  </filter>-->
+<!--  <filter-mapping>-->
+<!--    <filter-name>SessionFilter</filter-name>-->
+<!--    <url-pattern>/pages/list.html</url-pattern>-->
+<!--    <url-pattern>/pages/list.jsp</url-pattern>-->
+<!--    <url-pattern>/lawmap.html</url-pattern>-->
+<!--    <url-pattern>/lawyerMenu.html</url-pattern>-->
+<!--    <url-pattern>/addAction.html</url-pattern>-->
+<!--  </filter-mapping>-->
 
   <filter>
     <filter-name>UrlTranslationFilter</filter-name>

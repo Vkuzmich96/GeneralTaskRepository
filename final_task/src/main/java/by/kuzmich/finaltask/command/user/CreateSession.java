@@ -16,11 +16,6 @@ public class CreateSession extends Command {
     private SessionHandler sessionHandler;
     private CookieHandler<User> cookieHandler;
 
-    public CreateSession(UserService service, SessionHandler sessionHandler, CookieHandler<User> cookieHandler) {
-        this.service = service;
-        this.sessionHandler = sessionHandler;
-        this.cookieHandler = cookieHandler;
-    }
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
