@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Set;
 
 public class PostAction extends Command {
-    private String DIRECTORY = "C:\\Users\\user\\IdeaProjects\\GeneralTaskRepository\\final_task\\src\\main\\webapp\\doks";
+    private String DIRECTORY = "C:\\Users\\user\\IdeaProjects\\GeneralTaskRepository\\final_task\\src\\main\\webapp\\docs";
     private ActionService actionService;
     private Builder<Action> childActionBuilder;
     private Builder<Action> parentActionBuilder;

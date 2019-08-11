@@ -23,7 +23,7 @@
             <a href="/updateActionMenu.html?number=${action.getId()}" class="btn btn-primary"> update </a>
         </c:if>
         <p> ${action.getInstructions()} </p>
-        <c:set var="prefix" value="/doks/"/>
+        <c:set var="prefix" value="/doсs/"/>
         <c:forEach var="material" items="${action.getMaterials()}">
             <p>
                 ${material.getName()} <a href="${prefix}${material.getUrl()}" class="btn btn-primary"> download </a>

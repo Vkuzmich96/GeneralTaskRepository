@@ -23,6 +23,7 @@ public class GeneralServlet extends HttpServlet {
 
     public void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CommandKind kind = (CommandKind) req.getAttribute(KeyWordsList.COMMAND);
+        logger.debug(kind);
         Command command = CommandFactory.getInstance().get(kind);
         String path = null;
         try {
