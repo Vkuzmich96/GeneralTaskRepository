@@ -13,11 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 public class PostMapName extends Command {
     private LawMapNameService nameService;
-    private SessionHandler sessionHandler;
 
-    public PostMapName(LawMapNameService nameService, SessionHandler sessionHandler) {
+    public PostMapName(LawMapNameService nameService) {
         this.nameService = nameService;
-        this.sessionHandler = sessionHandler;
     }
 
     @Override

@@ -28,14 +28,12 @@ public class PostAction extends Command {
     private ActionService actionService;
     private Builder<Action> childActionBuilder;
     private Builder<Action> parentActionBuilder;
-    private SessionHandler sessionHandler;
     private MapService mapService;
 
-    public PostAction(ActionService actionService, Builder<Action> childActionBuilder, Builder<Action> parentActionBuilder, SessionHandler sessionHandler, MapService mapService) {
+    public PostAction(ActionService actionService, Builder<Action> childActionBuilder, Builder<Action> parentActionBuilder, MapService mapService) {
         this.actionService = actionService;
         this.childActionBuilder = childActionBuilder;
         this.parentActionBuilder = parentActionBuilder;
-        this.sessionHandler = sessionHandler;
         this.mapService = mapService;
     }
 

@@ -59,15 +59,13 @@ final public class CommandFactory {
                 );
             case POST_MAP_NAME:
                 return new PostMapName(
-                        LawMapNameServiceFactory.getInstance().get(),
-                        SessionHandlerFactory.getInstance().get()
+                        LawMapNameServiceFactory.getInstance().get()
                 );
             case POST_ACTION:
                 return new PostAction(
                         ActionServiceFactory.getInstance().get(),
                         BuilderFactory.getInstance().get(BuilderKind.ACTION_CHILD),
                         BuilderFactory.getInstance().get(BuilderKind.ACTION_PARENT),
-                        SessionHandlerFactory.getInstance().get(),
                         MapServiceFactory.getInstance().get()
                 );
             case GET_USER_PROFILE:
