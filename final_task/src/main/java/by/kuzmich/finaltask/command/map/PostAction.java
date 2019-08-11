@@ -15,11 +15,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.net.URLEncoder;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class PostAction extends Command {
     private String DIRECTORY = "C:\\Users\\user\\IdeaProjects\\GeneralTaskRepository\\final_task\\src\\main\\webapp\\doks";
@@ -40,51 +41,72 @@ public class PostAction extends Command {
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
+        Map<String, String> state = getState(req);
         Action child = childActionBuilder.build(req);
         int childId = actionService.add(child);
         child.setId(childId);
-        resetActionId(req);
-        nextStepHandler(req);
-        req.setAttribute(KeyWordsList.ACTION_ID, childId);
+        nextStepHandler(req, state);
+        state.put(KeyWordsList.ACTION_ID, String.valueOf(childId));
+        req.setAttribute(KeyWordsList.STATE, state);
         Action parent = parentActionBuilder.build(req);
         int graphId = Integer.parseInt(req.getParameter(KeyWordsList.GRAPH_ID));
         req.setAttribute(KeyWordsList.GRAPH_ID, graphId);
         fileHandler(req);
         mapService.addEdge(new GraphEdge(graphId, parent, child));
-        return PagePathList.LAWER_MENU;
+        super.setRedirected(true);
+        return PagePathList.LAWER_MENU + translateStateInParameters(state);
     }
 
-    private void nextStepHandler(HttpServletRequest req){
+    private void nextStepHandler(HttpServletRequest req, Map<String, String> state){
         if (NEXT_STEP_FLAG_ON.equals(req.getParameter(KeyWordsList.IS_NEXT))){
-            incrementStep(req);
-            changeActualActionId(req);
-        } else {
-            Integer step = Integer.parseInt(req.getParameter(KeyWordsList.STEP));
-            if(step > KeyWordsList.FIRST_STEP) {
-                Integer actualParentId = Integer.parseInt(req.getParameter(KeyWordsList.ACTUAL_ACTION_ID));
-                req.setAttribute(KeyWordsList.ACTUAL_ACTION_ID, actualParentId);
-                req.setAttribute(KeyWordsList.STEP, step);
-            }
+            incrementStep(state);
+            changeActualActionId(state);
         }
     }
 
-    private void resetActionId(HttpServletRequest req){
+    private Map<String, String> getState (HttpServletRequest req){
+        Map<String, String> state = new HashMap<>();
+        String graphId = req.getParameter(KeyWordsList.GRAPH_ID);
+        state.put(KeyWordsList.GRAPH_ID, graphId);
+        String step = req.getParameter(KeyWordsList.STEP);
+        state.put(KeyWordsList.STEP, KeyWordsList.EMPTY_STRING.equals(step) ? KeyWordsList.FIRST_STEP_STRING : step);
         String actionId = req.getParameter(KeyWordsList.ACTION_ID);
-        if (!"".equals(actionId)) {
-            Integer id = Integer.parseInt(actionId);
-            req.setAttribute(KeyWordsList.ACTION_ID, id);
+        if (!KeyWordsList.EMPTY_STRING.equals(actionId)) {
+            state.put(KeyWordsList.ACTION_ID, actionId);
         }
+        String actualParentId = req.getParameter(KeyWordsList.ACTUAL_ACTION_ID);
+        state.put(KeyWordsList.ACTUAL_ACTION_ID, actualParentId);
+        return state;
     }
 
-    public void incrementStep(HttpServletRequest req){
-        Integer step = Integer.parseInt(req.getParameter(KeyWordsList.STEP));
+    private void incrementStep(Map<String, String> state){
+        Integer step = Integer.parseInt(state.get(KeyWordsList.STEP));
         step = ++step;
-        req.setAttribute(KeyWordsList.STEP, step);
+        state.put(KeyWordsList.STEP, step.toString());
     }
 
-    public void changeActualActionId(HttpServletRequest req) {
-        Integer id = (Integer) req.getAttribute(KeyWordsList.ACTION_ID);
-        req.setAttribute(KeyWordsList.ACTUAL_ACTION_ID, id);
+    private void changeActualActionId(Map<String, String> state) {
+        String id = state.get(KeyWordsList.ACTION_ID);
+        state.put(KeyWordsList.ACTUAL_ACTION_ID, id);
+    }
+
+    private String translateStateInParameters (Map<String, String> state) {
+        Set<Map.Entry<String, String>> set = state.entrySet();
+        if (!set.isEmpty()) {
+            StringBuilder stringBuilder = new StringBuilder("?");
+            for (Map.Entry<String, String> entry : set) {
+                stringBuilder.append(entry.getKey());
+                stringBuilder.append('=');
+                try {
+                    stringBuilder.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                stringBuilder.append('&');
+            }
+            return stringBuilder.toString();
+        }
+        return KeyWordsList.EMPTY_STRING;
     }
 
 

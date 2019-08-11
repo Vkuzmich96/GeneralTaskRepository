@@ -28,7 +28,11 @@ final public class KeyWordsList {
     COMMAND = "command",
     ACTION = "action",
     EMAIL = "email",
-    ERROR_MASSAGE = "errorMassage";
+    ERROR_MASSAGE = "errorMassage",
+    STATE = "state",
+    EMPTY_STRING = "",
+    FIRST_STEP_STRING = "1";
+
 
     public final static int FIRST_STEP = 1;
 

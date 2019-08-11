@@ -1,5 +1,6 @@
 package by.kuzmich.finaltask.command.map;
 
+import by.kuzmich.finaltask.KeyWordsList;
 import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.command.PagePathList;
 import by.kuzmich.finaltask.exception.ServiceException;
@@ -18,7 +19,7 @@ public class GetAction extends Command {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String key = req.getParameter("id");
-        req.setAttribute("action",service.get(key));
+        req.setAttribute(KeyWordsList.ACTION, service.get(key));
         return PagePathList.ACTION;
     }
 }

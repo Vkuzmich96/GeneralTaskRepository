@@ -25,7 +25,7 @@ public class PostMapName extends Command {
         String name = req.getParameter(KeyWordsList.NAME);
         LawMapName lawMapName = new LawMapName(0, name, false);
         int id = nameService.add(lawMapName);
-        req.setAttribute(KeyWordsList.GRAPH_ID, id);
-        return PagePathList.LAWER_MENU;
+        super.setRedirected(true);
+        return PagePathList.LAWER_MENU + "?" + KeyWordsList.GRAPH_ID + "=" + id;
     }
 }

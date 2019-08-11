@@ -8,7 +8,7 @@
 </head>
 <body>
 <u:header/>
-<c:if test="${empty graphId}">
+<c:if test="${param.get('graphId') eq null}">
     <div class="container">
         <form action="/addMap.html" method="post">
             <div class="form-group text-center">
@@ -22,23 +22,19 @@
     </div>
 </c:if>
 
-<c:if test="${not empty graphId}">
+<c:if test="${param.get('graphId') ne null}">
     <div class="container">
         <form action="/addAction.html" method="post" enctype="multipart/form-data">
             <div>
-                <c:out value="${step}"/>
-                <c:if test="${empty step}">
-                    <c:set var="step" value="${1}"/>
-                </c:if>
                 <c:out value="$$$$$$$$$"/>
-                <c:out value="${graphId}"/>
-                <c:out value="${step}"/>
-                <c:out value="${actionId}"/>
-                <c:out value="${actualActionId}"/>
-                <input type="hidden" value="${graphId}" name="graphId">
-                <input type="hidden" value="${step}" name="step">
-                <input type="hidden" value="${actionId}" name="actionId">
-                <input type="hidden" value="${actualActionId}" name="actualActionId">
+                <c:out value="${param.get('graphId')}"/>
+                <c:out value="${param.get('step')}"/>
+                <c:out value="${param.get('actionId')}"/>
+                <c:out value="${param.get('actualActionId')}"/>
+                <input type="hidden" value="${param.get('graphId')}" name="graphId">
+                <input type="hidden" value="${param.get('step')}" name="step">
+                <input type="hidden" value="${param.get('actionId')}" name="actionId">
+                <input type="hidden" value="${param.get('actualActionId')}" name="actualActionId">
             </div>
             <div class="form-group text-center">
                 <u:actiomBody/>
@@ -46,12 +42,12 @@
                     <input type="file" name="file">
                     <input type="submit" class="btn btn-primary" value="add"/>
                     <input type="checkbox" name="isNext"> next step
-                    <a href="/release.html?number=${graphId}" class="btn btn-primary"> release map </a>
-                    <a href="/delete.html?number=${graphId}" class="btn btn-primary"> delete map </a>
+                    <a href="/release.html?number=${param.get('graphId')}" class="btn btn-primary"> release map </a>
+                    <a href="/delete.html?number=${param.get('graphId')}" class="btn btn-primary"> delete map </a>
                 </div>
             </div>
         </form>
-        <d:graph number="${graphId}"/>
+        <d:graph number="${param.get('graphId')}"/>
     </div>
 </c:if>
 </body>
