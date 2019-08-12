@@ -9,6 +9,15 @@
   </welcome-file-list>
 
   <filter>
+    <filter-name>XSSFilter</filter-name>
+    <filter-class>by.kuzmich.finaltask.controller.filter.XSSFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>XSSFilter</filter-name>
+    <url-pattern>*.html</url-pattern>
+  </filter-mapping>
+
+  <filter>
     <filter-name>EncodingFilter</filter-name>
     <filter-class>by.kuzmich.finaltask.controller.filter.EncodingFilter</filter-class>
   </filter>
@@ -35,6 +44,7 @@
     <url-pattern>/pages/list.html</url-pattern>
     <url-pattern>/addMaterial.html</url-pattern>
   </filter-mapping>
+
   <filter>
     <filter-name>UrlTranslationFilter</filter-name>
     <filter-class>by.kuzmich.finaltask.controller.filter.UrlTranslationFilter</filter-class>
@@ -43,7 +53,6 @@
     <filter-name>UrlTranslationFilter</filter-name>
     <url-pattern>*.html</url-pattern>
   </filter-mapping>
-
   <filter>
     <filter-name>ValidationFilter</filter-name>
     <filter-class>by.kuzmich.finaltask.controller.filter.ValidationFilter</filter-class>

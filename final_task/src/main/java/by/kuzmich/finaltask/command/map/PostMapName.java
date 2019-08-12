@@ -4,7 +4,6 @@ import by.kuzmich.finaltask.KeyWordsList;
 import by.kuzmich.finaltask.bean.LawMapName;
 import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.command.PagePathList;
-import by.kuzmich.finaltask.controller.session.SessionHandler;
 import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.LawMapNameService;
 
