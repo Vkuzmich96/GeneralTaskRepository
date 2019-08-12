@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class RegistrationFormValidator extends RequestValidator {
     private UserService userService;
-    private static final String THIS_EMAIL_ALREADY_EXISTS = "Error, this email already exists";
+    private static final String THIS_EMAIL_ALREADY_EXISTS = "error.this.email.already.exists";
 
 
     public RegistrationFormValidator(UserService userService) {

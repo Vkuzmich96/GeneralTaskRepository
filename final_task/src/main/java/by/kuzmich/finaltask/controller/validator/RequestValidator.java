@@ -18,19 +18,19 @@ public abstract class RequestValidator {
     NUMBERS = Pattern.compile("^[-0-9]{12}$");
 
     protected final static String
-    WRONG_EMAIL_MASSAGE = "invalid email",
+    WRONG_EMAIL_MASSAGE = "wrong.email",
     WRONG_EMAIL_NAME = "wrongEmail",
 
-    WRONG_PASSWORD_MASSAGE = "invalid password",
+    WRONG_PASSWORD_MASSAGE = "wrong.password",
     WRONG_PASSWORD_NAME = "wrongPassword",
 
-    WRONG_NAME_MASSAGE = "invalid name",
+    WRONG_NAME_MASSAGE = "wrong.name",
     WRONG_NAME_NAME = "wrongName",
 
-    WRONG_ADDRESS_MASSAGE = "invalid address",
+    WRONG_ADDRESS_MASSAGE = "wrong.address",
     WRONG_ADDRESS_NAME = "wrongAddress",
 
-    WRONG_NUMBER_MASSAGE = "invalid number",
+    WRONG_NUMBER_MASSAGE = "wrong.number",
     WRONG_NUMBER_NAME = "wrongNumber";
 
     private Map<String, String> errorMap = new HashMap<>();

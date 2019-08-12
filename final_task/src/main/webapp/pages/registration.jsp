@@ -17,14 +17,14 @@
             <fmt:setLocale value="${not empty cookie.lang.value ? cookie.lang.value : 'en'}"/>
             <fmt:setBundle basename="label"/>
             <form action="/registration.html" method="post">
-                <c:set var="isFilled" value="${not empty param}"/>
                 <span class="login100-form-title p-b-33">
 						<fmt:message key="registration"/>
 				</span>
-                <c:if test="${isFilled}">
+                <c:set var="wrongEmail" value="${param.get('wrongEmail')}"/>
+                <c:if test="${wrongEmail ne null}">
                     <div class="text-center">
                         <span class="txt1 text-danger">
-                                ${param.get("wrongEmail")}
+                                <fmt:message key="${wrongEmail}"/>
                         </span>
                     </div>
                 </c:if>
@@ -32,10 +32,11 @@
                     <input type="text" value="${param.get("email")}" placeholder="<fmt:message key="email"/>" name="email" required class="input100" minlength="5" maxlength="50" pattern="^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$">
                     <u:focus/>
                 </div>
-                <c:if test="${isFilled}">
+                <c:set var="wrongPassword" value="${param.get('wrongPassword')}"/>
+                <c:if test="${wrongPassword ne null}">
                     <div class="text-center">
                         <span class="txt1 text-danger">
-                                ${param.get("wrongPassword")}
+                                <fmt:message key="${wrongPassword}"/>
                         </span>
                     </div>
                 </c:if>
@@ -43,10 +44,11 @@
                     <input type="text" value="${param.get("password")}" placeholder="<fmt:message key="password"/>" name="password" required class="input100" minlength="4" maxlength="12" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$">
                     <u:focus/>
                 </div>
-                <c:if test="${isFilled}">
+                <c:set var="wrongName" value="${param.get('wrongName')}"/>
+                <c:if test="${wrongName ne null}">
                     <div class="text-center">
                         <span class="txt1 text-danger">
-                                ${param.get("wrongName")}
+                                <fmt:message key="${wrongName}"/>
                         </span>
                     </div>
                 </c:if>
@@ -54,10 +56,11 @@
                     <input type="text" value="${param.get("name")}" placeholder="<fmt:message key="name"/>" name="name" class="input100" required maxlength="25" minlength="4" pattern="^[-а-яА-ЯёЁa-zA-Z ]{4,45}$">
                     <u:focus/>
                 </div>
-                <c:if test="${isFilled}">
+                <c:set var="wrongAddress" value="${param.get('wrongAddress')}"/>
+                <c:if test="${wrongAddress ne null}">
                     <div class="text-center">
                         <span class="txt1 text-danger">
-                                ${param.get("wrongAddress")}
+                                <fmt:message key="${wrongAddress}"/>
                         </span>
                     </div>
                 </c:if>
@@ -65,10 +68,11 @@
                     <input type="text" value="${param.get("address")}" placeholder="<fmt:message key="address"/>" name="address" required class="input100" maxlength="50" minlength="4" pattern="[-а-яА-ЯёЁa-zA-Z0-9 ,.]{4,50}$">
                     <u:focus/>
                 </div>
-                <c:if test="${isFilled}">
+                <c:set var="wrongNumber" value="${param.get('wrongNumber')}"/>
+                <c:if test="${wrongNumber ne null}">
                     <div class="text-center">
                         <span class="txt1 text-danger">
-                                ${param.get("wrongNumber")}
+                                <fmt:message key="${wrongNumber}"/>
                         </span>
                     </div>
                 </c:if>

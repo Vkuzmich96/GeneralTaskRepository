@@ -31,7 +31,7 @@
                 <c:if test="${not empty param}">
                     <div class="text-center">
                         <span class="txt1 text-danger">
-                                ${param.get("wrongLoginOrPassword")}
+                                <fmt:message key="${param.get('wrongLoginOrPassword')}"/>
                         </span>
                     </div>
                 </c:if>

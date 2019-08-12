@@ -34,7 +34,7 @@
                         </span>
                         <c:set var="wrongName" value="${param.get('wrongName')}"/>
                         <c:if test="${wrongName ne null}">
-                            <p class="text-danger">${wrongName}</p>
+                            <p class="text-danger"><fmt:message key="${wrongName}"/></p>
                         </c:if>
                     </div>
                     <form action="/update.html" method="post">
@@ -53,7 +53,7 @@
                         </span>
                         <c:set var="wrongPassword" value="${param.get('wrongPassword')}"/>
                         <c:if test="${wrongPassword ne null}">
-                            <p class="text-danger">${wrongPassword}</p>
+                            <p class="text-danger"><fmt:message key="${wrongPassword}"/></p>
                         </c:if>
                     </div>
                     <form  action="/update.html" method="post">
@@ -72,7 +72,7 @@
                         </span>
                         <c:set var="wrongAddress" value="${param.get('wrongAddress')}"/>
                         <c:if test="${wrongAddress ne null}">
-                            <p class="text-danger">${wrongAddress}</p>
+                            <p class="text-danger"><fmt:message key="${wrongAddress}"/></p>
                         </c:if>
                     </div>
                     <form action="/update.html" method="post">
@@ -91,7 +91,7 @@
                         </span>
                         <c:set var="wrongNumber" value="${param.get('wrongNumber')}"/>
                         <c:if test="${wrongNumber ne null}">
-                            <p class="text-danger">${wrongNumber}</p>
+                            <p class="text-danger"><fmt:message key="${wrongNumber}"/></p>
                         </c:if>
                     </div>
                     <form action="/update.html" method="post">
