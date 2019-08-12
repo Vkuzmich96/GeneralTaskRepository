@@ -9,19 +9,16 @@ import by.kuzmich.finaltask.exception.ExceptionMessageList;
 import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.ActionService;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ActionServiceImpl implements ActionService {
 
-    private Connection connection;
     private DAO<Action, Action> actionDAO;
     private DAO<Material, Material> materialDAO;
     private DAO<ActionMaterialLink, List<ActionMaterialLink>> linkListDAO;
 
-    public ActionServiceImpl(Connection connection, DAO<Action, Action> actionDAO, DAO<Material, Material> materialDAO, DAO<ActionMaterialLink, List<ActionMaterialLink>> linkListDAO) {
-        this.connection = connection;
+    public ActionServiceImpl(DAO<Action, Action> actionDAO, DAO<Material, Material> materialDAO, DAO<ActionMaterialLink, List<ActionMaterialLink>> linkListDAO) {
         this.actionDAO = actionDAO;
         this.materialDAO = materialDAO;
         this.linkListDAO = linkListDAO;

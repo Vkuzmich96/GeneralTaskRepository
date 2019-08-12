@@ -14,15 +14,11 @@ import java.util.*;
 public class MapServiceImpl implements MapService {
     private static Logger logger = Logger.getLogger(MapServiceImpl.class);
 
-    private Connection connection;
-    private DAO<Material, Material> materialDAO;
     private DAO<Action, Action> actionDAO;
     private DAO<GraphEdge, List<GraphEdge>> graphEdgeDAO;
     private DAO<LawMapName, LawMapName> nameDAO;
 
-    public MapServiceImpl(Connection connection, DAO<Material, Material> materialDAO, DAO<Action, Action> actionDAO, DAO<GraphEdge, List<GraphEdge>> graphEdgeDAO, DAO<LawMapName, LawMapName> nameDAO) {
-        this.connection = connection;
-        this.materialDAO = materialDAO;
+    public MapServiceImpl( DAO<Action, Action> actionDAO, DAO<GraphEdge, List<GraphEdge>> graphEdgeDAO, DAO<LawMapName, LawMapName> nameDAO) {
         this.actionDAO = actionDAO;
         this.graphEdgeDAO = graphEdgeDAO;
         this.nameDAO = nameDAO;

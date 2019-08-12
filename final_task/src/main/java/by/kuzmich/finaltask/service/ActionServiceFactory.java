@@ -18,7 +18,6 @@ final public class ActionServiceFactory {
         try {
             Connection connection = ConnectionPool.getInstance().getConnection();
             return new ActionServiceImpl(
-                    connection,
                     DAOFactory.getInstance().get(DAOKinds.ActionDAOMySql, connection),
                     DAOFactory.getInstance().get(DAOKinds.MaterialDAOMySql, connection),
                     DAOFactory.getInstance().get(DAOKinds.ActionMaterialLinkDAOMySql, connection)

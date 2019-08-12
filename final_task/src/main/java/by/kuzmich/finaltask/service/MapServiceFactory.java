@@ -18,8 +18,6 @@ final public class MapServiceFactory {
         try {
             Connection connection = ConnectionPool.getInstance().getConnection();
             return new MapServiceImpl(
-                    connection,
-                    DAOFactory.getInstance().get(DAOKinds.MaterialDAOMySql, connection),
                     DAOFactory.getInstance().get(DAOKinds.ActionDAOMySql, connection),
                     DAOFactory.getInstance().get(DAOKinds.GraphEdgeDAOMySql, connection),
                     DAOFactory.getInstance().get(DAOKinds.LawMapNameDAOMySql, ConnectionPool.getInstance().getConnection())
