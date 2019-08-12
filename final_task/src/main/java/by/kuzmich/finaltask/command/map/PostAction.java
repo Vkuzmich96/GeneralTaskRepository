@@ -6,7 +6,6 @@ import by.kuzmich.finaltask.bean.GraphEdge;
 import by.kuzmich.finaltask.command.Command;
 import by.kuzmich.finaltask.command.PagePathList;
 import by.kuzmich.finaltask.command.builder.Builder;
-import by.kuzmich.finaltask.controller.session.SessionHandler;
 import by.kuzmich.finaltask.exception.ControllerException;
 import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.ActionService;
@@ -17,14 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
-import java.net.URLEncoder;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
+import java.util.ResourceBundle;
 
 public class PostAction extends Command {
-    private String DIRECTORY = "C:\\Users\\user\\IdeaProjects\\GeneralTaskRepository\\final_task\\src\\main\\webapp\\docs";
+    private String DIRECTORY = ResourceBundle.getBundle("pathConfig").getString("path.config.file.docs");
     private ActionService actionService;
     private Builder<Action> childActionBuilder;
     private Builder<Action> parentActionBuilder;

@@ -26,7 +26,7 @@
             <a href="/updateActionMenu.html?number=${action.getId()}" class="btn btn-primary"> <fmt:message key="update"/> </a>
         </c:if>
         <p> ${action.getInstructions()} </p>
-        <c:set var="prefix" value="/doсs/"/>
+        <c:set var="prefix" value="/docs/"/>
         <c:forEach var="material" items="${action.getMaterials()}">
             <p>
                 ${material.getName()} <a href="${prefix}${material.getUrl()}" class="btn btn-primary"> <fmt:message key="download"/> </a>
