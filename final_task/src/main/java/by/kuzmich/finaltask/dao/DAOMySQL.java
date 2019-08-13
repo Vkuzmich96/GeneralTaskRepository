@@ -10,7 +10,7 @@ import java.util.List;
 
 public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
     private static Logger logger = Logger.getLogger(DAOMySQL.class);
-    private Connection connection;
+    protected Connection connection;
     private String INSERT;
     private String SELECT_ALL;
     private String SELECT_BY_ID;

@@ -62,5 +62,6 @@
     <url-pattern>/registration.html</url-pattern>
     <url-pattern>/enter.html</url-pattern>
     <url-pattern>/update.html</url-pattern>
+    <url-pattern>/addMap.html</url-pattern>
   </filter-mapping>
 </web-app>

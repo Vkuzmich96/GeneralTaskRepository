@@ -16,10 +16,4 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
-    <tag>
-        <name>translation</name>
-        <tag-class>by.kuzmich.finaltask.controller.tag.Translation</tag-class>
-        <body-content>empty</body-content>
-        <info>This tag translates tree data structure in a html tags</info>
-    </tag>
 </taglib>

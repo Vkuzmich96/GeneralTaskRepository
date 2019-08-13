@@ -11,6 +11,9 @@ public class LawMapName {
         this.readiness = readiness;
     }
 
+    public LawMapName() {
+    }
+
     public int getId() {
         return id;
     }

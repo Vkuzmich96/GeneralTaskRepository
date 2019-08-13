@@ -13,10 +13,20 @@ import java.util.List;
 
 public class LawMapNameServiceImpl implements LawMapNameService {
     private DAO<LawMapName, LawMapName> dao;
+    private DAO<LawMapName, LawMapName> nameDAOSelectByName;
     private final boolean MAP_IS_READY_FLAG = true;
 
-    public LawMapNameServiceImpl(DAO<LawMapName, LawMapName> dao) {
+    public LawMapNameServiceImpl(DAO<LawMapName, LawMapName> dao, DAO<LawMapName, LawMapName> nameDAOSelectByName) {
         this.dao = dao;
+        this.nameDAOSelectByName = nameDAOSelectByName;
+    }
+
+    public boolean isNameFree (String name) throws ServiceException {
+        try {
+            return nameDAOSelectByName.select(name).getId() == 0;
+        } catch (DAOException e) {
+            throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
+        }
     }
 
     public List<LawMapName> getAll() throws ServiceException {

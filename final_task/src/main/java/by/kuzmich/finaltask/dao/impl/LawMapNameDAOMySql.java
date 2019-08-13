@@ -45,7 +45,9 @@ public class LawMapNameDAOMySql extends DAOMySQL<LawMapName, LawMapName> {
 
     @Override
     protected LawMapName prepareSelectResult(ResultSet set) throws SQLException {
-        set.next();
-        return build(set);
+        if (set.next()) {
+            return build(set);
+        }
+        return new LawMapName();
     }
 }

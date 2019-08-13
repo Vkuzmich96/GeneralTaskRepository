@@ -10,4 +10,5 @@ public interface LawMapNameService {
     int add (LawMapName name) throws ServiceException;
     void delete (int key) throws ServiceException;
     void realise (String key) throws ServiceException;
+    boolean isNameFree(String name) throws ServiceException;
 }

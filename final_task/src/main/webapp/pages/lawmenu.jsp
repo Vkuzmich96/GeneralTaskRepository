@@ -12,11 +12,15 @@
 <fmt:setLocale value="${not empty cookie.lang.value ? cookie.lang.value : 'en'}"/>
 <fmt:setBundle basename="label"/>
 <c:if test="${param.get('graphId') eq null}">
+    <c:set var="wrongNameMessge" value="${param.get('wrongName')}"/>
     <div class="container">
         <form action="/addMap.html" method="post">
             <div class="form-group text-center">
+                <c:if test="${wrongNameMessge ne null}">
+                    <p class="text-center text-danger"><fmt:message key="${wrongNameMessge}"/></p>
+                </c:if>
                 <p class="text-left"><fmt:message key="create.map"/></p>
-                <input class="form-control" type="text" placeholder="<fmt:message key="name"/>" name="name"/>
+                <input class="form-control" type="text" value="${param.get('name')}" placeholder="<fmt:message key="name"/>" name="name"/>
                 <div class="text-left">
                     <input type="submit" class="btn btn-primary" value="<fmt:message key="create"/>"/>
                 </div>

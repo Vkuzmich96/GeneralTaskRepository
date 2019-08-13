@@ -15,8 +15,6 @@ final public class DAOFactory {
         return factory;
     }
 
-    private static Logger logger = Logger.getLogger(ConnectionPool.class);
-
     private DAOFactory(){}
 
     public DAO get (DAOKinds kind, Connection connection) throws DAOException {
@@ -29,6 +27,8 @@ final public class DAOFactory {
                     return new MaterialDAOMySql(connection);
                 case LawMapNameDAOMySql:
                     return new LawMapNameDAOMySql(connection);
+                case LawMapNameSelectByNameDAOMySql:
+                    return new LawMapNameSelectByNameDAOMySql(connection);
                 case ActionMaterialLinkDAOMySql:
                      return new ActionMaterialLinkDAOMySql (connection);
                 case GraphEdgeDAOMySql:

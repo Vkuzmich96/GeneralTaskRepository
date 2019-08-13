@@ -15,7 +15,8 @@ final public class LawMapNameServiceFactory {
     public  LawMapNameService get (){
         try {
             return new LawMapNameServiceImpl(
-                    DAOFactory.getInstance().get(DAOKinds.LawMapNameDAOMySql, ConnectionPool.getInstance().getConnection())
+                    DAOFactory.getInstance().get(DAOKinds.LawMapNameDAOMySql, ConnectionPool.getInstance().getConnection()),
+                    DAOFactory.getInstance().get(DAOKinds.LawMapNameSelectByNameDAOMySql, ConnectionPool.getInstance().getConnection())
             );
         } catch (DAOException e) {
             e.printStackTrace();

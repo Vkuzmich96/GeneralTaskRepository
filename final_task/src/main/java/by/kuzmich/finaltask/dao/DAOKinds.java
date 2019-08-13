@@ -6,5 +6,6 @@ public enum DAOKinds {
     LawMapNameDAOMySql,
     MaterialDAOMySql,
     UserDAOMySql,
-    GraphEdgeDAOMySql
+    GraphEdgeDAOMySql,
+    LawMapNameSelectByNameDAOMySql
 }

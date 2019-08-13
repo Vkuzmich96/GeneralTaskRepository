@@ -92,7 +92,6 @@ final public class ConnectionPool {
 			} catch(SQLException e2) {}
 		} finally {
 			locker.unlock();
-
 		}
 	}
 
