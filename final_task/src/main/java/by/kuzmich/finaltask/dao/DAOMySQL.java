@@ -1,6 +1,5 @@
 package by.kuzmich.finaltask.dao;
 
-import by.kuzmich.finaltask.bean.LawMapName;
 import by.kuzmich.finaltask.exception.DAOException;
 import by.kuzmich.finaltask.exception.ExceptionMessageList;
 import org.apache.log4j.Logger;

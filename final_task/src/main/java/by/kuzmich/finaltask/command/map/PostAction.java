@@ -19,20 +19,22 @@ import java.io.*;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class PostAction extends Command {
-    private String DIRECTORY = ResourceBundle.getBundle("pathConfig").getString("path.config.file.docs");
+    private String DIRECTORY;
     private ActionService actionService;
     private Builder<Action> childActionBuilder;
     private Builder<Action> parentActionBuilder;
     private MapService mapService;
 
-    public PostAction(ActionService actionService, Builder<Action> childActionBuilder, Builder<Action> parentActionBuilder, MapService mapService) {
+    public PostAction(ActionService actionService, Builder<Action> childActionBuilder, Builder<Action> parentActionBuilder, MapService mapService, String directoryPath) {
         this.actionService = actionService;
         this.childActionBuilder = childActionBuilder;
         this.parentActionBuilder = parentActionBuilder;
         this.mapService = mapService;
+        this.DIRECTORY = directoryPath;
     }
 
     @Override
