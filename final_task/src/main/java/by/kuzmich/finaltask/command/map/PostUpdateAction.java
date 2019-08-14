@@ -33,6 +33,6 @@ public class PostUpdateAction extends Command {
         material.setDiscription(description);
         actionService.update(action);
         super.setRedirected(true);
-        return PagePathList.REGISTRATION;
+        return PagePathList.NAME_LIST_REDIRECTED;
     }
 }
