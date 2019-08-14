@@ -1,5 +1,6 @@
 package by.kuzmich.finaltask.controller.validator;
 
+import by.kuzmich.finaltask.exception.ControllerException;
 import by.kuzmich.finaltask.exception.ServiceException;
 
 import javax.servlet.http.HttpServletRequest;

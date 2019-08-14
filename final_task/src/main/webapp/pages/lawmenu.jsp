@@ -33,17 +33,30 @@
     <div class="container">
         <form action="<c:url value="/addAction.html"/>" method="post" enctype="multipart/form-data">
             <div>
+                <c:set var="actionId" value="${param.get('actionId')}"/>
+                <c:set var="actualActionId" value="${param.get('actualActionId')}"/>
                 <input type="hidden" value="${param.get('graphId')}" name="graphId">
                 <input type="hidden" value="${param.get('step')}" name="step">
-                <input type="hidden" value="${param.get('actionId')}" name="actionId">
-                <input type="hidden" value="${param.get('actualActionId')}" name="actualActionId">
+                <input type="hidden" value="${actionId}" name="actionId">
+                <input type="hidden" value="${actualActionId}" name="actualActionId">
             </div>
             <div class="form-group text-center">
                 <u:actiomBody/>
+                <c:set var="wrongFile" value="${param.get('impossibleToReade')}"/>
                 <div class="text-left">
+                    <c:if test="${wrongFile ne null}">
+                        <p class="text-center text-danger"><fmt:message key="${wrongFile}"/></p>
+                    </c:if>
                     <input type="file" name="file">
                     <input type="submit" class="btn btn-primary" value="<fmt:message key="add"/>"/>
-                    <input type="checkbox" name="isNext"> <fmt:message key="next.step"/>
+                    <c:choose>
+                        <c:when test="${(actionId ne null) and ((actualActionId eq null) or (actualActionId eq ''))}">
+                            <input hidden value="on" name="isNext">
+                        </c:when>
+                        <c:when test="${(actionId ne null) and ((actualActionId ne null) or (actualActionId ne ''))}">
+                            <input type="checkbox" name="isNext"> <fmt:message key="next.step"/>
+                        </c:when>
+                    </c:choose>
                     <a href="<c:url value="/release.html?number=${param.get('graphId')}"/>" class="btn btn-primary"> <fmt:message key="release.map"/> </a>
                     <a href="<c:url value="/delete.html?number=${param.get('graphId')}"/>" class="btn btn-primary"> <fmt:message key="delete.map"/> </a>
                 </div>

@@ -1,32 +1,36 @@
 package by.kuzmich.finaltask.controller.validator.impl;
 
 import by.kuzmich.finaltask.KeyWordsList;
-import by.kuzmich.finaltask.controller.validator.HttpRequestValidator;
+import by.kuzmich.finaltask.controller.validator.ActionValidator;
+import by.kuzmich.finaltask.exception.ControllerException;
+import by.kuzmich.finaltask.exception.ExceptionMessageList;
+import org.apache.log4j.Logger;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
-public class PostActionValidator extends HttpRequestValidator {
-    private static final String WRONG_INSTRUCTION_NAME = "wrongInstruction";
-    private static final String WRONG_INSTRUCTION_MESSAGE = "wrong.instruction";
-    private static final String WRONG_MATERIAL_NAME = "wrongMaterialName";
-    private static final String WRONG_DESCRIPTION_NAME = "wrongDescriptionName";
-    private static final String WRONG_DESCRIPTION_MESSAGE = "wrong.description";
+public class PostActionValidator extends ActionValidator {
+    private static Logger logger = Logger.getLogger(PostActionValidator.class);
+    private static final String IMPOSSIBLE_TO_READ_FILE = "impossibleToReade";
+    private static final String IMPOSSIBLE_TO_READ_FILE_MESSAGE = "impossible.to.reade";
 
     @Override
-    public boolean isValid(HttpServletRequest req) {
+    public boolean isValid(HttpServletRequest req){
         saveParameters(req);
-        String name = req.getParameter(KeyWordsList.NAME);
-        putValidateParameterMap(KeyWordsList.NAME, name);
-        String instructions = req.getParameter(KeyWordsList.INSTRUCTIONS);
-        putValidateParameterMap(KeyWordsList.INSTRUCTIONS, instructions);
-        String materialName = req.getParameter(KeyWordsList.MATERIAL_NAME);
-        putValidateParameterMap(KeyWordsList.MATERIAL_NAME, materialName);
-        String description = req.getParameter(KeyWordsList.DESCRIPTION);
-        putValidateParameterMap(KeyWordsList.DESCRIPTION, description);
-        return isParameterValid(name, NAME, WRONG_NAME_NAME, WRONG_NAME_MASSAGE) &&
-               isParameterValid(instructions, TEXT, WRONG_INSTRUCTION_NAME, WRONG_INSTRUCTION_MESSAGE)&&
-               isParameterValid(materialName, NAME, WRONG_MATERIAL_NAME, WRONG_NAME_MASSAGE) &&
-               isParameterValid(description, TEXT, WRONG_DESCRIPTION_NAME, WRONG_DESCRIPTION_MESSAGE);
+        return super.isValid(req) && isFileExists(req);
+    }
+
+    private boolean isFileExists (HttpServletRequest req) {
+        try {
+            return req.getPart(KeyWordsList.FILE_PARAMETER_NAME).getSize() != 0;
+        } catch (IOException | ServletException e) {
+            e.printStackTrace();
+            logger.error(ExceptionMessageList.IMPOSSIBLE_TO_READ_FILE_FROM_FORM, e);
+        } finally {
+            putValidateParameterMap(IMPOSSIBLE_TO_READ_FILE, IMPOSSIBLE_TO_READ_FILE_MESSAGE);
+        }
+        return false;
     }
 
     private void saveParameters (HttpServletRequest req) {
