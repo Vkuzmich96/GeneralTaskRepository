@@ -64,5 +64,6 @@
     <url-pattern>/update.html</url-pattern>
     <url-pattern>/addMap.html</url-pattern>
     <url-pattern>/addAction.html</url-pattern>
+    <url-pattern>/updateAction.html</url-pattern>
   </filter-mapping>
 </web-app>

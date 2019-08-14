@@ -12,7 +12,8 @@ final public class PagePathList {
     USER_PROFILE = "/pages/userInformation.jsp",
     USER_PROFILE_REDIRECTED = "/profile.html",
     GAP = "",
-    UPDATE_ACTION = "/pages/actionUpdate.jsp";
+    UPDATE_ACTION = "/pages/actionUpdate.jsp",
+    UPDATE_ACTION_MENU = "/updateActionMenu.html";
 
     private String path;
 

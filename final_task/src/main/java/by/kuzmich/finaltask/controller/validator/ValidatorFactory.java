@@ -32,7 +32,9 @@ public class ValidatorFactory {
                      LawMapNameServiceFactory.getInstance().get()
                 );
             case POST_ACTION:
-                return new PostActionValidator();
+                return new AddActionValidator();
+            case POST_UPDATE_ACTION:
+                return new ActionUpdateValidator();
             default:
                 return null;
         }

@@ -32,7 +32,8 @@ public class PostUpdateAction extends Command {
         String description = req.getParameter(KeyWordsList.DESCRIPTION);
         material.setDiscription(description);
         actionService.update(action);
+        String number = req.getParameter(KeyWordsList.NUMBER);
         super.setRedirected(true);
-        return PagePathList.NAME_LIST_REDIRECTED;
+        return PagePathList.UPDATE_ACTION_MENU + "?number=" + number;
     }
 }

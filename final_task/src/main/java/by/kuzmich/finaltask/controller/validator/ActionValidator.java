@@ -1,11 +1,11 @@
 package by.kuzmich.finaltask.controller.validator;
 
 import by.kuzmich.finaltask.KeyWordsList;
-import by.kuzmich.finaltask.exception.ControllerException;
+import by.kuzmich.finaltask.controller.validator.HttpRequestValidator;
 
 import javax.servlet.http.HttpServletRequest;
 
-public abstract class ActionValidator extends HttpRequestValidator {
+public class ActionValidator extends HttpRequestValidator {
 
     private static final String WRONG_INSTRUCTION_NAME = "wrongInstruction";
     private static final String WRONG_INSTRUCTION_MESSAGE = "wrong.instruction";

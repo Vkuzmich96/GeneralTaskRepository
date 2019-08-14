@@ -17,6 +17,10 @@
             <c:set var="materialName" value="${param.get('materialName')}"/>
             <c:set var="description" value="${param.get('description')}"/>
     </c:if>
+    <c:set var="number" value="${param.get('number')}"/>
+    <c:if test="${number ne null}">
+        <input hidden name="number" value="${number}">
+    </c:if>
     <fmt:setLocale value="${not empty cookie.lang.value ? cookie.lang.value : 'en'}"/>
     <fmt:setBundle basename="label"/>
     <input hidden value="${actionId}" name="actionId">

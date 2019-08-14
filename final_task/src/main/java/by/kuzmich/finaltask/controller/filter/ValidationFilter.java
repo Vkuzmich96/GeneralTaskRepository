@@ -27,6 +27,7 @@ public class ValidationFilter implements Filter {
         redirectUrlMap.put(CommandKind.ENTER_USER, "/enter.jsp?");
         redirectUrlMap.put(CommandKind.POST_MAP_NAME, "pages/lawmenu.jsp?");
         redirectUrlMap.put(CommandKind.POST_ACTION, "pages/lawmenu.jsp?");
+        redirectUrlMap.put(CommandKind.POST_UPDATE_ACTION, "/updateActionMenu.html?");
     }
 
     @Override

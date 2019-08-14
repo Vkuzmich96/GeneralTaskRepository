@@ -2,7 +2,6 @@ package by.kuzmich.finaltask.controller.validator.impl;
 
 import by.kuzmich.finaltask.KeyWordsList;
 import by.kuzmich.finaltask.controller.validator.ActionValidator;
-import by.kuzmich.finaltask.exception.ControllerException;
 import by.kuzmich.finaltask.exception.ExceptionMessageList;
 import org.apache.log4j.Logger;
 
@@ -10,8 +9,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-public class PostActionValidator extends ActionValidator {
-    private static Logger logger = Logger.getLogger(PostActionValidator.class);
+public class AddActionValidator extends ActionValidator {
+    private static Logger logger = Logger.getLogger(AddActionValidator.class);
     private static final String IMPOSSIBLE_TO_READ_FILE = "impossibleToReade";
     private static final String IMPOSSIBLE_TO_READ_FILE_MESSAGE = "impossible.to.reade";
 
