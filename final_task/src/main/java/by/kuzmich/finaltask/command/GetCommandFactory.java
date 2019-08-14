@@ -54,7 +54,6 @@ final public class GetCommandFactory {
                 );
             case LOG_OUT:
                 return new UserLogOut(
-                        CookieHandlerFactory.getInstance().get(),
                         SessionHandlerFactory.getInstance().get()
                 );
             case GET_SET_LOCALE:

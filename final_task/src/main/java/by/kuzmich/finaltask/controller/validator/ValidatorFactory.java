@@ -17,7 +17,7 @@ public class ValidatorFactory {
     public HttpRequestValidator get (CommandKind key) {
         switch (key){
             case ADD_USER:
-                return new RegistrationFormValidator(
+                return new RegistrationValidator(
                         UserServiceFactory.getInstance().get()
                 );
             case ENTER_USER:

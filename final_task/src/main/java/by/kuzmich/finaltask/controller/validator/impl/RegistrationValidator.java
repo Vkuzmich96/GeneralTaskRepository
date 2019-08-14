@@ -7,12 +7,12 @@ import by.kuzmich.finaltask.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class RegistrationFormValidator extends HttpRequestValidator {
+public class RegistrationValidator extends HttpRequestValidator {
     private UserService userService;
     private static final String THIS_EMAIL_ALREADY_EXISTS = "error.this.email.already.exists";
 
 
-    public RegistrationFormValidator(UserService userService) {
+    public RegistrationValidator(UserService userService) {
         this.userService = userService;
     }
 
