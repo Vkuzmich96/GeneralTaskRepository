@@ -2,7 +2,7 @@ package by.kuzmich.finaltask.controller.filter;
 
 import by.kuzmich.finaltask.KeyWordsList;
 import by.kuzmich.finaltask.command.CommandKind;
-import by.kuzmich.finaltask.controller.validator.RequestValidator;
+import by.kuzmich.finaltask.controller.validator.HttpRequestValidator;
 import by.kuzmich.finaltask.controller.validator.ValidatorFactory;
 import by.kuzmich.finaltask.exception.ServiceException;
 import org.apache.log4j.Logger;
@@ -26,19 +26,18 @@ public class ValidationFilter implements Filter {
         redirectUrlMap.put(CommandKind.POST_UPDATE_USER_PROFILE, "/profile.html?");
         redirectUrlMap.put(CommandKind.ENTER_USER, "/enter.jsp?");
         redirectUrlMap.put(CommandKind.POST_MAP_NAME, "pages/lawmenu.jsp?");
+        redirectUrlMap.put(CommandKind.POST_ACTION, "pages/lawmenu.jsp?");
     }
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
+    public void init(FilterConfig filterConfig) {}
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         CommandKind command = (CommandKind) req.getAttribute(KeyWordsList.COMMAND);
-        RequestValidator validator = ValidatorFactory.getInstance().get(command);
+        HttpRequestValidator validator = ValidatorFactory.getInstance().get(command);
         boolean isValidFlag = false;
         try {
             isValidFlag = validator.isValid(req);
@@ -74,7 +73,5 @@ public class ValidationFilter implements Filter {
     }
 
     @Override
-    public void destroy() {
-
-    }
+    public void destroy() {}
 }

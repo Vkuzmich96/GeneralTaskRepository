@@ -1,13 +1,13 @@
 package by.kuzmich.finaltask.controller.validator.impl;
 
 import by.kuzmich.finaltask.KeyWordsList;
-import by.kuzmich.finaltask.controller.validator.RequestValidator;
+import by.kuzmich.finaltask.controller.validator.HttpRequestValidator;
 import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class RegistrationFormValidator extends RequestValidator {
+public class RegistrationFormValidator extends HttpRequestValidator {
     private UserService userService;
     private static final String THIS_EMAIL_ALREADY_EXISTS = "error.this.email.already.exists";
 

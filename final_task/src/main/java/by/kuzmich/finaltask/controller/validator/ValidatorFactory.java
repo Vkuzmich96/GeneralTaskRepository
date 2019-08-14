@@ -3,10 +3,7 @@ package by.kuzmich.finaltask.controller.validator;
 import by.kuzmich.finaltask.command.CommandKind;
 import by.kuzmich.finaltask.command.builder.BuilderFactory;
 import by.kuzmich.finaltask.command.builder.BuilderKind;
-import by.kuzmich.finaltask.controller.validator.impl.EnterUserValidator;
-import by.kuzmich.finaltask.controller.validator.impl.MapNameValidator;
-import by.kuzmich.finaltask.controller.validator.impl.RegistrationFormValidator;
-import by.kuzmich.finaltask.controller.validator.impl.UpdateUserValidator;
+import by.kuzmich.finaltask.controller.validator.impl.*;
 import by.kuzmich.finaltask.service.LawMapNameServiceFactory;
 import by.kuzmich.finaltask.service.UserServiceFactory;
 
@@ -17,7 +14,7 @@ public class ValidatorFactory {
     }
     private ValidatorFactory() {}
 
-    public RequestValidator get (CommandKind key) {
+    public HttpRequestValidator get (CommandKind key) {
         switch (key){
             case ADD_USER:
                 return new RegistrationFormValidator(
@@ -34,6 +31,8 @@ public class ValidatorFactory {
                 return new MapNameValidator(
                      LawMapNameServiceFactory.getInstance().get()
                 );
+            case POST_ACTION:
+                return new PostActionValidator();
             default:
                 return null;
         }

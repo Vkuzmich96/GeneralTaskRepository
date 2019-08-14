@@ -1,12 +1,12 @@
 package by.kuzmich.finaltask.controller.validator.impl;
 
 import by.kuzmich.finaltask.KeyWordsList;
-import by.kuzmich.finaltask.controller.validator.RequestValidator;
+import by.kuzmich.finaltask.controller.validator.HttpRequestValidator;
 import by.kuzmich.finaltask.exception.ServiceException;
 import by.kuzmich.finaltask.service.LawMapNameService;
 import javax.servlet.http.HttpServletRequest;
 
-public class MapNameValidator extends RequestValidator {
+public class MapNameValidator extends HttpRequestValidator {
     private LawMapNameService nameService;
     private final static String THIS_NAME_ALREADY_EXISTS = "this.name.already.exists";
 

@@ -4,7 +4,7 @@ use `lawmapsdb`;
 
   CREATE TABLE `lawmapsdb`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL unique,
   `password` VARCHAR(45) NOT NULL,
   `role` TINYINT(3) NOT NULL,
   `name` VARCHAR(50) NOT NULL,
