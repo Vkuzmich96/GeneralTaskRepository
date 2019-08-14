@@ -1,5 +1,7 @@
 package by.kuzmich.finaltask.bean;
 
+import java.util.Objects;
+
 public class ActionMaterialLink {
     private int id;
     private int actionId;
@@ -37,6 +39,21 @@ public class ActionMaterialLink {
 
     public void setMaterialId(int materialId) {
         this.materialId = materialId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ActionMaterialLink)) return false;
+        ActionMaterialLink that = (ActionMaterialLink) o;
+        return getId() == that.getId() &&
+                getActionId() == that.getActionId() &&
+                getMaterialId() == that.getMaterialId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getActionId(), getMaterialId());
     }
 
     @Override

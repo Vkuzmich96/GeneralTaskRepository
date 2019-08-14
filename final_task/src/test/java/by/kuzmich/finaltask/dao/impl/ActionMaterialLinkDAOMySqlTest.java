@@ -27,14 +27,15 @@ public class ActionMaterialLinkDAOMySqlTest {
     private ActionMaterialLink linkUpdate = new ActionMaterialLink(0,2, 2);
 
 
-    private ActionMaterialLink findFirst() throws DAOException {
-        return dao.selectAll().get(0);
+    private ActionMaterialLink findLast() throws DAOException {
+        List<ActionMaterialLink> list = dao.selectAll();
+        return list.get(list.size() -1);
     }
 
     @Test
     public void insert() throws DAOException {
         int id = dao.insert(link);
-        dao.select(String.valueOf(id));
+        assertTrue(id != 0);
     }
 
     @Test
@@ -44,21 +45,21 @@ public class ActionMaterialLinkDAOMySqlTest {
 
     @Test
     public void select() throws DAOException {
-        int id = findFirst().getActionId();
+        int id = findLast().getActionId();
         dao.select(String.valueOf(id));
         assertEquals(id, link.getActionId());
     }
 
     @Test(expected = DAOException.class)
     public void delete() throws DAOException {
-        int id  = findFirst().getId();
+        int id  = findLast().getId();
         dao.delete(id);
         dao.select(String.valueOf(id));
     }
 
     @Test
     public void update() throws DAOException {
-        int id  = findFirst().getId();
+        int id  = findLast().getId();
         linkUpdate.setId(id);
         dao.update(linkUpdate);
     }

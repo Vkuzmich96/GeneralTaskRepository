@@ -26,15 +26,17 @@ public class GraphEdgeDAOMySqlTest {
         }
     }
 
-    private GraphEdge findFirst() throws DAOException {
-        return dao.selectAll().get(0);
+    private GraphEdge findLast() throws DAOException {
+        List<GraphEdge> list = dao.selectAll();
+        return list.get(list.size() -1);
     }
 
     private GraphEdge edge = new GraphEdge(1, new Action(1), new Action(1));
 
     @Test
     public void insert() throws DAOException {
-        dao.insert(edge);
+        int id = dao.insert(edge);
+        assertTrue(id != 0);
     }
 
     @Test
@@ -47,11 +49,15 @@ public class GraphEdgeDAOMySqlTest {
         assertFalse(dao.select(String.valueOf(1)).isEmpty());
     }
 
-    @Test
-    public void delete() {
+    @Test(expected = DAOException.class)
+    public void delete() throws DAOException {
+        int id  = findLast().getId();
+        dao.delete(id);
+        dao.select(String.valueOf(id));
     }
 
     @Test
-    public void update() {
+    public void update() throws DAOException {
+        dao.update(edge);
     }
 }

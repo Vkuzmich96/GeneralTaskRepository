@@ -1,5 +1,7 @@
 package by.kuzmich.finaltask.bean;
 
+import java.util.Objects;
+
 public class Material {
     private int id;
     private String url;
@@ -43,6 +45,22 @@ public class Material {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Material)) return false;
+        Material material = (Material) o;
+        return getId() == material.getId() &&
+                Objects.equals(getUrl(), material.getUrl()) &&
+                Objects.equals(description, material.description) &&
+                Objects.equals(getName(), material.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getUrl(), description, getName());
     }
 
     @Override

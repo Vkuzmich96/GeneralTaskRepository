@@ -1,5 +1,7 @@
 package by.kuzmich.finaltask.bean;
 
+import java.util.Objects;
+
 public class LawMapName {
     private int id;
     private String name;
@@ -36,6 +38,21 @@ public class LawMapName {
 
     public void setReadiness(boolean readiness) {
         this.readiness = readiness;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LawMapName)) return false;
+        LawMapName that = (LawMapName) o;
+        return getId() == that.getId() &&
+                getReadiness() == that.getReadiness() &&
+                Objects.equals(getName(), that.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getReadiness());
     }
 
     @Override

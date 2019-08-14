@@ -1,5 +1,6 @@
 package by.kuzmich.finaltask.bean;
 
+import java.util.Objects;
 import java.util.Set;
 
 public class Graph {
@@ -41,6 +42,21 @@ public class Graph {
 
     public void setActionSet(Set<Graph> actionSet) {
         this.actionSet = actionSet;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Graph)) return false;
+        Graph graph = (Graph) o;
+        return Objects.equals(getName(), graph.getName()) &&
+                Objects.equals(getNode(), graph.getNode()) &&
+                Objects.equals(getActionSet(), graph.getActionSet());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getNode(), getActionSet());
     }
 
     @Override

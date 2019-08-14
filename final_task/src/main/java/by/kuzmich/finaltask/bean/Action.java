@@ -1,6 +1,7 @@
 package by.kuzmich.finaltask.bean;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Action {
     private int id;
@@ -62,6 +63,23 @@ public class Action {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Action)) return false;
+        Action action = (Action) o;
+        return getId() == action.getId() &&
+                Objects.equals(getName(), action.getName()) &&
+                Objects.equals(getInstructions(), action.getInstructions()) &&
+                Objects.equals(getMaterials(), action.getMaterials()) &&
+                Objects.equals(getUser(), action.getUser());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getInstructions(), getMaterials(), getUser());
     }
 
     @Override
