@@ -28,14 +28,14 @@ public class LawMapNameDAOMySqlTest {
     private LawMapName lawMapNameUpdate = new LawMapName(0,"just a test", true);
 
 
-    private LawMapName findFirst() throws DAOException {
+    private LawMapName findLast() throws DAOException {
         return dao.selectAll().get(0);
     }
 
     @Test
     public void insert() throws DAOException {
         int id = dao.insert(lawMapName);
-        dao.select(String.valueOf(id));
+        assertTrue(id != 0);
     }
 
     @Test
@@ -46,21 +46,21 @@ public class LawMapNameDAOMySqlTest {
 
     @Test
     public void select() throws DAOException{
-        int id = findFirst().getId();
+        int id = findLast().getId();
         LawMapName lawMapName = dao.select(String.valueOf(id));
         assertEquals(id, lawMapName.getId());
     }
 
     @Test(expected = DAOException.class)
     public void delete() throws DAOException {
-        int id  = findFirst().getId();
+        int id  = findLast().getId();
         dao.delete(id);
         dao.select(String.valueOf(id));
     }
 
     @Test
     public void update() throws DAOException {
-        int id  = findFirst().getId();
+        int id  = findLast().getId();
         lawMapNameUpdate.setId(id);
         dao.update(lawMapNameUpdate);
     }

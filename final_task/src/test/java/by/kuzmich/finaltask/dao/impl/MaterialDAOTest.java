@@ -12,6 +12,7 @@ import by.kuzmich.finaltask.exception.DAOException;
 import org.junit.Test;
 
 import java.sql.SQLException;
+import java.util.List;
 
 
 public class MaterialDAOTest {
@@ -39,14 +40,15 @@ public class MaterialDAOTest {
     );
 
 
-    private Material findFirst() throws DAOException {
-        return dao.selectAll().get(0);
+    private Material findLast() throws DAOException {
+        List<Material> list = dao.selectAll();
+        return list.get(list.size() -1);
     }
 
     @Test
     public void insert() throws DAOException {
         int id = dao.insert(material);
-        dao.select(String.valueOf(id));
+        assertTrue(id != 0);
     }
 
     @Test
@@ -56,21 +58,21 @@ public class MaterialDAOTest {
 
     @Test
     public void select() throws DAOException {
-        int id = findFirst().getId();
+        int id = findLast().getId();
         Material material = dao.select(String.valueOf(id));
         assertEquals(id, material.getId());
     }
 
     @Test(expected = DAOException.class)
     public void delete() throws DAOException {
-        int id  = findFirst().getId();
+        int id  = findLast().getId();
         dao.delete(id);
         dao.select(String.valueOf(id));
     }
 
     @Test
     public void update() throws DAOException {
-        int id  = findFirst().getId();
+        int id  = findLast().getId();
         materialUpdate.setId(id);
         dao.update(materialUpdate);
     }

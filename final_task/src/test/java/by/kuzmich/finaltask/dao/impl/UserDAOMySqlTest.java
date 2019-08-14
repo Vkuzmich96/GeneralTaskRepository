@@ -10,6 +10,7 @@ import by.kuzmich.finaltask.exception.DAOException;
 import org.junit.Test;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -28,14 +29,15 @@ public class UserDAOMySqlTest {
     private User userUpdate = new User(4,"22", "test ", Role.USER,"22","zczxc2",222324234L);
 
 
-    private User findFirst() throws DAOException {
-        return dao.selectAll().get(0);
+    private User findLast() throws DAOException {
+        List<User> list = dao.selectAll();
+        return list.get(list.size() -1);
     }
 
     @Test
     public void insert() throws DAOException {
         int id = dao.insert(user);
-        dao.select(String.valueOf(id));
+        assertTrue(id != 0);
     }
 
     @Test
@@ -45,21 +47,21 @@ public class UserDAOMySqlTest {
 
     @Test
     public void select() throws DAOException {
-        int id = findFirst().getId();
+        int id = findLast().getId();
         User user = dao.select(String.valueOf(id));
-        assertEquals(id, user.getId());
+        assertNotNull(user);
     }
 
     @Test(expected = DAOException.class)
     public void delete() throws DAOException {
-        int id  = findFirst().getId();
+        int id  = findLast().getId();
         dao.delete(id);
         dao.select(String.valueOf(id));
     }
 
    @Test
     public void update() throws DAOException {
-        int id  = findFirst().getId();
+        int id  = findLast().getId();
         userUpdate.setId(id);
         dao.update(userUpdate);
     }
