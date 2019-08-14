@@ -25,7 +25,7 @@
     <c:if test="${wrongNameMessage ne null}">
         <p class="text-center text-danger"><fmt:message key="${wrongNameMessage}"/></p>
     </c:if>
-    <input class="form-control" type="text" value="${name}" placeholder="<fmt:message key="enter.action.name"/>" name="name">
+    <input class="form-control" type="text" value="${name}" placeholder="<fmt:message key="enter.action.name"/>" name="name" required maxlength="25" minlength="4" pattern="^[-а-яА-ЯёЁa-zA-Z ]{4,45}$">
     <c:set var="wrongInstructionMessage"  value="${param.get('wrongInstruction')}"/>
     <c:if test="${wrongInstructionMessage ne null}">
         <p class="text-center text-danger"><fmt:message key="${wrongInstructionMessage}"/></p>
@@ -36,11 +36,11 @@
     <c:if test="${wrongMaterialNameMessage ne null}">
         <p class="text-center text-danger"><fmt:message key="${wrongMaterialNameMessage}"/></p>
     </c:if>
-    <input class="form-control" type="text" value="${materialName}" placeholder="<fmt:message key="enter.material.name"/>" name="materialName">
+    <input class="form-control" type="text" value="${materialName}" placeholder="<fmt:message key="enter.material.name"/>" name="materialName" required maxlength="25" minlength="4" pattern="^[-а-яА-ЯёЁa-zA-Z ]{4,45}$">
     <c:set var="wrongDescriptionNameMessage"  value="${param.get('wrongDescriptionName')}"/>
     <c:if test="${wrongDescriptionNameMessage ne null}">
         <p class="text-center text-danger"><fmt:message key="${wrongDescriptionNameMessage}"/></p>
     </c:if>
-    <textarea class="form-control" type="text" rows="4" placeholder="<fmt:message key="enter.description"/>" name="description">${description}</textarea>
+    <textarea class="form-control" type="text" rows="4" placeholder="<fmt:message key="enter.description"/>" name="description" required>${description}</textarea>
 </body>
 </html>

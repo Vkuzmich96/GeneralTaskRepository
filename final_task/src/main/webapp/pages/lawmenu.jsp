@@ -54,7 +54,7 @@
                             <input hidden value="on" name="isNext">
                         </c:when>
                         <c:when test="${(actionId ne null) and ((actualActionId ne null) or (actualActionId ne ''))}">
-                            <input type="checkbox" name="isNext"> <fmt:message key="next.step"/>
+                            <input type="checkbox" required name="isNext"> <fmt:message key="next.step"/>
                         </c:when>
                     </c:choose>
                     <a href="<c:url value="/release.html?number=${param.get('graphId')}"/>" class="btn btn-primary"> <fmt:message key="release.map"/> </a>
