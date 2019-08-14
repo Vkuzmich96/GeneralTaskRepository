@@ -23,7 +23,7 @@
         <h4> ${action.getName()} </h4>
         <c:set var="lawerRoleNumber" value="2"/>
         <c:if test="${lawerRoleNumber==role.getNumber()}">
-            <a href="/updateActionMenu.html?number=${action.getId()}" class="btn btn-primary"> <fmt:message key="update"/> </a>
+            <a href="<c:url value="/updateActionMenu.html?number=${action.getId()}"/>" class="btn btn-primary"> <fmt:message key="update"/> </a>
         </c:if>
         <p> ${action.getInstructions()} </p>
         <c:set var="prefix" value="/docs/"/>

@@ -16,7 +16,7 @@
         <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-50">
             <fmt:setLocale value="${not empty cookie.lang.value ? cookie.lang.value : 'en'}"/>
             <fmt:setBundle basename="label"/>
-            <form action="/registration.html" method="post">
+            <form action="<c:url value="/registration.html"/>" method="post">
                 <span class="login100-form-title p-b-33">
 						<fmt:message key="registration"/>
 				</span>
@@ -84,16 +84,16 @@
                     <input type="submit" value="<fmt:message key="sign.up"/>" class="login100-form-btn">
                 </div>
                 <div class="text-center">
-                    <a href="/setLocale.html?locale=en&url=${pageContext.request.requestURI}" class="txt2 hov1">
+                    <a href="<c:url value="/setLocale.html?locale=en&url=${pageContext.request.requestURI}"/>" class="txt2 hov1">
                         EN
                     </a>
-                    <a href="/setLocale.html?locale=ru&url=${pageContext.request.requestURI}" class="txt2 hov1">
+                    <a href="<c:url value="/setLocale.html?locale=ru&url=${pageContext.request.requestURI}"/>" class="txt2 hov1">
                         RU
                     </a>
 					<span class="txt1">
 						<fmt:message key="return.to.Login"/>
 					</span>
-                    <a href="/enter.jsp" class="txt2 hov1">
+                    <a href="<c:url value="/enter.jsp"/>" class="txt2 hov1">
                         <fmt:message key="sign.in"/>
                     </a>
                 </div>

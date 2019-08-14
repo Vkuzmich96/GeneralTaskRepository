@@ -37,7 +37,7 @@
                             <p class="text-danger"><fmt:message key="${wrongName}"/></p>
                         </c:if>
                     </div>
-                    <form action="/update.html" method="post">
+                    <form action="<c:url value="/update.html"/>" method="post">
                         <input type="hidden" value="name" name="kind">
                         <div class="wrap-input100">
                             <input type="text" value="${setName}" class="input100" required placeholder="<fmt:message key="enter.new.name"/>" name="value" maxlength="25" minlength="4" pattern="^[-а-яА-ЯёЁa-zA-Z ]{4,45}$">
@@ -56,7 +56,7 @@
                             <p class="text-danger"><fmt:message key="${wrongPassword}"/></p>
                         </c:if>
                     </div>
-                    <form  action="/update.html" method="post">
+                    <form  action="<c:url value="/update.html"/>" method="post">
                         <input type="hidden" value="password" required name="kind">
                         <div class="wrap-input100">
                              <input type="password" class="input100" required placeholder="<fmt:message key="enter.new.password"/>" name="value"  minlength="4" maxlength="12" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$">
@@ -75,7 +75,7 @@
                             <p class="text-danger"><fmt:message key="${wrongAddress}"/></p>
                         </c:if>
                     </div>
-                    <form action="/update.html" method="post">
+                    <form action="<c:url value="/update.html"/>" method="post">
                         <input type="hidden" value="address" name="kind">
                         <div class="wrap-input100">
                             <input type="text" value="${sentAddress}" class="input100" required placeholder="<fmt:message key="enter.new.address"/>" name="value" maxlength="50" minlength="4" pattern="[-а-яА-ЯёЁa-zA-Z0-9 ,.]{4,50}$">
@@ -94,7 +94,7 @@
                             <p class="text-danger"><fmt:message key="${wrongNumber}"/></p>
                         </c:if>
                     </div>
-                    <form action="/update.html" method="post">
+                    <form action="<c:url value="/update.html"/>" method="post">
                         <input type="hidden" value="phone" name="kind">
                         <div class="wrap-input100">
                             <input type="text" value="${sentPhone}" class="input100" required placeholder="<fmt:message key="enter.new.phone.number"/>" name="value" maxlength="12" minlength="12" pattern="^[-0-9]{12,}$">

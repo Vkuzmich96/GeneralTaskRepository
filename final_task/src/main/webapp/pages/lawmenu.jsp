@@ -14,7 +14,7 @@
 <c:if test="${param.get('graphId') eq null}">
     <c:set var="wrongNameMessge" value="${param.get('wrongName')}"/>
     <div class="container">
-        <form action="/addMap.html" method="post">
+        <form action="<c:url value="/addMap.html"/>" method="post">
             <div class="form-group text-center">
                 <c:if test="${wrongNameMessge ne null}">
                     <p class="text-center text-danger"><fmt:message key="${wrongNameMessge}"/></p>
@@ -31,7 +31,7 @@
 
 <c:if test="${param.get('graphId') ne null}">
     <div class="container">
-        <form action="/addAction.html" method="post" enctype="multipart/form-data">
+        <form action="<c:url value="/addAction.html"/>" method="post" enctype="multipart/form-data">
             <div>
                 <input type="hidden" value="${param.get('graphId')}" name="graphId">
                 <input type="hidden" value="${param.get('step')}" name="step">
@@ -44,8 +44,8 @@
                     <input type="file" name="file">
                     <input type="submit" class="btn btn-primary" value="<fmt:message key="add"/>"/>
                     <input type="checkbox" name="isNext"> <fmt:message key="next.step"/>
-                    <a href="/release.html?number=${param.get('graphId')}" class="btn btn-primary"> <fmt:message key="release.map"/> </a>
-                    <a href="/delete.html?number=${param.get('graphId')}" class="btn btn-primary"> <fmt:message key="delete.map"/> </a>
+                    <a href="<c:url value="/release.html?number=${param.get('graphId')}"/>" class="btn btn-primary"> <fmt:message key="release.map"/> </a>
+                    <a href="<c:url value="/delete.html?number=${param.get('graphId')}"/>" class="btn btn-primary"> <fmt:message key="delete.map"/> </a>
                 </div>
             </div>
         </form>

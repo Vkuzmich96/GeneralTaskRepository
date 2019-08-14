@@ -18,7 +18,7 @@
     <fmt:setLocale value="${not empty cookie.lang.value ? cookie.lang.value : 'en'}"/>
     <fmt:setBundle basename="label"/>
     <div class="container">
-        <form action="/updateAction.html" method="post">
+        <form action="<c:url value="/updateAction.html"/>" method="post">
             <div class="form-group text-center">
                 <u:actiomBody/>
                 <div class="text-left">

@@ -29,9 +29,9 @@
                          <c:set var="name" value="${map.getName()}"/>
                         <span class="list-group-item list-group-item-action text-left">
                                 ${number = number + 1}
-                                <a href = /lawmap.html?number=${id}> ${name} </a>
+                                <a href = <c:url value="/lawmap.html?number="/>${id}> ${name} </a>
                                 <c:if test="${!readiness}">
-                                    <a href = /continue.html?number=${id} class="btn btn-primary"><fmt:message key="continue.work"/></a>
+                                    <a href = "<c:url value="/continue.html?number="/>${id}" class="btn btn-primary"><fmt:message key="continue.work"/></a>
                                 </c:if>
                          </span>
                     </c:if>
