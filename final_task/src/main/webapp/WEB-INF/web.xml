@@ -66,4 +66,9 @@
     <url-pattern>/addAction.html</url-pattern>
     <url-pattern>/updateAction.html</url-pattern>
   </filter-mapping>
+
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/error/pageNotFound.jsp</location>
+  </error-page>
 </web-app>

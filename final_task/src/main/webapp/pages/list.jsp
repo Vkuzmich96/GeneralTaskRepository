@@ -20,6 +20,7 @@
     <fmt:setBundle basename="label"/>
     <div class="container">
         <div class="list-group text-center">
+            <p>${size}</p>
             <p class="list-group-item active"><fmt:message key="law.map.list"/></p>
                 <c:set var="number" value="${0}"/>
                 <c:forEach var="map" items="${maps}">
@@ -33,9 +34,14 @@
                                 <c:if test="${!readiness}">
                                     <a href = "<c:url value="/continue.html?number="/>${id}" class="btn btn-primary"><fmt:message key="continue.work"/></a>
                                 </c:if>
-                         </span>
+                        </span>
                     </c:if>
                 </c:forEach>
+                <span class="text-center">
+                    <c:forEach begin="0" end="${numberOfPages}" var="i">
+                        <a href = "<c:url value="/pages/list.html?number="/>${i}" class="btn btn-primary">${i+1}</a>
+                    </c:forEach>
+                </span>
         </div>
     </div>
 </body>
