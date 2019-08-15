@@ -31,7 +31,7 @@ public class GetAllMpaNames extends Command {
             mapsForResponse.add(maps.get(i));
         }
         double size = maps.size();
-        int numberOfPages = (int) Math.ceil(size / MAX_NUMBER_OF_NAMES_ON_ONE_PAGE) - 1;
+        int numberOfPages = (int) Math.ceil(size / MAX_NUMBER_OF_NAMES_ON_ONE_PAGE) -1;
         req.setAttribute(MAPS, mapsForResponse);
         req.setAttribute(NUMBER_OF_PAGES, numberOfPages);
         return PagePathList.NAME_LIST_FORWARDED;
