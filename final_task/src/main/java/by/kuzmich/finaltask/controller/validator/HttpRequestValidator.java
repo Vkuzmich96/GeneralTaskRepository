@@ -15,7 +15,7 @@ public abstract class HttpRequestValidator {
     EMAIL = Pattern.compile("^[-\\w.]+@([A-z0-9][-A-z0-9]+\\.)+[A-z]{2,4}$"),
     PASSWORD = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).*$"),
     ADDRESS = Pattern.compile("^[-а-яА-ЯёЁa-zA-Z0-9 ,.]{4,50}$"),
-    TEXT = Pattern.compile("^[-а-яА-ЯёЁa-zA-Z0-9 ,.?!]{4,3000}$"),
+    TEXT = Pattern.compile("^[-а-яА-ЯёЁa-zA-Z0-9 ,.?!]{4,}$"),
     NAME = Pattern.compile("^[-а-яА-ЯёЁa-zA-Z ]{4,45}$"),
     NUMBERS = Pattern.compile("^[-0-9]{12}$");
 

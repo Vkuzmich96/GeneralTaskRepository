@@ -31,7 +31,7 @@
             <p>
                 ${material.getName()} <a href="${prefix}${material.getUrl()}" class="btn btn-primary"> <fmt:message key="download"/> </a>
             </p>
-            <p> ${material.getDiscription()} </p>
+            <p class="text-justify text-left"> ${material.getDiscription()} </p>
         </c:forEach>
     </div>
 </body>

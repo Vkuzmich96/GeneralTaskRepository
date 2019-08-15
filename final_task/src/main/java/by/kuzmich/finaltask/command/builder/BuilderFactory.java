@@ -29,6 +29,8 @@ final public class BuilderFactory {
                 return new ActionParentBuilder();
             case MATERIAL:
                 return new MaterialBuilder();
+            case UPDATE_PROFILE_USER:
+                return new UpdateProfileUserBuilder();
         }
     }
 }

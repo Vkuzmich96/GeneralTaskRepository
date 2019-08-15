@@ -5,5 +5,6 @@ public enum BuilderKind {
     USER_ENTER,
     ACTION_CHILD,
     ACTION_PARENT,
-    MATERIAL
+    MATERIAL,
+    UPDATE_PROFILE_USER
 }

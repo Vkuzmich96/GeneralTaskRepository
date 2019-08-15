@@ -7,12 +7,11 @@ import by.kuzmich.finaltask.command.builder.DefaultValues;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class UserEnterBuilder implements Builder<User> {
-
+public class UpdateProfileUserBuilder  implements Builder<User> {
     @Override
     public User build(HttpServletRequest req) {
-        String email = req.getParameter(KeyWordsList.EMAIL);
-        String password = req.getParameter(KeyWordsList.PASSWORD);
+        String email = (String) req.getSession().getAttribute(KeyWordsList.LOGIN);
+        String password = req.getParameter(KeyWordsList.OLD_PASSWORD);
         return new User(
                 DefaultValues.DEFAULT_ID,
                 email,

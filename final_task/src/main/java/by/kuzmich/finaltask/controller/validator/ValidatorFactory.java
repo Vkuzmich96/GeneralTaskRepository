@@ -26,7 +26,10 @@ public class ValidatorFactory {
                     UserServiceFactory.getInstance().get()
                 );
             case POST_UPDATE_USER_PROFILE:
-                return new UpdateUserValidator();
+                return new UpdateUserValidator(
+                    BuilderFactory.getInstance().get(BuilderKind.UPDATE_PROFILE_USER),
+                    UserServiceFactory.getInstance().get()
+                );
             case POST_MAP_NAME:
                 return new MapNameValidator(
                      LawMapNameServiceFactory.getInstance().get()

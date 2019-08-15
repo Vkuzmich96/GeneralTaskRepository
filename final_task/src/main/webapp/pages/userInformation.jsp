@@ -59,7 +59,15 @@
                     <form  action="<c:url value="/update.html"/>" method="post">
                         <input type="hidden" value="password" required name="kind">
                         <div class="wrap-input100">
-                             <input type="password" class="input100" required placeholder="<fmt:message key="enter.new.password"/>" name="value"  minlength="4" maxlength="12" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$">
+                             <input type="password" class="input100" required placeholder="<fmt:message key="old.password"/>" name="oldPassword"  minlength="4" maxlength="12" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$">
+                            <u:focus/>
+                        </div>
+                        <div class="wrap-input100">
+                            <input type="password" class="input100" required placeholder="<fmt:message key="enter.new.password"/>" name="value"  minlength="4" maxlength="12" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$">
+                            <u:focus/>
+                        </div>
+                        <div class="wrap-input100">
+                            <input type="password" class="input100" required placeholder="<fmt:message key="enter.new.password.again"/>" name="checkValue"  minlength="4" maxlength="12" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$">
                             <u:focus/>
                         </div>
                         <input type="submit" class="btn btn-primary" value="<fmt:message key="update.password"/>">
