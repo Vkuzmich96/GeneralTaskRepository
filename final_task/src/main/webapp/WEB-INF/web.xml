@@ -53,6 +53,26 @@
     <filter-name>UrlTranslationFilter</filter-name>
     <url-pattern>*.html</url-pattern>
   </filter-mapping>
+
+  <filter>
+    <filter-name>RoleFilter</filter-name>
+    <filter-class>by.kuzmich.finaltask.controller.filter.RoleFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>RoleFilter</filter-name>
+    <url-pattern>/updateActionMenu.html</url-pattern>
+    <url-pattern>/lawyerMenu.html</url-pattern>
+    <url-pattern>/addAction.html</url-pattern>
+    <url-pattern>/addMaterial.html</url-pattern>
+    <url-pattern>/addMap.html</url-pattern>
+    <url-pattern>/addAction.html</url-pattern>
+    <url-pattern>/updateAction.html</url-pattern>
+    <url-pattern>/continue.html</url-pattern>
+    <url-pattern>/delete.html</url-pattern>
+    <url-pattern>/release.html</url-pattern>
+    <url-pattern>/pages/lawmenu.jsp</url-pattern>
+  </filter-mapping>
+
   <filter>
     <filter-name>ValidationFilter</filter-name>
     <filter-class>by.kuzmich.finaltask.controller.filter.ValidationFilter</filter-class>

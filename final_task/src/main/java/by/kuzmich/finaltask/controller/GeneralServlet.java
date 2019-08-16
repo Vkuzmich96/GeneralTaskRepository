@@ -43,7 +43,6 @@ public class GeneralServlet extends HttpServlet {
             }
         } catch (ServiceException | ControllerException | ServletException | IOException e) {
             logger.error(e.getMessage());
-            e.printStackTrace();
         }
     }
 

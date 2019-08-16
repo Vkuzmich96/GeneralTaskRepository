@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class CookieHandlerLocale implements CookieHandler {
-    private String COOKIE_NAME = "lang";
-    private final int DELETE_LOCALE= 0;
-    private String postfix = "/";
+    private final static String COOKIE_NAME = "lang";
+    private final static int DELETE_LOCALE= 0;
+    private final static String POSTFIX = "/";
 
     public void add(HttpServletResponse resp, String locale){
         Cookie cookie = new Cookie(COOKIE_NAME, locale);
-        cookie.setPath(postfix);
+        cookie.setPath(POSTFIX);
         resp.addCookie(cookie);
     }
 
     public void delete(HttpServletRequest req, HttpServletResponse resp){
         Cookie cookie = new Cookie(COOKIE_NAME, getValue(req));
-        cookie.setPath(postfix);
+        cookie.setPath(POSTFIX);
         cookie.setMaxAge(DELETE_LOCALE);
         resp.addCookie(cookie);
     }
