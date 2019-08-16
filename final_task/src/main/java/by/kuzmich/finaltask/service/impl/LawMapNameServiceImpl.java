@@ -21,6 +21,9 @@ public class LawMapNameServiceImpl implements LawMapNameService {
         this.nameDAOSelectByName = nameDAOSelectByName;
     }
 
+    /**
+     * Checks is name free
+     */
     public boolean isNameFree (String name) throws ServiceException {
         try {
             return nameDAOSelectByName.select(name).getId() == 0;
@@ -29,6 +32,9 @@ public class LawMapNameServiceImpl implements LawMapNameService {
         }
     }
 
+    /**
+     * Gets all an LawMapName objects from DAO
+     */
     public List<LawMapName> getAll() throws ServiceException {
         try {
             return dao.selectAll();
@@ -37,6 +43,9 @@ public class LawMapNameServiceImpl implements LawMapNameService {
         }
     }
 
+    /**
+     * Adds an new LawMapName object in DAO
+     */
     public int add (LawMapName name) throws ServiceException {
         try {
             return dao.insert(name);
@@ -45,6 +54,9 @@ public class LawMapNameServiceImpl implements LawMapNameService {
         }
     }
 
+    /**
+     * Deletes an LawMapName object from DAO by id
+     */
     @Override
     public void delete(int key) throws ServiceException {
         try {
@@ -54,6 +66,9 @@ public class LawMapNameServiceImpl implements LawMapNameService {
         }
     }
 
+    /**
+     * Changes an LawMapName object state on reade
+     */
     @Override
     public void realise(String key) throws ServiceException {
         try {

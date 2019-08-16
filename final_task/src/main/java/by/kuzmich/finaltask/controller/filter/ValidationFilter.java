@@ -20,6 +20,9 @@ import java.util.Set;
 
 public class ValidationFilter implements Filter {
     private static Logger logger = Logger.getLogger(ValidationFilter.class);
+    /**
+     * Contains enum corresponding to the command as key, and URL's for redirect user if request invalid as value
+     */
     private static Map<CommandKind, String> redirectUrlMap = new HashMap<>();
     static {
         redirectUrlMap.put(CommandKind.ADD_USER, "/pages/registration.jsp?");
@@ -33,6 +36,11 @@ public class ValidationFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {}
 
+    /**
+     * Gets from Validator factory validator's by enum, check's request by the validator method isValid.
+     * If request is valid continue's chain, if not redirects user.
+     * Use method printParameters for translating error messages and sent wrong parameters in URL parameter's
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
@@ -58,6 +66,9 @@ public class ValidationFilter implements Filter {
         }
     }
 
+    /**
+     * Translate entry's from Map in the URL parameters's
+     */
     private String printParameters(Map<String, String> map) throws UnsupportedEncodingException {
         Set<Map.Entry<String, String>> set = map.entrySet();
         if (!set.isEmpty()) {

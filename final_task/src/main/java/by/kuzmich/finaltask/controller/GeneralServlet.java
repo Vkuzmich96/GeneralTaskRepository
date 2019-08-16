@@ -19,6 +19,10 @@ import java.io.IOException;
 public class GeneralServlet extends HttpServlet {
     private static Logger logger = Logger.getLogger(GeneralServlet.class);
 
+    /**
+     * Takes out command from GET factory by enum calls the method handle on them
+     */
+
     public void doGet(HttpServletRequest req, HttpServletResponse resp){
         CommandKind kind = (CommandKind) req.getAttribute(KeyWordsList.COMMAND);
         logger.debug(kind);
@@ -26,6 +30,9 @@ public class GeneralServlet extends HttpServlet {
         handle(command, req, resp);
     }
 
+    /**
+     * Takes out command from POST factory by enum calls the method handle on them
+     */
     public void doPost(HttpServletRequest req, HttpServletResponse resp){
         CommandKind kind = (CommandKind) req.getAttribute(KeyWordsList.COMMAND);
         logger.debug(kind);
@@ -33,6 +40,9 @@ public class GeneralServlet extends HttpServlet {
         handle(command, req, resp);
     }
 
+    /**
+     * Calls the method to execute, decides to redirect or forward, logs thrown errors
+     */
     private void handle(Command command, HttpServletRequest req, HttpServletResponse resp) {
         try {
             String path = command.execute(req, resp);
@@ -45,11 +55,15 @@ public class GeneralServlet extends HttpServlet {
             logger.error(e.getMessage());
         }
     }
-
+    /**
+     *Forwards user
+     */
     private void doForward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getServletContext().getRequestDispatcher(url).forward(req, resp);
     }
-
+    /**
+     *Redirect user
+     */
     private void doRedirect(String url, HttpServletRequest req, HttpServletResponse resp) throws IOException {
         resp.sendRedirect(req.getContextPath() + url);
     }

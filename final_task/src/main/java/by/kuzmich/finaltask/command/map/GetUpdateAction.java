@@ -17,6 +17,9 @@ public class GetUpdateAction extends Command {
         this.actionService = actionService;
     }
 
+    /**
+     * Gets Action object from service by number, and puts it in a request attribute
+     */
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String number = req.getParameter(KeyWordsList.NUMBER);

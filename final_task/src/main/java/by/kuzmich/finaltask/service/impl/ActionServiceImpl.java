@@ -24,6 +24,9 @@ public class ActionServiceImpl implements ActionService {
         this.linkListDAO = linkListDAO;
     }
 
+    /**
+    * Adds new an Action object in the DAO
+     */
     @Override
     public int add (Action action) throws ServiceException {
         try {
@@ -39,6 +42,9 @@ public class ActionServiceImpl implements ActionService {
         }
     }
 
+    /**
+     * Gets an Action object from DAO by key.
+     */
     @Override
     public Action get(String key) throws ServiceException {
         try {
@@ -49,7 +55,9 @@ public class ActionServiceImpl implements ActionService {
             throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
-
+    /**
+    * Builds list an Material objects by data from DAO
+     */
     private List<Material> buildMaterials (String key) throws DAOException {
         List<ActionMaterialLink> links = linkListDAO.select(key);
         List<Material> materials = new ArrayList<>();
@@ -60,6 +68,9 @@ public class ActionServiceImpl implements ActionService {
         return materials;
     }
 
+    /**
+     * Adds new a Material object in the DAO
+     */
     public int addMaterial(Material material) throws ServiceException {
         try {
             return materialDAO.insert(material);
@@ -67,7 +78,9 @@ public class ActionServiceImpl implements ActionService {
             throw new ServiceException(ExceptionMessageList.UNABLE_TO_GET_DATA_ACCESS, e);
         }
     }
-
+    /**
+     * Updates an Action object in the DAO
+     */
     public void update(Action action) throws ServiceException {
         try {
             actionDAO.update(action);

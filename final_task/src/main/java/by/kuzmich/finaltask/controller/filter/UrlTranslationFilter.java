@@ -15,6 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UrlTranslationFilter implements Filter{
+    /**
+     *Contains url as a key, and enum corresponding to the command
+     */
     private static Map<String, CommandKind> map = new HashMap<>();
     static {
         map.put("/registration.html", CommandKind.ADD_USER);
@@ -40,7 +43,9 @@ public class UrlTranslationFilter implements Filter{
     @Override
     public void init(FilterConfig filterConfig) {
     }
-
+    /**
+     *Gets enum corresponding url from map and put it in request attribute
+     */
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
         if(servletRequest instanceof HttpServletRequest) {

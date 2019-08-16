@@ -18,6 +18,9 @@ public class PostUpdateAction extends Command {
         this.actionService = actionService;
     }
 
+    /**
+     * Updates Action object.
+     */
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String actionId = req.getParameter(KeyWordsList.ACTION_ID);

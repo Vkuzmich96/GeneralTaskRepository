@@ -17,6 +17,9 @@ public class PostMapName extends Command {
         this.nameService = nameService;
     }
 
+    /**
+     * Adds new LawMapName object
+     */
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String name = req.getParameter(KeyWordsList.NAME);

@@ -18,6 +18,9 @@ public class UserServiceImpl implements UserService {
         this.dao = dao;
     }
 
+    /**
+     * Adds an new User to DAO
+     */
     public void add (User user) throws ServiceException {
         try {
             dao.insert(user);
@@ -26,6 +29,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * Checks a User password
+     */
     public boolean checkPassword (User user) throws ServiceException {
         try {
             User userDB = dao.select(user.getEmail());
@@ -35,6 +41,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * Gets an User from DAO by login
+     */
     public User get (String login) throws ServiceException {
         try {
             return dao.select(login);
@@ -43,6 +52,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     * Updates an User
+     */
     public void update (User user) throws ServiceException {
         try {
             dao.update(user);

@@ -16,6 +16,9 @@ public class PostRealise extends Command {
         this.nameService = nameService;
     }
 
+    /**
+     * Changes lawMapName object state on reade
+     */
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String number = req.getParameter(KeyWordsList.NUMBER);

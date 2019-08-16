@@ -11,14 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 
 public class GetAction extends Command {
     private ActionService service;
+    private static final String ID = "id";
 
     public GetAction(ActionService service) {
         this.service = service;
     }
 
+    /**
+     * Get's Action object fron service, and put it in request attribute
+     */
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
-        String key = req.getParameter("id");
+        String key = req.getParameter(ID);
         req.setAttribute(KeyWordsList.ACTION, service.get(key));
         return PagePathList.ACTION;
     }

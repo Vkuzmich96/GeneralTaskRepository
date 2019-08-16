@@ -20,6 +20,9 @@ public class PostUserLogIn extends Command {
         this.userService = userService;
     }
 
+    /**
+     * create a User session with request parameters.
+     */
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String email = req.getParameter(KeyWordsList.EMAIL);

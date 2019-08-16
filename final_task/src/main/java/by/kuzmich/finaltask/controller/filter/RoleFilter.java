@@ -16,6 +16,9 @@ public class RoleFilter  implements Filter{
 
     }
 
+    /**
+     * Checks does user has a rights to get access for requested page
+     */
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;

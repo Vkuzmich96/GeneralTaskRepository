@@ -17,6 +17,9 @@ public class PostDeleteMap extends Command {
         this.nameService = nameService;
     }
 
+    /**
+     * Delete LawMapName object by number.
+     */
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String number = req.getParameter(KeyWordsList.NUMBER);

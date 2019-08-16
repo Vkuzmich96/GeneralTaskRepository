@@ -20,6 +20,9 @@ public class AccessFilter implements Filter{
     public void init(FilterConfig filterConfig) {
     }
 
+    /**
+     * Checks does the login is contained in the session, if not, redirects the user to the login page
+     */
     @Override
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) req;

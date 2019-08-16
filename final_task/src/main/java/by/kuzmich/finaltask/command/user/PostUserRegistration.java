@@ -25,6 +25,9 @@ public class PostUserRegistration extends Command {
         this.sessionHandler = sessionHandler;
     }
 
+    /**
+     * Creates an new user object and saves it.
+     */
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         User user = builder.build(req);

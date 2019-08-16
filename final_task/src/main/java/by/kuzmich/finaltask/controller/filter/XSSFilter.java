@@ -14,6 +14,9 @@ public class XSSFilter implements Filter {
     public void destroy() {
     }
 
+    /**
+     * Wrap's request in the XSSRequestWrapper
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {

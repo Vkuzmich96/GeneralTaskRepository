@@ -37,6 +37,11 @@ public class PostAction extends Command {
         this.DIRECTORY = directoryPath;
     }
 
+    /**
+     * Calls a method getState to get Graph object state.
+     * Updates state.
+     * Use translateStateInParameters method for translation state to request parameters
+     */
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException, ControllerException {
         Map<String, String> state = getState(req);
@@ -55,6 +60,9 @@ public class PostAction extends Command {
         return PagePathList.LAWER_MENU + translateStateInParameters(state);
     }
 
+    /**
+     * If a next step flag is on increments step parameter
+     */
     private void nextStepHandler(HttpServletRequest req, Map<String, String> state){
         if (KeyWordsList.NEXT_STEP_FLAG_ON.equals(req.getParameter(KeyWordsList.IS_NEXT))){
             incrementStep(state);
@@ -62,6 +70,9 @@ public class PostAction extends Command {
         }
     }
 
+    /**
+     * Builds Graph object state by request parameters
+     */
     private Map<String, String> getState (HttpServletRequest req){
         Map<String, String> state = new HashMap<>();
         String graphId = req.getParameter(KeyWordsList.GRAPH_ID);
@@ -77,17 +88,26 @@ public class PostAction extends Command {
         return state;
     }
 
+    /**
+     * Increments a step parameter.
+     */
     private void incrementStep(Map<String, String> state){
         Integer step = Integer.parseInt(state.get(KeyWordsList.STEP));
         step = ++step;
         state.put(KeyWordsList.STEP, step.toString());
     }
 
+    /**
+     * Makes an last added action id new current action id.
+     */
     private void changeActualActionId(Map<String, String> state) {
         String id = state.get(KeyWordsList.ACTION_ID);
         state.put(KeyWordsList.ACTUAL_ACTION_ID, id);
     }
 
+    /**
+     * Builds file, and save in the docs directory
+     */
     private void fileHandler(HttpServletRequest req){
         try {
             Part filePart = req.getPart(KeyWordsList.FILE_PARAMETER_NAME);

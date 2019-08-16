@@ -21,6 +21,12 @@ public class GetAllMpaNames extends Command {
         this.nameService = nameService;
     }
 
+    /**
+     * Gets all LawMapName objects from service.
+     * Calculates number of pages.
+     * Puts a collection of names suitable for the page size in request attribute MAPS.
+     * Puts a number of pages in request attribute NUMBER_OF_PAGES.
+     */
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException {
         String number = req.getParameter(KeyWordsList.NUMBER);

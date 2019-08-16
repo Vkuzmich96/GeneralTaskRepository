@@ -24,6 +24,9 @@ public class MapServiceImpl implements MapService {
         this.nameDAO = nameDAO;
     }
 
+    /**
+     * Gets an Graph object by id from DAO
+     */
     public Graph get (String number) throws ServiceException {
         try {
             List<GraphEdge> edgeList = graphEdgeDAO.select(number);
@@ -42,10 +45,16 @@ public class MapServiceImpl implements MapService {
         }
     }
 
+    /**
+     * Gets an Action object by id from DAO
+     */
     private Action buildAction(int key) throws DAOException {
         return actionDAO.select(String.valueOf(key));
     }
 
+    /**
+     * Builds a root node for Graph object by List GraphEdge objects and LamMapName object key
+     */
     private Graph buildRootNode(List<GraphEdge> edgeList, String key) throws DAOException {
         Action action = buildAction(edgeList.get(0).getChild().getId());
         Graph graph = new Graph(action, null );
@@ -54,6 +63,9 @@ public class MapServiceImpl implements MapService {
         return graph;
     }
 
+    /**
+     * Recursively adds a nodes to Graph object by List GraphEdge objects
+     */
     private Graph buildNodes(List<GraphEdge> edgeList, Graph rootGraph) throws DAOException {
         Set<Graph> actionSet = new LinkedHashSet<>();
         for (int i = 1; i < edgeList.size(); i++) {
@@ -69,6 +81,9 @@ public class MapServiceImpl implements MapService {
         return rootGraph;
     }
 
+    /**
+     * Adds an GraphEdge object to DAO
+     */
     public int addEdge(GraphEdge edge) throws ServiceException {
         try {
             return graphEdgeDAO.insert(edge);
@@ -77,6 +92,9 @@ public class MapServiceImpl implements MapService {
         }
     }
 
+    /**
+     * Gets all an GraphEdge objects from DAO
+     */
     public List<GraphEdge> getAll(String key) throws ServiceException {
         try {
             return graphEdgeDAO.selectAll();

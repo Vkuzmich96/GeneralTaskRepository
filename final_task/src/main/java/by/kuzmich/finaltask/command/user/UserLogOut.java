@@ -15,6 +15,9 @@ public class UserLogOut extends Command {
         this.sessionHandler = sessionHandler;
     }
 
+    /**
+     * Closes user session
+     */
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp){
         sessionHandler.close(req);

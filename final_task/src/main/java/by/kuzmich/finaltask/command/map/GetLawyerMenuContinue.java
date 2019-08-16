@@ -26,6 +26,9 @@ public class GetLawyerMenuContinue extends Command {
         this.mapService = mapService;
     }
 
+    /**
+    * Create upload current state of Graph from service, and sets it in URL parameters
+    */
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServiceException, ControllerException {
         Map<String, String> state = new HashMap<>();

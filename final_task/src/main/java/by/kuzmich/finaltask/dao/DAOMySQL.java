@@ -20,6 +20,9 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
     protected final String NAME = "name";
     private final int EMPTY_RESULT_SET = 0;
 
+    /**
+     * Receives connection, and sql query statements.
+     */
     public DAOMySQL(Connection connection, String INSERT, String SELECT_ALL, String SELECT_BY_ID, String DELETE, String UPDATE) {
         this.connection = connection;
         this.INSERT = INSERT;
@@ -29,6 +32,9 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
         this.UPDATE = UPDATE;
     }
 
+    /**
+     * Inserts a generalized object in the data base
+     */
     @Override
     public int insert(T object) throws DAOException {
         try {
@@ -52,6 +58,9 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
         }
     }
 
+    /**
+     * Selects all objects
+     */
     @Override
     public List<T> selectAll() throws DAOException {
         try {
@@ -69,6 +78,9 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
         }
     }
 
+    /**
+     * selects an specific object by id
+     */
     @Override
     public S select(String str) throws DAOException {
         try {
@@ -86,7 +98,9 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
             }
         }
     }
-
+    /**
+     * deletes an specific object by id
+     */
     @Override
     public void delete(int id) throws DAOException {
         try {
@@ -104,6 +118,9 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
         }
     }
 
+    /**
+     * updates an specific object by id
+     */
     @Override
     public void update(T object) throws DAOException {
         try {
@@ -121,7 +138,9 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
         }
     }
 
-
+    /**
+     * Close a data base connection
+     */
     @Override
     public void finalize() throws SQLException {
         connection.close();
@@ -131,7 +150,9 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
 
     protected abstract void prepareStatementUpdate(PreparedStatement statement, T object)  throws SQLException;
 
-
+    /**
+     * Builds a list of objects
+     */
     protected List<T> buildList (ResultSet set) throws SQLException{
         List<T> materials = new ArrayList<>();
         while (set.next()){
@@ -139,8 +160,11 @@ public abstract class DAOMySQL <T, S> implements DAO <T, S>  {
             materials.add(object);
         }
         return materials;
-    };
+    }
 
+    /**
+     * Builds an object with ResultSet data
+     * */
     protected abstract T build(ResultSet set) throws SQLException;
 
     protected abstract S prepareSelectResult(ResultSet set) throws SQLException;

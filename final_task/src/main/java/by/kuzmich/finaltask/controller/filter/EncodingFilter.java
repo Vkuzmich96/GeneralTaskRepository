@@ -13,6 +13,9 @@ public class EncodingFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {}
 
+	/**
+	 * Sets UTF-8 Encoding for request and response
+	 */
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
 		req.setCharacterEncoding("UTF-8");
